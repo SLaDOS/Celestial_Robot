@@ -1,8 +1,21 @@
 PASSWORD = celestial
 
-ROS_DOMAIN_ID = 33
+ROS_DOMAIN_ID = 30
 
 MAC_ADDRESS = D8:3A:DD:58:91:B1
+
+To get ip address:
+`sudo arp-scan -l | sort`, then look for MAC address.
+
+TurtleBot static IP address:
+`192.168.137.133`
+
+## Bringup
+
+SBC: `ros2 launch turtlebot3_bringup robot.launch.py` or `bringup`
+
+PC: `ros2 run turtlebot3_teleop teleop_keyboard`
+
 
 ## SSH TurtleBot by WSL 
 
