@@ -31,10 +31,10 @@ solving reference:
 https://superuser.com/questions/1764148/ssh-into-device-through-wsl-when-connected-via-hotspot?newreg=ee5035b5bbba4b90b391249d9ff4969a
 
 - edit `.wslconfig` in `C:\Users\Nash Xu` with:
-    ```
-    [wsl2]
-    networkingMode=mirrored
-    ```
+  ```
+  [wsl2]
+  networkingMode=mirrored
+  ```
 
 - open WSL
 
@@ -49,3 +49,27 @@ https://superuser.com/questions/1764148/ssh-into-device-through-wsl-when-connect
 ### (solved) When set static IP on Ubuntu Server 22.04:\
 ``` `gateway4` has been deprecated, use default routes instead```
 https://unix.stackexchange.com/questions/681220/netplan-generate-gateway4-has-been-deprecated-use-default-routes-instead
+
+### connect robot to ubuntu server
+
+Similar problems: https://bugs.launchpad.net/ubuntu/+source/wpa/+bug/1972790
+
+**Solution**:
+
+TL;DR: do not use a password
+https://askubuntu.com/a/1407833
+    
+    Turn off the wifi, via the drop down top menu. Then go to:
+    Show Applications --> Advanced Network
+    
+    Then in "Network Connections" dialog:
+
+    1. Remove the Hotspot connection
+    2. Add a new one (+ sign)
+    3. choose WIFI for type of connection
+    4. Name it and give it a SSID
+    5. Change MODE to Hotspot
+    6. Save Then restart the wifi via the top menu, and try to connect with your phone.
+    
+    I didn't mess much with a passwords as I don't need them.
+
