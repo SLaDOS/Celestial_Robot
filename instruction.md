@@ -1,7 +1,7 @@
 `ssh nash@10.42.0.133`
 
 PASSWORD = celestial\
-ROS_DOMAIN_ID = 313\
+ROS_DOMAIN_ID = 133\
 MAC_ADDRESS = D8:3A:DD:58:91:B1
 
 To get ip address:\
