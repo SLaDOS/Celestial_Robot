@@ -9,6 +9,11 @@ ros2 service list -t
 # ros2 service call <service_name> <service_type> <arguments>
 ros2 service call /reset std_srvs/srv/Trigger
 
+ros2 param list
+# ros2 param get <node_name> <parameter_name>
+# ros2 param dump <node_name>
+# ros2 run <package_name> <executable_name> --ros-args --params-file <file_name>
+
 
 ros2 interface show <type_name>
 
