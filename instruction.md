@@ -2,10 +2,11 @@
 
 PASSWORD = celestial\
 ROS_DOMAIN_ID = 133\
-MAC_ADDRESS = D8:3A:DD:58:91:B1
+TurtleBot3_MAC_ADDRESS = D8:3A:DD:58:91:B1
 
 To get ip address:\
 check hotspot panel\
+or `$ sudo hostname -I`\
 or `$ sudo arp-scan -l | sort`, then look for MAC address.
 
 TurtleBot static IP address: \
