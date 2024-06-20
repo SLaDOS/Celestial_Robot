@@ -1,10 +1,6 @@
-`ssh nash@10.42.0.133`
-`ros2 run turtlebot3_teleop teleop_keyboard`
-
-
-PASSWORD = celestial\
-ROS_DOMAIN_ID = 133\
-TurtleBot3_MAC_ADDRESS = D8:3A:DD:58:91:B1
+    PASSWORD = celestial
+    ROS_DOMAIN_ID = 133
+    TurtleBot3_MAC_ADDRESS = D8:3A:DD:58:91:B1
 
 To get ip address:\
 check hotspot panel\
@@ -15,37 +11,7 @@ TurtleBot static IP address: \
 `192.168.137.133` on 'TurtleBotBurger'(Windows)\
 `10.42.0.133` on 'turtlebot_remote_ubuntu'
 
-To copy a file from B to A while logged into B:\
-`scp /path/to/file username@a:/path/to/destination`\
-To copy a file from B to A while logged into A:\
-`scp username@b:/path/to/file /path/to/destination`
-
-
-## Bring up
-
-SBC: `ros2 launch turtlebot3_bringup robot.launch.py` or `bringup`
-
-
-## SSH TurtleBot by WSL 
-
-solving reference:
-https://superuser.com/questions/1764148/ssh-into-device-through-wsl-when-connected-via-hotspot?newreg=ee5035b5bbba4b90b391249d9ff4969a
-
-- edit `.wslconfig` in `C:\Users\Nash Xu` with:
-  ```
-  [wsl2]
-  networkingMode=mirrored
-  ```
-
-- open WSL
-
-- ```bash
-    ssh "nash xu"@localhost
-    ssh nash@<turtlebot_ip>
-    ```
-
-
-## Troubles:
+## Troubleshooting:
 
 ### When set static IP on Ubuntu Server 22.04 (solved):
 
@@ -74,4 +40,17 @@ https://askubuntu.com/a/1407833
     6. Save Then restart the wifi via the top menu, and try to connect with your phone.
     
     I didn't mess much with a passwords as I don't need them.
+
+### SSH the original System in WSL 
+
+solving reference:
+https://superuser.com/questions/1764148/ssh-into-device-through-wsl-when-connected-via-hotspot?newreg=ee5035b5bbba4b90b391249d9ff4969a
+
+1. edit `.wslconfig` in `C:\Users\Nash Xu` with:
+  ```
+  [wsl2]
+  networkingMode=mirrored
+  ```
+2. open WSL
+3. `$ ssh "nash xu"@localhost`
 

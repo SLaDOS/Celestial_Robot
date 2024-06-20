@@ -1,5 +1,6 @@
-ros2 run rqt_console rqt_console
+source /opt/ros/humble/setup.bash
 
+ros2 run rqt_console rqt_console
 
 ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.02, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 ros2 topic pub --rate 1 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.02, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
@@ -16,9 +17,7 @@ ros2 param list
 # ros2 param dump <node_name>
 # ros2 run <package_name> <executable_name> --ros-args --params-file <file_name>
 
-
 ros2 interface show <type_name>
-
 
 ros2 bag record <topic_name>
 

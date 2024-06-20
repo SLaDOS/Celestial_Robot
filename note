@@ -1,0 +1,13 @@
+ssh nash@10.42.0.133
+ros2 launch turtlebot3_bringup robot.launch.py
+ or
+bringup
+
+ros2 run turtlebot3_teleop teleop_keyboard
+
+
+
+To copy a file from B to A while logged into B:
+    scp /path/to/file username@a:/path/to/destination
+To copy a file from B to A while logged into A:
+    scp username@b:/path/to/file /path/to/destination
