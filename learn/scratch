@@ -1,7 +1,9 @@
+ros2 run rqt_console rqt_console
+
+
 ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.02, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 ros2 topic pub --rate 1 /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.02, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 ros2 topic hz /cmd_vel
-
 
 # ros2 service type <service_name>
 ros2 service list -t
