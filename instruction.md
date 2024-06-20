@@ -1,4 +1,6 @@
 `ssh nash@10.42.0.133`
+`ros2 run turtlebot3_teleop teleop_keyboard`
+
 
 PASSWORD = celestial\
 ROS_DOMAIN_ID = 133\
@@ -22,8 +24,6 @@ To copy a file from B to A while logged into A:\
 ## Bring up
 
 SBC: `ros2 launch turtlebot3_bringup robot.launch.py` or `bringup`
-
-PC: `ros2 run turtlebot3_teleop teleop_keyboard`
 
 
 ## SSH TurtleBot by WSL 
