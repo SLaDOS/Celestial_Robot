@@ -46,11 +46,12 @@ https://superuser.com/questions/1764148/ssh-into-device-through-wsl-when-connect
 
 ## Troubles:
 
-### (solved) When set static IP on Ubuntu Server 22.04:\
+### When set static IP on Ubuntu Server 22.04 (solved):
+
 ``` `gateway4` has been deprecated, use default routes instead```
 https://unix.stackexchange.com/questions/681220/netplan-generate-gateway4-has-been-deprecated-use-default-routes-instead
 
-### connect robot to ubuntu server
+### Connect robot to ubuntu server (solved)
 
 Similar problems: https://bugs.launchpad.net/ubuntu/+source/wpa/+bug/1972790
 
