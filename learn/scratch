@@ -20,6 +20,8 @@ ros2 param list
 ros2 interface show <type_name>
 
 
+ros2 bag record <topic_name>
+
 
 
 

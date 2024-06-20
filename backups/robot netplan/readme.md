@@ -26,7 +26,7 @@ Set a hotspot on Ubuntu as following:
 
 [2] uses Eduroam. Cannot set a static IP.
 
-In Eduroam, ROS2 nodes on different machines cannot find each other with the same Domain ID.
+In Eduroam, ROS2 nodes on different machines cannot find each other with the same ROS_DOMAIN_ID.
 You can control the robot by SSH.
 
 [3] uses a third Wi-Fi, e.g. your phone hotspot or a laptop hotspot. Works well.
