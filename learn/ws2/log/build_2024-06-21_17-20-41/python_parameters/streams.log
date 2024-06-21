@@ -1,0 +1,38 @@
+[0.715s] Invoking command in '/home/nash/PycharmProjects/Celestial_Robot/learn/ws2/src/python_parameters': PYTHONPATH=/home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/prefix_override:/home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/python_parameters build --build-base /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build install --record /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/install.log --single-version-externally-managed install_data
+[0.984s] running egg_info
+[0.984s] creating ../../build/python_parameters/python_parameters.egg-info
+[0.985s] writing ../../build/python_parameters/python_parameters.egg-info/PKG-INFO
+[0.985s] writing dependency_links to ../../build/python_parameters/python_parameters.egg-info/dependency_links.txt
+[0.985s] writing entry points to ../../build/python_parameters/python_parameters.egg-info/entry_points.txt
+[0.985s] writing requirements to ../../build/python_parameters/python_parameters.egg-info/requires.txt
+[0.986s] writing top-level names to ../../build/python_parameters/python_parameters.egg-info/top_level.txt
+[0.986s] writing manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.989s] reading manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.989s] adding license file 'LICENSE'
+[0.990s] writing manifest file '../../build/python_parameters/python_parameters.egg-info/SOURCES.txt'
+[0.991s] running build
+[0.991s] running build_py
+[0.991s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build
+[0.991s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build/lib
+[0.992s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build/lib/python_parameters
+[0.992s] copying python_parameters/__init__.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build/lib/python_parameters
+[0.992s] copying python_parameters/python_parameters_node.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build/lib/python_parameters
+[0.992s] running install
+[0.992s] running install_lib
+[0.994s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python3.10/site-packages/python_parameters
+[0.994s] copying /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build/lib/python_parameters/__init__.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python3.10/site-packages/python_parameters
+[0.994s] copying /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build/lib/python_parameters/python_parameters_node.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python3.10/site-packages/python_parameters
+[0.995s] byte-compiling /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python3.10/site-packages/python_parameters/__init__.py to __init__.cpython-310.pyc
+[0.995s] byte-compiling /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python3.10/site-packages/python_parameters/python_parameters_node.py to python_parameters_node.cpython-310.pyc
+[0.996s] running install_data
+[0.996s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/share/ament_index
+[0.996s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/share/ament_index/resource_index
+[0.997s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/share/ament_index/resource_index/packages
+[0.997s] copying resource/python_parameters -> /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/share/ament_index/resource_index/packages
+[0.997s] copying package.xml -> /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/share/python_parameters
+[0.997s] running install_egg_info
+[0.999s] Copying ../../build/python_parameters/python_parameters.egg-info to /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python3.10/site-packages/python_parameters-0.0.0-py3.10.egg-info
+[1.000s] running install_scripts
+[1.023s] Installing minimal_param_node script to /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python_parameters
+[1.024s] writing list of installed files to '/home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/install.log'
+[1.050s] Invoked command in '/home/nash/PycharmProjects/Celestial_Robot/learn/ws2/src/python_parameters' returned '0': PYTHONPATH=/home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/prefix_override:/home/nash/PycharmProjects/Celestial_Robot/learn/ws2/install/python_parameters/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/python_parameters build --build-base /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/build install --record /home/nash/PycharmProjects/Celestial_Robot/learn/ws2/build/python_parameters/install.log --single-version-externally-managed install_data

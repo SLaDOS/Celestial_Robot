@@ -1,0 +1,42 @@
+[0.730s] Invoking command in '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/src/py_srvcli': PYTHONPATH=/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/prefix_override:/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/py_srvcli build --build-base /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build install --record /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/install.log --single-version-externally-managed install_data
+[1.008s] running egg_info
+[1.009s] creating ../../build/py_srvcli/py_srvcli.egg-info
+[1.009s] writing ../../build/py_srvcli/py_srvcli.egg-info/PKG-INFO
+[1.009s] writing dependency_links to ../../build/py_srvcli/py_srvcli.egg-info/dependency_links.txt
+[1.010s] writing entry points to ../../build/py_srvcli/py_srvcli.egg-info/entry_points.txt
+[1.010s] writing requirements to ../../build/py_srvcli/py_srvcli.egg-info/requires.txt
+[1.010s] writing top-level names to ../../build/py_srvcli/py_srvcli.egg-info/top_level.txt
+[1.010s] writing manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[1.013s] reading manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[1.013s] adding license file 'LICENSE'
+[1.014s] writing manifest file '../../build/py_srvcli/py_srvcli.egg-info/SOURCES.txt'
+[1.014s] running build
+[1.014s] running build_py
+[1.015s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build
+[1.015s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build/lib
+[1.015s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build/lib/py_srvcli
+[1.015s] copying py_srvcli/client_member_function.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build/lib/py_srvcli
+[1.015s] copying py_srvcli/service_member_function.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build/lib/py_srvcli
+[1.015s] copying py_srvcli/__init__.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build/lib/py_srvcli
+[1.016s] running install
+[1.016s] running install_lib
+[1.017s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages/py_srvcli
+[1.018s] copying /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build/lib/py_srvcli/client_member_function.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages/py_srvcli
+[1.018s] copying /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build/lib/py_srvcli/service_member_function.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages/py_srvcli
+[1.018s] copying /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build/lib/py_srvcli/__init__.py -> /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages/py_srvcli
+[1.019s] byte-compiling /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages/py_srvcli/client_member_function.py to client_member_function.cpython-310.pyc
+[1.019s] byte-compiling /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages/py_srvcli/service_member_function.py to service_member_function.cpython-310.pyc
+[1.020s] byte-compiling /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages/py_srvcli/__init__.py to __init__.cpython-310.pyc
+[1.020s] running install_data
+[1.021s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/share/ament_index
+[1.021s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/share/ament_index/resource_index
+[1.021s] creating /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/share/ament_index/resource_index/packages
+[1.021s] copying resource/py_srvcli -> /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/share/ament_index/resource_index/packages
+[1.021s] copying package.xml -> /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/share/py_srvcli
+[1.021s] running install_egg_info
+[1.023s] Copying ../../build/py_srvcli/py_srvcli.egg-info to /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages/py_srvcli-0.0.0-py3.10.egg-info
+[1.025s] running install_scripts
+[1.048s] Installing client script to /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/py_srvcli
+[1.048s] Installing service script to /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/py_srvcli
+[1.048s] writing list of installed files to '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/install.log'
+[1.075s] Invoked command in '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/src/py_srvcli' returned '0': PYTHONPATH=/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/prefix_override:/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/py_srvcli/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/py_srvcli build --build-base /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/build install --record /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/py_srvcli/install.log --single-version-externally-managed install_data

@@ -1,0 +1,515 @@
+[0.000000] (-) TimerEvent: {}
+[0.000340] (turtlesim) JobQueued: {'identifier': 'turtlesim', 'dependencies': OrderedDict()}
+[0.000460] (turtlesim) JobStarted: {'identifier': 'turtlesim'}
+[0.010862] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'cmake'}
+[0.011693] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'build'}
+[0.012499] (turtlesim) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/turtlesim', '--', '-j4', '-l4'], 'cwd': '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/turtlesim', 'env': OrderedDict([('TERM_SESSION_ID', '703c8673-a31c-471e-8566-3a6385704587'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_GB:en'), ('SNAP_INSTANCE_KEY', ''), ('USER', 'nash'), ('SNAP_COMMON', '/var/snap/pycharm-professional/common'), ('XDG_SESSION_TYPE', 'wayland'), ('SNAP_UID', '1000'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/nash'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void'), ('OLDPWD', '/home/nash/PycharmProjects/Celestial_Robot'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/nash/snap/pycharm-professional/395'), ('TERMINAL_EMULATOR', 'JetBrains-JediTerm'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1488'), ('SYSTEMD_EXEC_PID', '1663'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '395'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3115'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'nash'), ('SNAP_CONTEXT', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('JOURNAL_STREAM', '8:29498'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '2024.1.3'), ('USERNAME', 'nash'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'pycharm-professional'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nash-ThinkPad-X260:@/tmp/.ICE-unix/1644,unix/nash-ThinkPad-X260:/tmp/.ICE-unix/1644'), ('INVOCATION_ID', '71dbe517eeeb44da8a7a5141f371bde3'), ('XDG_MENU_PREFIX', 'gnome-'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/pycharm-professional/395'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('DESKTOP_STARTUP_ID', 'cd59b051-592d-4f4a-ae22-a3b6fdbe0506'), ('LANG', 'en_GB.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.E92RP2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/nash/snap/pycharm-professional/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '133'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SNAP_COOKIE', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('SNAP_REEXEC', ''), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'pycharm-professional'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/turtlesim'), ('TURTLEBOT3_MODEL', 'burger'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/nash'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/pycharm-professional/395'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.094130] (turtlesim) StdoutLine: {'line': b'[  1%] Built target turtlesim__cpp\n'}
+[0.097919] (-) TimerEvent: {}
+[0.102263] (turtlesim) StdoutLine: {'line': b'[ 11%] Built target turtlesim__rosidl_generator_c\n'}
+[0.113002] (turtlesim) StdoutLine: {'line': b'[ 11%] Built target ament_cmake_python_copy_turtlesim\n'}
+[0.151921] (turtlesim) StdoutLine: {'line': b'[ 21%] Built target turtlesim__rosidl_typesupport_fastrtps_cpp\n'}
+[0.153954] (turtlesim) StdoutLine: {'line': b'[ 31%] Built target turtlesim__rosidl_typesupport_cpp\n'}
+[0.161853] (turtlesim) StdoutLine: {'line': b'[ 41%] Built target turtlesim__rosidl_typesupport_introspection_cpp\n'}
+[0.169872] (turtlesim) StdoutLine: {'line': b'[ 51%] Built target turtlesim__rosidl_typesupport_fastrtps_c\n'}
+[0.198024] (-) TimerEvent: {}
+[0.198627] (turtlesim) StdoutLine: {'line': b'[ 61%] Built target turtlesim__rosidl_typesupport_c\n'}
+[0.200926] (turtlesim) StdoutLine: {'line': b'[ 71%] Built target turtlesim__rosidl_typesupport_introspection_c\n'}
+[0.241752] (turtlesim) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/turtlesim_node.dir/src/turtle_frame.cpp.o\x1b[0m\n'}
+[0.254924] (turtlesim) StdoutLine: {'line': b'[ 74%] Built target draw_square\n'}
+[0.257380] (turtlesim) StdoutLine: {'line': b'[ 76%] Built target turtle_teleop_key\n'}
+[0.297917] (turtlesim) StdoutLine: {'line': b'[ 76%] Built target turtlesim\n'}
+[0.298197] (-) TimerEvent: {}
+[0.313031] (turtlesim) StdoutLine: {'line': b'[ 78%] Built target mimic\n'}
+[0.332192] (turtlesim) StdoutLine: {'line': b'[ 79%] Built target turtlesim__py\n'}
+[0.364806] (turtlesim) StdoutLine: {'line': b'[ 88%] Built target turtlesim__rosidl_generator_py\n'}
+[0.398312] (-) TimerEvent: {}
+[0.407594] (turtlesim) StdoutLine: {'line': b'[ 92%] Built target turtlesim__rosidl_typesupport_fastrtps_c__pyext\n'}
+[0.408008] (turtlesim) StdoutLine: {'line': b'[ 92%] Built target turtlesim__rosidl_typesupport_introspection_c__pyext\n'}
+[0.443530] (turtlesim) StdoutLine: {'line': b'[ 94%] Built target turtlesim__rosidl_typesupport_c__pyext\n'}
+[0.498414] (-) TimerEvent: {}
+[0.598749] (-) TimerEvent: {}
+[0.605757] (turtlesim) StdoutLine: {'line': b'running egg_info\n'}
+[0.606697] (turtlesim) StdoutLine: {'line': b'writing turtlesim.egg-info/PKG-INFO\n'}
+[0.606950] (turtlesim) StdoutLine: {'line': b'writing dependency_links to turtlesim.egg-info/dependency_links.txt\n'}
+[0.607224] (turtlesim) StdoutLine: {'line': b'writing top-level names to turtlesim.egg-info/top_level.txt\n'}
+[0.610006] (turtlesim) StdoutLine: {'line': b"reading manifest file 'turtlesim.egg-info/SOURCES.txt'\n"}
+[0.610919] (turtlesim) StdoutLine: {'line': b"writing manifest file 'turtlesim.egg-info/SOURCES.txt'\n"}
+[0.648579] (turtlesim) StdoutLine: {'line': b'[ 94%] Built target ament_cmake_python_build_turtlesim_egg\n'}
+[0.698863] (-) TimerEvent: {}
+[0.799261] (-) TimerEvent: {}
+[0.899555] (-) TimerEvent: {}
+[0.999939] (-) TimerEvent: {}
+[1.100363] (-) TimerEvent: {}
+[1.200802] (-) TimerEvent: {}
+[1.301213] (-) TimerEvent: {}
+[1.401619] (-) TimerEvent: {}
+[1.502025] (-) TimerEvent: {}
+[1.602420] (-) TimerEvent: {}
+[1.702792] (-) TimerEvent: {}
+[1.803193] (-) TimerEvent: {}
+[1.903635] (-) TimerEvent: {}
+[2.004055] (-) TimerEvent: {}
+[2.104465] (-) TimerEvent: {}
+[2.204886] (-) TimerEvent: {}
+[2.305257] (-) TimerEvent: {}
+[2.405633] (-) TimerEvent: {}
+[2.506025] (-) TimerEvent: {}
+[2.606434] (-) TimerEvent: {}
+[2.706803] (-) TimerEvent: {}
+[2.807193] (-) TimerEvent: {}
+[2.907589] (-) TimerEvent: {}
+[3.007929] (-) TimerEvent: {}
+[3.108255] (-) TimerEvent: {}
+[3.208600] (-) TimerEvent: {}
+[3.308934] (-) TimerEvent: {}
+[3.409246] (-) TimerEvent: {}
+[3.509580] (-) TimerEvent: {}
+[3.609935] (-) TimerEvent: {}
+[3.710302] (-) TimerEvent: {}
+[3.810647] (-) TimerEvent: {}
+[3.910962] (-) TimerEvent: {}
+[4.011300] (-) TimerEvent: {}
+[4.111606] (-) TimerEvent: {}
+[4.211954] (-) TimerEvent: {}
+[4.312290] (-) TimerEvent: {}
+[4.412622] (-) TimerEvent: {}
+[4.512960] (-) TimerEvent: {}
+[4.613305] (-) TimerEvent: {}
+[4.713692] (-) TimerEvent: {}
+[4.814020] (-) TimerEvent: {}
+[4.914348] (-) TimerEvent: {}
+[5.014666] (-) TimerEvent: {}
+[5.115013] (-) TimerEvent: {}
+[5.215328] (-) TimerEvent: {}
+[5.315649] (-) TimerEvent: {}
+[5.416006] (-) TimerEvent: {}
+[5.516321] (-) TimerEvent: {}
+[5.616618] (-) TimerEvent: {}
+[5.716910] (-) TimerEvent: {}
+[5.817211] (-) TimerEvent: {}
+[5.917545] (-) TimerEvent: {}
+[6.017867] (-) TimerEvent: {}
+[6.118200] (-) TimerEvent: {}
+[6.218506] (-) TimerEvent: {}
+[6.318815] (-) TimerEvent: {}
+[6.419122] (-) TimerEvent: {}
+[6.519469] (-) TimerEvent: {}
+[6.619802] (-) TimerEvent: {}
+[6.720125] (-) TimerEvent: {}
+[6.820466] (-) TimerEvent: {}
+[6.920789] (-) TimerEvent: {}
+[7.021154] (-) TimerEvent: {}
+[7.121492] (-) TimerEvent: {}
+[7.221862] (-) TimerEvent: {}
+[7.322197] (-) TimerEvent: {}
+[7.422515] (-) TimerEvent: {}
+[7.522814] (-) TimerEvent: {}
+[7.623107] (-) TimerEvent: {}
+[7.723407] (-) TimerEvent: {}
+[7.823703] (-) TimerEvent: {}
+[7.924045] (-) TimerEvent: {}
+[8.024408] (-) TimerEvent: {}
+[8.124789] (-) TimerEvent: {}
+[8.225114] (-) TimerEvent: {}
+[8.325451] (-) TimerEvent: {}
+[8.425775] (-) TimerEvent: {}
+[8.526126] (-) TimerEvent: {}
+[8.626444] (-) TimerEvent: {}
+[8.726767] (-) TimerEvent: {}
+[8.827079] (-) TimerEvent: {}
+[8.927382] (-) TimerEvent: {}
+[9.027703] (-) TimerEvent: {}
+[9.127998] (-) TimerEvent: {}
+[9.228318] (-) TimerEvent: {}
+[9.328644] (-) TimerEvent: {}
+[9.428992] (-) TimerEvent: {}
+[9.529303] (-) TimerEvent: {}
+[9.629639] (-) TimerEvent: {}
+[9.729979] (-) TimerEvent: {}
+[9.830325] (-) TimerEvent: {}
+[9.930623] (-) TimerEvent: {}
+[10.030946] (-) TimerEvent: {}
+[10.131297] (-) TimerEvent: {}
+[10.231601] (-) TimerEvent: {}
+[10.331922] (-) TimerEvent: {}
+[10.432257] (-) TimerEvent: {}
+[10.532587] (-) TimerEvent: {}
+[10.632911] (-) TimerEvent: {}
+[10.733202] (-) TimerEvent: {}
+[10.833513] (-) TimerEvent: {}
+[10.933845] (-) TimerEvent: {}
+[11.034169] (-) TimerEvent: {}
+[11.134479] (-) TimerEvent: {}
+[11.234795] (-) TimerEvent: {}
+[11.335091] (-) TimerEvent: {}
+[11.435447] (-) TimerEvent: {}
+[11.535734] (-) TimerEvent: {}
+[11.636020] (-) TimerEvent: {}
+[11.736349] (-) TimerEvent: {}
+[11.836638] (-) TimerEvent: {}
+[11.936964] (-) TimerEvent: {}
+[12.037286] (-) TimerEvent: {}
+[12.137605] (-) TimerEvent: {}
+[12.237913] (-) TimerEvent: {}
+[12.338235] (-) TimerEvent: {}
+[12.438554] (-) TimerEvent: {}
+[12.538981] (-) TimerEvent: {}
+[12.639422] (-) TimerEvent: {}
+[12.739745] (-) TimerEvent: {}
+[12.840091] (-) TimerEvent: {}
+[12.940428] (-) TimerEvent: {}
+[13.040755] (-) TimerEvent: {}
+[13.141063] (-) TimerEvent: {}
+[13.241394] (-) TimerEvent: {}
+[13.341730] (-) TimerEvent: {}
+[13.407743] (turtlesim) StdoutLine: {'line': b'[ 95%] \x1b[32m\x1b[1mLinking CXX executable turtlesim_node\x1b[0m\n'}
+[13.441886] (-) TimerEvent: {}
+[13.542651] (-) TimerEvent: {}
+[13.643189] (-) TimerEvent: {}
+[13.743623] (-) TimerEvent: {}
+[13.844048] (-) TimerEvent: {}
+[13.944534] (-) TimerEvent: {}
+[14.044997] (-) TimerEvent: {}
+[14.145390] (-) TimerEvent: {}
+[14.245865] (-) TimerEvent: {}
+[14.346443] (-) TimerEvent: {}
+[14.446946] (-) TimerEvent: {}
+[14.547401] (-) TimerEvent: {}
+[14.647915] (-) TimerEvent: {}
+[14.748342] (-) TimerEvent: {}
+[14.848791] (-) TimerEvent: {}
+[14.949181] (-) TimerEvent: {}
+[15.049607] (-) TimerEvent: {}
+[15.149962] (-) TimerEvent: {}
+[15.250343] (-) TimerEvent: {}
+[15.350648] (-) TimerEvent: {}
+[15.450970] (-) TimerEvent: {}
+[15.551290] (-) TimerEvent: {}
+[15.651649] (-) TimerEvent: {}
+[15.751943] (-) TimerEvent: {}
+[15.852369] (-) TimerEvent: {}
+[15.952723] (-) TimerEvent: {}
+[16.002276] (turtlesim) StdoutLine: {'line': b'[100%] Built target turtlesim_node\n'}
+[16.019305] (turtlesim) CommandEnded: {'returncode': 0}
+[16.052917] (-) TimerEvent: {}
+[16.153197] (-) TimerEvent: {}
+[16.253710] (-) TimerEvent: {}
+[16.326466] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'install'}
+[16.337104] (turtlesim) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/turtlesim'], 'cwd': '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/turtlesim', 'env': OrderedDict([('TERM_SESSION_ID', '703c8673-a31c-471e-8566-3a6385704587'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_GB:en'), ('SNAP_INSTANCE_KEY', ''), ('USER', 'nash'), ('SNAP_COMMON', '/var/snap/pycharm-professional/common'), ('XDG_SESSION_TYPE', 'wayland'), ('SNAP_UID', '1000'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/nash'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void'), ('OLDPWD', '/home/nash/PycharmProjects/Celestial_Robot'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/nash/snap/pycharm-professional/395'), ('TERMINAL_EMULATOR', 'JetBrains-JediTerm'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1488'), ('SYSTEMD_EXEC_PID', '1663'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '395'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '3115'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'nash'), ('SNAP_CONTEXT', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('JOURNAL_STREAM', '8:29498'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '2024.1.3'), ('USERNAME', 'nash'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'pycharm-professional'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nash-ThinkPad-X260:@/tmp/.ICE-unix/1644,unix/nash-ThinkPad-X260:/tmp/.ICE-unix/1644'), ('INVOCATION_ID', '71dbe517eeeb44da8a7a5141f371bde3'), ('XDG_MENU_PREFIX', 'gnome-'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/pycharm-professional/395'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('DESKTOP_STARTUP_ID', 'cd59b051-592d-4f4a-ae22-a3b6fdbe0506'), ('LANG', 'en_GB.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.E92RP2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/nash/snap/pycharm-professional/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '133'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SNAP_COOKIE', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('SNAP_REEXEC', ''), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'pycharm-professional'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/build/turtlesim'), ('TURTLEBOT3_MODEL', 'burger'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/nash'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/pycharm-professional/395'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[16.347984] (turtlesim) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[16.348416] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/ament_index/resource_index/rosidl_interfaces/turtlesim\n'}
+[16.348643] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim\n'}
+[16.348945] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[16.349155] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/rotate_absolute.h\n'}
+[16.349363] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[16.349570] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__struct.h\n'}
+[16.349776] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__functions.c\n'}
+[16.349969] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.h\n'}
+[16.350139] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__functions.h\n'}
+[16.350373] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[16.350576] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_relative.h\n'}
+[16.350755] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_absolute.h\n'}
+[16.351020] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/kill.h\n'}
+[16.351219] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/set_pen.h\n'}
+[16.351440] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/spawn.h\n'}
+[16.351620] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[16.351790] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__functions.c\n'}
+[16.351908] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.h\n'}
+[16.352023] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__functions.c\n'}
+[16.352153] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__struct.h\n'}
+[16.352300] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__functions.h\n'}
+[16.352416] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.h\n'}
+[16.352531] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__functions.c\n'}
+[16.352710] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__functions.c\n'}
+[16.352862] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__functions.h\n'}
+[16.353056] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__struct.h\n'}
+[16.353232] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__functions.h\n'}
+[16.353430] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__struct.h\n'}
+[16.353629] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__functions.c\n'}
+[16.353832] (-) TimerEvent: {}
+[16.353960] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__functions.h\n'}
+[16.354088] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.h\n'}
+[16.354218] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.h\n'}
+[16.354487] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.h\n'}
+[16.354605] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__functions.h\n'}
+[16.354787] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__struct.h\n'}
+[16.354971] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__struct.h\n'}
+[16.355205] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[16.355406] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/pose.h\n'}
+[16.355635] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_generator_c__visibility_control.h\n'}
+[16.356017] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[16.356257] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__struct.h\n'}
+[16.356466] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__functions.c\n'}
+[16.356681] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__struct.h\n'}
+[16.356880] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.h\n'}
+[16.357060] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.h\n'}
+[16.357323] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__functions.c\n'}
+[16.357529] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__functions.h\n'}
+[16.357739] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__functions.h\n'}
+[16.357917] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/color.h\n'}
+[16.358162] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/environment/library_path.sh\n'}
+[16.358353] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/environment/library_path.dsv\n'}
+[16.358555] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/libturtlesim__rosidl_generator_c.so\n'}
+[16.358830] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim\n'}
+[16.358953] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[16.359070] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[16.359187] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_fastrtps_c.h\n'}
+[16.359338] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[16.359454] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[16.359570] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_fastrtps_c.h\n'}
+[16.359717] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_fastrtps_c.h\n'}
+[16.359900] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_fastrtps_c.h\n'}
+[16.360103] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_fastrtps_c.h\n'}
+[16.360333] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_fastrtps_c.h\n'}
+[16.360498] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[16.360730] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[16.360975] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[16.361208] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_fastrtps_c.h\n'}
+[16.361438] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_fastrtps_c.h\n'}
+[16.361566] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_c.so\n'}
+[16.361694] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim\n'}
+[16.361819] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[16.361940] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/rotate_absolute.hpp\n'}
+[16.362064] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[16.362208] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__builder.hpp\n'}
+[16.362355] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__traits.hpp\n'}
+[16.362486] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__struct.hpp\n'}
+[16.362616] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[16.362741] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/set_pen.hpp\n'}
+[16.362866] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/kill.hpp\n'}
+[16.363048] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_absolute.hpp\n'}
+[16.363210] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[16.363398] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__struct.hpp\n'}
+[16.363661] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__struct.hpp\n'}
+[16.363859] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__builder.hpp\n'}
+[16.364036] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__builder.hpp\n'}
+[16.364245] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__traits.hpp\n'}
+[16.364464] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__traits.hpp\n'}
+[16.364633] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__traits.hpp\n'}
+[16.364832] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__struct.hpp\n'}
+[16.364953] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__builder.hpp\n'}
+[16.365069] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__struct.hpp\n'}
+[16.365190] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__struct.hpp\n'}
+[16.365347] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__builder.hpp\n'}
+[16.365465] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__traits.hpp\n'}
+[16.365582] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__traits.hpp\n'}
+[16.365699] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__builder.hpp\n'}
+[16.365814] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/spawn.hpp\n'}
+[16.365930] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_relative.hpp\n'}
+[16.366079] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[16.366196] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/color.hpp\n'}
+[16.366303] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/pose.hpp\n'}
+[16.366420] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[16.366538] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__traits.hpp\n'}
+[16.366664] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__struct.hpp\n'}
+[16.366738] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__builder.hpp\n'}
+[16.366809] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__traits.hpp\n'}
+[16.366878] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__builder.hpp\n'}
+[16.366987] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__struct.hpp\n'}
+[16.367065] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim\n'}
+[16.367135] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[16.367241] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[16.367313] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.367383] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/dds_fastrtps\n'}
+[16.367493] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[16.367570] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[16.367642] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.367711] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.367820] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.368014] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.368226] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.368414] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/dds_fastrtps\n'}
+[16.368619] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[16.368818] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[16.369020] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[16.369224] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.369465] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[16.369717] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/dds_fastrtps\n'}
+[16.369934] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_cpp.so\n'}
+[16.370113] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim\n'}
+[16.370351] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[16.370520] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[16.370676] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_introspection_c.h\n'}
+[16.370759] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.c\n'}
+[16.370865] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[16.370939] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[16.371011] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_introspection_c.h\n'}
+[16.371083] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_introspection_c.h\n'}
+[16.371154] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_introspection_c.h\n'}
+[16.371250] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.c\n'}
+[16.371331] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.c\n'}
+[16.371465] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_introspection_c.h\n'}
+[16.371537] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.c\n'}
+[16.371607] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_introspection_c.h\n'}
+[16.371678] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.c\n'}
+[16.371748] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.c\n'}
+[16.371817] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[16.371886] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[16.371957] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[16.372034] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.c\n'}
+[16.372104] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_introspection_c.h\n'}
+[16.372174] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.c\n'}
+[16.372244] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_introspection_c.h\n'}
+[16.372369] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_c.so\n'}
+[16.372449] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/libturtlesim__rosidl_typesupport_c.so\n'}
+[16.372519] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim\n'}
+[16.372589] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[16.372658] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[16.372727] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.cpp\n'}
+[16.372797] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.372867] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[16.372935] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[16.373005] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.cpp\n'}
+[16.373074] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.cpp\n'}
+[16.373149] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.373220] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.cpp\n'}
+[16.373291] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.373361] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.373481] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.373558] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.373629] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.cpp\n'}
+[16.373698] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.cpp\n'}
+[16.373769] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[16.373838] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[16.373907] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.373977] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.cpp\n'}
+[16.374046] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_introspection_cpp.hpp\n'}
+[16.374116] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.cpp\n'}
+[16.374184] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_cpp.so\n'}
+[16.374269] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/libturtlesim__rosidl_typesupport_cpp.so\n'}
+[16.374466] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/environment/pythonpath.sh\n'}
+[16.374653] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/environment/pythonpath.dsv\n'}
+[16.374759] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info\n'}
+[16.374837] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/top_level.txt\n'}
+[16.374909] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/dependency_links.txt\n'}
+[16.374985] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/PKG-INFO\n'}
+[16.375056] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/SOURCES.txt\n'}
+[16.375127] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim\n'}
+[16.375206] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[16.375279] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[16.375353] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[16.375476] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[16.375553] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/libturtlesim__rosidl_generator_py.so\n'}
+[16.375624] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action\n'}
+[16.375694] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/_rotate_absolute.py\n'}
+[16.375810] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/__init__.py\n'}
+[16.375917] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/_rotate_absolute_s.c\n'}
+[16.376031] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/__init__.py\n'}
+[16.376150] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv\n'}
+[16.376271] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_set_pen.py\n'}
+[16.376537] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_spawn_s.c\n'}
+[16.376703] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_relative_s.c\n'}
+[16.376811] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/__init__.py\n'}
+[16.376889] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_kill_s.c\n'}
+[16.376962] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_kill.py\n'}
+[16.377050] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_relative.py\n'}
+[16.377202] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_absolute.py\n'}
+[16.377334] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_spawn.py\n'}
+[16.377443] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_set_pen_s.c\n'}
+[16.377653] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_absolute_s.c\n'}
+[16.377766] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_c.c\n'}
+[16.377890] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg\n'}
+[16.378002] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_pose_s.c\n'}
+[16.378117] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_pose.py\n'}
+[16.378227] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/__init__.py\n'}
+[16.378374] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_color.py\n'}
+[16.378558] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_color_s.c\n'}
+[16.378676] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[16.408503] (turtlesim) StdoutLine: {'line': b"Listing '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim'...\n"}
+[16.408726] (turtlesim) StdoutLine: {'line': b"Listing '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action'...\n"}
+[16.408844] (turtlesim) StdoutLine: {'line': b"Listing '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg'...\n"}
+[16.408992] (turtlesim) StdoutLine: {'line': b"Listing '/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv'...\n"}
+[16.413883] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[16.414640] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[16.415178] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[16.415921] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/libturtlesim__rosidl_generator_py.so\n'}
+[16.416349] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/action/RotateAbsolute.idl\n'}
+[16.416696] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/msg/Color.idl\n'}
+[16.416887] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/msg/Pose.idl\n'}
+[16.417077] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/Kill.idl\n'}
+[16.417252] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/SetPen.idl\n'}
+[16.417397] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/Spawn.idl\n'}
+[16.417581] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/TeleportAbsolute.idl\n'}
+[16.417731] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/TeleportRelative.idl\n'}
+[16.417905] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/action/RotateAbsolute.action\n'}
+[16.418077] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/msg/Color.msg\n'}
+[16.418226] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/msg/Pose.msg\n'}
+[16.418414] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/Kill.srv\n'}
+[16.418564] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/Kill_Request.msg\n'}
+[16.418731] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/Kill_Response.msg\n'}
+[16.418909] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/SetPen.srv\n'}
+[16.419059] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/SetPen_Request.msg\n'}
+[16.419231] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/SetPen_Response.msg\n'}
+[16.419348] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/Spawn.srv\n'}
+[16.419463] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/Spawn_Request.msg\n'}
+[16.419578] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/Spawn_Response.msg\n'}
+[16.419730] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/TeleportAbsolute.srv\n'}
+[16.419847] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/TeleportAbsolute_Request.msg\n'}
+[16.419962] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/TeleportAbsolute_Response.msg\n'}
+[16.420085] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/TeleportRelative.srv\n'}
+[16.420199] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/TeleportRelative_Request.msg\n'}
+[16.420315] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/srv/TeleportRelative_Response.msg\n'}
+[16.420429] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/turtlesim/turtlesim_node\n'}
+[16.433025] (turtlesim) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/turtlesim/turtlesim_node" to ""\n'}
+[16.433460] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/turtlesim/turtle_teleop_key\n'}
+[16.434120] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/turtlesim/draw_square\n'}
+[16.434865] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/lib/turtlesim/mimic\n'}
+[16.435388] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images\n'}
+[16.435620] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/galactic.png\n'}
+[16.435899] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/rolling.png\n'}
+[16.436180] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/bouncy.png\n'}
+[16.436360] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/eloquent.png\n'}
+[16.436531] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/dashing.png\n'}
+[16.436719] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/humble.png\n'}
+[16.436911] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/foxy.png\n'}
+[16.437073] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/ardent.png\n'}
+[16.437249] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/images/crystal.png\n'}
+[16.437412] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/launch\n'}
+[16.437538] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/launch/multisim.launch.py\n'}
+[16.437689] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/ament_index/resource_index/package_run_dependencies/turtlesim\n'}
+[16.437806] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/ament_index/resource_index/parent_prefix_path/turtlesim\n'}
+[16.437961] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/environment/ament_prefix_path.sh\n'}
+[16.438114] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/environment/ament_prefix_path.dsv\n'}
+[16.438287] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/environment/path.sh\n'}
+[16.438370] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/environment/path.dsv\n'}
+[16.438453] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/local_setup.bash\n'}
+[16.438609] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/local_setup.sh\n'}
+[16.438688] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/local_setup.zsh\n'}
+[16.438808] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/local_setup.dsv\n'}
+[16.438882] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/package.dsv\n'}
+[16.438995] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/ament_index/resource_index/packages/turtlesim\n'}
+[16.439124] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cExport.cmake\n'}
+[16.439245] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cExport-noconfig.cmake\n'}
+[16.439372] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[16.439523] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[16.439680] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cppExport.cmake\n'}
+[16.439828] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[16.439983] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[16.440094] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cExport.cmake\n'}
+[16.440168] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[16.440285] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cExport.cmake\n'}
+[16.440441] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[16.440607] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[16.440747] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[16.440897] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cppExport.cmake\n'}
+[16.441065] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[16.441247] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_pyExport.cmake\n'}
+[16.441389] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_pyExport-noconfig.cmake\n'}
+[16.441496] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/rosidl_cmake-extras.cmake\n'}
+[16.441638] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[16.441816] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[16.441927] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[16.442000] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[16.442070] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[16.442141] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[16.442212] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesimConfig.cmake\n'}
+[16.442329] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/cmake/turtlesimConfig-version.cmake\n'}
+[16.442448] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/install/turtlesim/share/turtlesim/package.xml\n'}
+[16.444602] (turtlesim) CommandEnded: {'returncode': 0}
+[16.454563] (-) TimerEvent: {}
+[16.554907] (-) TimerEvent: {}
+[16.655170] (-) TimerEvent: {}
+[16.755567] (-) TimerEvent: {}
+[16.775381] (turtlesim) JobEnded: {'identifier': 'turtlesim', 'rc': 0}
+[16.776619] (-) EventReactorShutdown: {}
