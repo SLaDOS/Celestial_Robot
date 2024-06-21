@@ -54,3 +54,12 @@ https://superuser.com/questions/1764148/ssh-into-device-through-wsl-when-connect
 2. open WSL
 3. `$ ssh "nash xu"@localhost`
 
+## ROS 2
+
+### Create a package dedicated to ROS2 custom messages
+https://roboticsbackend.com/ros2-create-custom-message/#Create_a_package_dedicated_to_ROS2_custom_messages
+> In theory you could create custom messages in any package you want, but this could lead to many problems. For example, if you create the message in package A and you need this message in package B, you’ll have to add a dependency to package A. This will quickly result in a dependency mess with unneeded and cycling dependencies.
+> 
+> So, the best practice here is to create a package dedicated to ROS2 custom messages, and only that. Then you’ll be able to add a dependency to this package, from any package requiring your custom interfaces.
+
+
