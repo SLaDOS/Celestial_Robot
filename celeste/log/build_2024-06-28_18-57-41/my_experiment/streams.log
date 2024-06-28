@@ -1,0 +1,25 @@
+[0.729s] Invoking command in '/home/nash/PycharmProjects/Celestial_Robot/celeste/src/my_experiment': AMENT_PREFIX_PATH=/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces LD_LIBRARY_PATH=/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/prefix_override:/home/nash/PycharmProjects/Celestial_Robot/celeste/install/my_experiment/lib/python3.10/site-packages:/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/my_experiment build --build-base /home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/build install --record /home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/install.log --single-version-externally-managed install_data
+[1.010s] running egg_info
+[1.011s] writing ../../build/my_experiment/my_experiment.egg-info/PKG-INFO
+[1.011s] writing dependency_links to ../../build/my_experiment/my_experiment.egg-info/dependency_links.txt
+[1.011s] writing entry points to ../../build/my_experiment/my_experiment.egg-info/entry_points.txt
+[1.011s] writing requirements to ../../build/my_experiment/my_experiment.egg-info/requires.txt
+[1.011s] writing top-level names to ../../build/my_experiment/my_experiment.egg-info/top_level.txt
+[1.014s] reading manifest file '../../build/my_experiment/my_experiment.egg-info/SOURCES.txt'
+[1.014s] adding license file 'LICENSE'
+[1.015s] writing manifest file '../../build/my_experiment/my_experiment.egg-info/SOURCES.txt'
+[1.015s] running build
+[1.015s] running build_py
+[1.015s] copying my_experiment/return_action_server.py -> /home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/build/lib/my_experiment
+[1.016s] running install
+[1.016s] running install_lib
+[1.017s] copying /home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/build/lib/my_experiment/return_action_server.py -> /home/nash/PycharmProjects/Celestial_Robot/celeste/install/my_experiment/lib/python3.10/site-packages/my_experiment
+[1.018s] byte-compiling /home/nash/PycharmProjects/Celestial_Robot/celeste/install/my_experiment/lib/python3.10/site-packages/my_experiment/return_action_server.py to return_action_server.cpython-310.pyc
+[1.018s] running install_data
+[1.019s] running install_egg_info
+[1.021s] removing '/home/nash/PycharmProjects/Celestial_Robot/celeste/install/my_experiment/lib/python3.10/site-packages/my_experiment-0.0.0-py3.10.egg-info' (and everything under it)
+[1.021s] Copying ../../build/my_experiment/my_experiment.egg-info to /home/nash/PycharmProjects/Celestial_Robot/celeste/install/my_experiment/lib/python3.10/site-packages/my_experiment-0.0.0-py3.10.egg-info
+[1.023s] running install_scripts
+[1.047s] Installing return_action_server script to /home/nash/PycharmProjects/Celestial_Robot/celeste/install/my_experiment/lib/my_experiment
+[1.047s] writing list of installed files to '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/install.log'
+[1.076s] Invoked command in '/home/nash/PycharmProjects/Celestial_Robot/celeste/src/my_experiment' returned '0': AMENT_PREFIX_PATH=/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces LD_LIBRARY_PATH=/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/prefix_override:/home/nash/PycharmProjects/Celestial_Robot/celeste/install/my_experiment/lib/python3.10/site-packages:/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/my_experiment build --build-base /home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/build install --record /home/nash/PycharmProjects/Celestial_Robot/celeste/build/my_experiment/install.log --single-version-externally-managed install_data

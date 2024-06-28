@@ -1,0 +1,322 @@
+[0.000000] (-) TimerEvent: {}
+[0.000967] (celeste_interfaces) JobQueued: {'identifier': 'celeste_interfaces', 'dependencies': OrderedDict()}
+[0.001447] (celeste_interfaces) JobStarted: {'identifier': 'celeste_interfaces'}
+[0.015144] (celeste_interfaces) JobProgress: {'identifier': 'celeste_interfaces', 'progress': 'cmake'}
+[0.015480] (celeste_interfaces) Command: {'cmd': ['/usr/bin/cmake', '/home/nash/PycharmProjects/Celestial_Robot/celeste/src/celeste_interfaces', '-DCMAKE_INSTALL_PREFIX=/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces'], 'cwd': '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces', 'env': OrderedDict([('TERM_SESSION_ID', '218527c8-a3c3-4631-a21a-a8a47bf610ed'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_GB:en'), ('SNAP_INSTANCE_KEY', ''), ('USER', 'nash'), ('SNAP_COMMON', '/var/snap/pycharm-professional/common'), ('XDG_SESSION_TYPE', 'wayland'), ('SNAP_UID', '1000'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/nash'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void'), ('OLDPWD', '/home/nash/PycharmProjects/Celestial_Robot/celeste/src'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/nash/snap/pycharm-professional/395'), ('TERMINAL_EMULATOR', 'JetBrains-JediTerm'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1354'), ('SYSTEMD_EXEC_PID', '1523'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '395'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '9660'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'nash'), ('SNAP_CONTEXT', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('JOURNAL_STREAM', '8:30255'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '2024.1.3'), ('USERNAME', 'nash'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'pycharm-professional'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nash-ThinkPad-X260:@/tmp/.ICE-unix/1504,unix/nash-ThinkPad-X260:/tmp/.ICE-unix/1504'), ('INVOCATION_ID', 'e7dbdb739b83450e8b2feaa777ff16e4'), ('XDG_MENU_PREFIX', 'gnome-'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/pycharm-professional/395'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('DESKTOP_STARTUP_ID', 'gnome-shell/PyCharm Professional Edition/1523-7-nash-ThinkPad-X260_TIME4919264'), ('LANG', 'en_GB.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.2IX3P2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/nash/snap/pycharm-professional/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '133'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SNAP_COOKIE', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('SNAP_REEXEC', ''), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'pycharm-professional'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces'), ('TURTLEBOT3_MODEL', 'burger'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/nash'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/pycharm-professional/395'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.099740] (-) TimerEvent: {}
+[0.199490] (celeste_interfaces) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.199769] (-) TimerEvent: {}
+[0.300034] (-) TimerEvent: {}
+[0.354283] (celeste_interfaces) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.367200] (celeste_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.400153] (-) TimerEvent: {}
+[0.459687] (celeste_interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.468044] (celeste_interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.469220] (celeste_interfaces) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.470014] (celeste_interfaces) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.474563] (celeste_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.500360] (-) TimerEvent: {}
+[0.575262] (celeste_interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.583463] (celeste_interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.583857] (celeste_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.584429] (celeste_interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.587670] (celeste_interfaces) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.600455] (-) TimerEvent: {}
+[0.700783] (-) TimerEvent: {}
+[0.774609] (celeste_interfaces) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.800918] (-) TimerEvent: {}
+[0.885590] (celeste_interfaces) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[0.890018] (celeste_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.899931] (celeste_interfaces) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.900994] (-) TimerEvent: {}
+[0.962577] (celeste_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.001122] (-) TimerEvent: {}
+[1.015436] (celeste_interfaces) StdoutLine: {'line': b'-- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)\n'}
+[1.101211] (-) TimerEvent: {}
+[1.201601] (-) TimerEvent: {}
+[1.301893] (-) TimerEvent: {}
+[1.402245] (-) TimerEvent: {}
+[1.502652] (-) TimerEvent: {}
+[1.602959] (-) TimerEvent: {}
+[1.611673] (celeste_interfaces) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[1.703070] (-) TimerEvent: {}
+[1.803347] (-) TimerEvent: {}
+[1.903643] (-) TimerEvent: {}
+[1.922747] (celeste_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.003782] (-) TimerEvent: {}
+[2.104047] (-) TimerEvent: {}
+[2.204461] (-) TimerEvent: {}
+[2.304723] (-) TimerEvent: {}
+[2.337577] (celeste_interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.367217] (celeste_interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") \n'}
+[2.369590] (celeste_interfaces) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[2.399550] (celeste_interfaces) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") \n'}
+[2.399805] (celeste_interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[2.399900] (celeste_interfaces) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[2.399978] (celeste_interfaces) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so\n'}
+[2.404835] (-) TimerEvent: {}
+[2.424010] (celeste_interfaces) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[2.504978] (-) TimerEvent: {}
+[2.506978] (celeste_interfaces) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[2.537321] (celeste_interfaces) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.540065] (celeste_interfaces) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[2.544006] (celeste_interfaces) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.592563] (celeste_interfaces) StdoutLine: {'line': b'-- Generating done\n'}
+[2.595857] (celeste_interfaces) StdoutLine: {'line': b'-- Build files have been written to: /home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces\n'}
+[2.605101] (-) TimerEvent: {}
+[2.606971] (celeste_interfaces) CommandEnded: {'returncode': 0}
+[2.608099] (celeste_interfaces) JobProgress: {'identifier': 'celeste_interfaces', 'progress': 'build'}
+[2.609962] (celeste_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces', '--', '-j4', '-l4'], 'cwd': '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces', 'env': OrderedDict([('TERM_SESSION_ID', '218527c8-a3c3-4631-a21a-a8a47bf610ed'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_GB:en'), ('SNAP_INSTANCE_KEY', ''), ('USER', 'nash'), ('SNAP_COMMON', '/var/snap/pycharm-professional/common'), ('XDG_SESSION_TYPE', 'wayland'), ('SNAP_UID', '1000'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/nash'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void'), ('OLDPWD', '/home/nash/PycharmProjects/Celestial_Robot/celeste/src'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/nash/snap/pycharm-professional/395'), ('TERMINAL_EMULATOR', 'JetBrains-JediTerm'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1354'), ('SYSTEMD_EXEC_PID', '1523'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '395'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '9660'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'nash'), ('SNAP_CONTEXT', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('JOURNAL_STREAM', '8:30255'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '2024.1.3'), ('USERNAME', 'nash'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'pycharm-professional'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nash-ThinkPad-X260:@/tmp/.ICE-unix/1504,unix/nash-ThinkPad-X260:/tmp/.ICE-unix/1504'), ('INVOCATION_ID', 'e7dbdb739b83450e8b2feaa777ff16e4'), ('XDG_MENU_PREFIX', 'gnome-'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/pycharm-professional/395'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('DESKTOP_STARTUP_ID', 'gnome-shell/PyCharm Professional Edition/1523-7-nash-ThinkPad-X260_TIME4919264'), ('LANG', 'en_GB.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.2IX3P2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/nash/snap/pycharm-professional/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '133'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SNAP_COOKIE', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('SNAP_REEXEC', ''), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'pycharm-professional'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces'), ('TURTLEBOT3_MODEL', 'burger'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/nash'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/pycharm-professional/395'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.667427] (celeste_interfaces) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[2.686891] (celeste_interfaces) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[2.694341] (celeste_interfaces) StdoutLine: {'line': b'[  6%] Built target ament_cmake_python_copy_celeste_interfaces\n'}
+[2.705202] (-) TimerEvent: {}
+[2.806329] (-) TimerEvent: {}
+[2.906636] (-) TimerEvent: {}
+[3.006936] (-) TimerEvent: {}
+[3.013086] (celeste_interfaces) StdoutLine: {'line': b'running egg_info\n'}
+[3.013990] (celeste_interfaces) StdoutLine: {'line': b'creating celeste_interfaces.egg-info\n'}
+[3.014306] (celeste_interfaces) StdoutLine: {'line': b'writing celeste_interfaces.egg-info/PKG-INFO\n'}
+[3.014576] (celeste_interfaces) StdoutLine: {'line': b'writing dependency_links to celeste_interfaces.egg-info/dependency_links.txt\n'}
+[3.014863] (celeste_interfaces) StdoutLine: {'line': b'writing top-level names to celeste_interfaces.egg-info/top_level.txt\n'}
+[3.015389] (celeste_interfaces) StdoutLine: {'line': b"writing manifest file 'celeste_interfaces.egg-info/SOURCES.txt'\n"}
+[3.018497] (celeste_interfaces) StdoutLine: {'line': b"reading manifest file 'celeste_interfaces.egg-info/SOURCES.txt'\n"}
+[3.019404] (celeste_interfaces) StdoutLine: {'line': b"writing manifest file 'celeste_interfaces.egg-info/SOURCES.txt'\n"}
+[3.052792] (celeste_interfaces) StdoutLine: {'line': b'[  6%] Built target ament_cmake_python_build_celeste_interfaces_egg\n'}
+[3.107054] (-) TimerEvent: {}
+[3.207329] (-) TimerEvent: {}
+[3.307602] (-) TimerEvent: {}
+[3.407881] (-) TimerEvent: {}
+[3.508174] (-) TimerEvent: {}
+[3.522959] (celeste_interfaces) StdoutLine: {'line': b'[  6%] Built target celeste_interfaces__cpp\n'}
+[3.543853] (celeste_interfaces) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[3.544202] (celeste_interfaces) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[3.545454] (celeste_interfaces) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[3.575292] (celeste_interfaces) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding C object CMakeFiles/celeste_interfaces__rosidl_generator_c.dir/rosidl_generator_c/celeste_interfaces/action/detail/return__functions.c.o\x1b[0m\n'}
+[3.608266] (-) TimerEvent: {}
+[3.709415] (-) TimerEvent: {}
+[3.810364] (-) TimerEvent: {}
+[3.865189] (celeste_interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libceleste_interfaces__rosidl_generator_c.so\x1b[0m\n'}
+[3.910486] (-) TimerEvent: {}
+[3.938664] (celeste_interfaces) StdoutLine: {'line': b'[ 22%] Built target celeste_interfaces__rosidl_generator_c\n'}
+[3.957168] (celeste_interfaces) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[4.010585] (-) TimerEvent: {}
+[4.111932] (-) TimerEvent: {}
+[4.161164] (celeste_interfaces) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/celeste_interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/celeste_interfaces/action/return__type_support.cpp.o\x1b[0m\n'}
+[4.212033] (-) TimerEvent: {}
+[4.243695] (celeste_interfaces) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/celeste_interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/celeste_interfaces/action/detail/return__type_support.cpp.o\x1b[0m\n'}
+[4.312144] (-) TimerEvent: {}
+[4.379746] (celeste_interfaces) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/celeste_interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/celeste_interfaces/action/detail/dds_fastrtps/return__type_support.cpp.o\x1b[0m\n'}
+[4.412240] (-) TimerEvent: {}
+[4.513250] (-) TimerEvent: {}
+[4.614243] (-) TimerEvent: {}
+[4.715344] (-) TimerEvent: {}
+[4.816505] (-) TimerEvent: {}
+[4.914481] (celeste_interfaces) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/celeste_interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/celeste_interfaces/action/detail/return__type_support_c.cpp.o\x1b[0m\n'}
+[4.916609] (-) TimerEvent: {}
+[5.017777] (-) TimerEvent: {}
+[5.118826] (-) TimerEvent: {}
+[5.218894] (celeste_interfaces) StdoutLine: {'line': b'[ 41%] \x1b[32m\x1b[1mLinking CXX shared library libceleste_interfaces__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[5.219236] (-) TimerEvent: {}
+[5.302749] (celeste_interfaces) StdoutLine: {'line': b'[ 41%] Built target celeste_interfaces__rosidl_typesupport_cpp\n'}
+[5.319352] (-) TimerEvent: {}
+[5.322439] (celeste_interfaces) StdoutLine: {'line': b'[ 45%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[5.419452] (-) TimerEvent: {}
+[5.516399] (celeste_interfaces) StdoutLine: {'line': b'[ 48%] \x1b[32m\x1b[1mLinking CXX shared library libceleste_interfaces__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[5.519551] (-) TimerEvent: {}
+[5.553043] (celeste_interfaces) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking CXX shared library libceleste_interfaces__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[5.619654] (-) TimerEvent: {}
+[5.681329] (celeste_interfaces) StdoutLine: {'line': b'[ 51%] Built target celeste_interfaces__rosidl_typesupport_introspection_cpp\n'}
+[5.700609] (celeste_interfaces) StdoutLine: {'line': b'[ 54%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[5.719753] (-) TimerEvent: {}
+[5.725128] (celeste_interfaces) StdoutLine: {'line': b'[ 54%] Built target celeste_interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[5.728868] (celeste_interfaces) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking CXX shared library libceleste_interfaces__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[5.819856] (-) TimerEvent: {}
+[5.889913] (celeste_interfaces) StdoutLine: {'line': b'[ 58%] Built target celeste_interfaces__rosidl_typesupport_fastrtps_c\n'}
+[5.919950] (-) TimerEvent: {}
+[5.974552] (celeste_interfaces) StdoutLine: {'line': b'[ 61%] \x1b[32mBuilding C object CMakeFiles/celeste_interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/celeste_interfaces/action/detail/return__type_support.c.o\x1b[0m\n'}
+[6.020047] (-) TimerEvent: {}
+[6.043970] (celeste_interfaces) StdoutLine: {'line': b'[ 64%] \x1b[32m\x1b[1mLinking C shared library libceleste_interfaces__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[6.090132] (celeste_interfaces) StdoutLine: {'line': b'[ 64%] Built target celeste_interfaces__rosidl_typesupport_introspection_c\n'}
+[6.105553] (celeste_interfaces) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/celeste_interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/celeste_interfaces/action/return__type_support.cpp.o\x1b[0m\n'}
+[6.120149] (-) TimerEvent: {}
+[6.170428] (celeste_interfaces) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libceleste_interfaces__rosidl_typesupport_c.so\x1b[0m\n'}
+[6.220250] (-) TimerEvent: {}
+[6.222843] (celeste_interfaces) StdoutLine: {'line': b'[ 70%] Built target celeste_interfaces__rosidl_typesupport_c\n'}
+[6.247890] (celeste_interfaces) StdoutLine: {'line': b'[ 70%] Built target celeste_interfaces\n'}
+[6.277019] (celeste_interfaces) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[6.320344] (-) TimerEvent: {}
+[6.420657] (-) TimerEvent: {}
+[6.520978] (-) TimerEvent: {}
+[6.621294] (-) TimerEvent: {}
+[6.721606] (-) TimerEvent: {}
+[6.821887] (-) TimerEvent: {}
+[6.922201] (-) TimerEvent: {}
+[7.022493] (-) TimerEvent: {}
+[7.078604] (celeste_interfaces) StdoutLine: {'line': b'[ 74%] Built target celeste_interfaces__py\n'}
+[7.103655] (celeste_interfaces) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/celeste_interfaces__rosidl_generator_py.dir/rosidl_generator_py/celeste_interfaces/action/_return_s.c.o\x1b[0m\n'}
+[7.122612] (-) TimerEvent: {}
+[7.222951] (-) TimerEvent: {}
+[7.306198] (celeste_interfaces) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/celeste_interfaces/libceleste_interfaces__rosidl_generator_py.so\x1b[0m\n'}
+[7.323053] (-) TimerEvent: {}
+[7.360938] (celeste_interfaces) StdoutLine: {'line': b'[ 80%] Built target celeste_interfaces__rosidl_generator_py\n'}
+[7.401239] (celeste_interfaces) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding C object CMakeFiles/celeste_interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/celeste_interfaces/_celeste_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[7.402855] (celeste_interfaces) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/celeste_interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/celeste_interfaces/_celeste_interfaces_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[7.408989] (celeste_interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/celeste_interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/celeste_interfaces/_celeste_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[7.427229] (-) TimerEvent: {}
+[7.529692] (-) TimerEvent: {}
+[7.633498] (-) TimerEvent: {}
+[7.733352] (celeste_interfaces) StdoutLine: {'line': b'[ 93%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[7.733612] (-) TimerEvent: {}
+[7.747325] (celeste_interfaces) StdoutLine: {'line': b'[ 96%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[7.757695] (celeste_interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[7.837103] (-) TimerEvent: {}
+[7.886484] (celeste_interfaces) StdoutLine: {'line': b'[100%] Built target celeste_interfaces__rosidl_typesupport_c__pyext\n'}
+[7.902972] (celeste_interfaces) StdoutLine: {'line': b'[100%] Built target celeste_interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[7.906361] (celeste_interfaces) StdoutLine: {'line': b'[100%] Built target celeste_interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[7.928207] (celeste_interfaces) CommandEnded: {'returncode': 0}
+[7.942684] (-) TimerEvent: {}
+[8.043182] (-) TimerEvent: {}
+[8.075881] (celeste_interfaces) JobProgress: {'identifier': 'celeste_interfaces', 'progress': 'install'}
+[8.094973] (celeste_interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces'], 'cwd': '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces', 'env': OrderedDict([('TERM_SESSION_ID', '218527c8-a3c3-4631-a21a-a8a47bf610ed'), ('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_GB:en'), ('SNAP_INSTANCE_KEY', ''), ('USER', 'nash'), ('SNAP_COMMON', '/var/snap/pycharm-professional/common'), ('XDG_SESSION_TYPE', 'wayland'), ('SNAP_UID', '1000'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/nash'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void'), ('OLDPWD', '/home/nash/PycharmProjects/Celestial_Robot/celeste/src'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/nash/snap/pycharm-professional/395'), ('TERMINAL_EMULATOR', 'JetBrains-JediTerm'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('MANAGERPID', '1354'), ('SYSTEMD_EXEC_PID', '1523'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '395'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '9660'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'nash'), ('SNAP_CONTEXT', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('JOURNAL_STREAM', '8:30255'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '2024.1.3'), ('USERNAME', 'nash'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'pycharm-professional'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/nash-ThinkPad-X260:@/tmp/.ICE-unix/1504,unix/nash-ThinkPad-X260:/tmp/.ICE-unix/1504'), ('INVOCATION_ID', 'e7dbdb739b83450e8b2feaa777ff16e4'), ('XDG_MENU_PREFIX', 'gnome-'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/pycharm-professional_pycharm-professional.desktop'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/pycharm-professional/395'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('DESKTOP_STARTUP_ID', 'gnome-shell/PyCharm Professional Edition/1523-7-nash-ThinkPad-X260_TIME4919264'), ('LANG', 'en_GB.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.2IX3P2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/nash/snap/pycharm-professional/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('ROS_DOMAIN_ID', '133'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SNAP_COOKIE', 'P811kyAs9WXdNFFyLLPmXkVfuRMCkdvQ--wChCrn68hjucaxKs-A'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('SNAP_REEXEC', ''), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'pycharm-professional'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/nash/PycharmProjects/Celestial_Robot/celeste/build/celeste_interfaces'), ('TURTLEBOT3_MODEL', 'burger'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/nash'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/pycharm-professional/395'), ('COLCON', '1'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[8.112448] (celeste_interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[8.112832] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/ament_index/resource_index/rosidl_interfaces/celeste_interfaces\n'}
+[8.113128] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces\n'}
+[8.113331] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action\n'}
+[8.113515] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/return.h\n'}
+[8.113751] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail\n'}
+[8.113932] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__type_support.h\n'}
+[8.114177] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__functions.c\n'}
+[8.114533] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__struct.h\n'}
+[8.114789] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__functions.h\n'}
+[8.115242] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/msg\n'}
+[8.115480] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[8.115848] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/environment/library_path.sh\n'}
+[8.116238] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/environment/library_path.dsv\n'}
+[8.116536] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_generator_c.so\n'}
+[8.117511] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_generator_c.so" to ""\n'}
+[8.117807] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces\n'}
+[8.118015] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action\n'}
+[8.118171] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail\n'}
+[8.118383] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__rosidl_typesupport_fastrtps_c.h\n'}
+[8.118522] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/msg\n'}
+[8.118673] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[8.118852] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[8.123193] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[8.123488] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces\n'}
+[8.123647] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action\n'}
+[8.123847] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail\n'}
+[8.123988] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__rosidl_typesupport_introspection_c.h\n'}
+[8.124182] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__type_support.c\n'}
+[8.124378] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/msg\n'}
+[8.124536] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[8.124740] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_introspection_c.so\n'}
+[8.125581] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_introspection_c.so" to ""\n'}
+[8.125836] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_c.so\n'}
+[8.126547] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_c.so" to ""\n'}
+[8.126932] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces\n'}
+[8.127124] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action\n'}
+[8.127358] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail\n'}
+[8.127514] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__builder.hpp\n'}
+[8.127696] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__traits.hpp\n'}
+[8.127882] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__struct.hpp\n'}
+[8.128020] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/return.hpp\n'}
+[8.128207] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces\n'}
+[8.128436] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action\n'}
+[8.128567] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail\n'}
+[8.128746] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[8.128917] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/dds_fastrtps\n'}
+[8.129083] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/msg\n'}
+[8.129199] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[8.130326] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[8.130587] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[8.130842] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces\n'}
+[8.131008] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action\n'}
+[8.131127] (celeste_interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail\n'}
+[8.131268] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__type_support.cpp\n'}
+[8.131466] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/include/celeste_interfaces/celeste_interfaces/action/detail/return__rosidl_typesupport_introspection_cpp.hpp\n'}
+[8.131593] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[8.132263] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[8.132471] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_cpp.so\n'}
+[8.133413] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_typesupport_cpp.so" to ""\n'}
+[8.133647] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/environment/pythonpath.sh\n'}
+[8.133844] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/environment/pythonpath.dsv\n'}
+[8.134383] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces-0.0.0-py3.10.egg-info\n'}
+[8.134971] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[8.135193] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[8.135343] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[8.135480] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[8.137013] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces\n'}
+[8.137307] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.137850] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/_celeste_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[8.138062] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/action\n'}
+[8.138205] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/action/_return_s.c\n'}
+[8.138395] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/action/_return.py\n'}
+[8.138691] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/action/__init__.py\n'}
+[8.138925] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/__init__.py\n'}
+[8.139174] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.139534] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/_celeste_interfaces_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[8.139879] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/libceleste_interfaces__rosidl_generator_py.so\n'}
+[8.140562] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.140739] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/_celeste_interfaces_s.ep.rosidl_typesupport_c.c\n'}
+[8.144429] (-) TimerEvent: {}
+[8.231390] (celeste_interfaces) StdoutLine: {'line': b"Listing '/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces'...\n"}
+[8.231639] (celeste_interfaces) StdoutLine: {'line': b"Compiling '/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/__init__.py'...\n"}
+[8.231788] (celeste_interfaces) StdoutLine: {'line': b"Listing '/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/action'...\n"}
+[8.231925] (celeste_interfaces) StdoutLine: {'line': b"Compiling '/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/action/__init__.py'...\n"}
+[8.232053] (celeste_interfaces) StdoutLine: {'line': b"Compiling '/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/action/_return.py'...\n"}
+[8.241220] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.242330] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[8.242677] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.244961] (-) TimerEvent: {}
+[8.245261] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[8.246164] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[8.247586] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/local/lib/python3.10/dist-packages/celeste_interfaces/celeste_interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[8.248158] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_generator_py.so\n'}
+[8.249575] (celeste_interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/lib/libceleste_interfaces__rosidl_generator_py.so" to ""\n'}
+[8.251198] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/action/Return.idl\n'}
+[8.251982] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/action/Return.action\n'}
+[8.252829] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/ament_index/resource_index/package_run_dependencies/celeste_interfaces\n'}
+[8.253726] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/ament_index/resource_index/parent_prefix_path/celeste_interfaces\n'}
+[8.254547] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/environment/ament_prefix_path.sh\n'}
+[8.255264] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/environment/ament_prefix_path.dsv\n'}
+[8.256266] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/environment/path.sh\n'}
+[8.257123] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/environment/path.dsv\n'}
+[8.257852] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/local_setup.bash\n'}
+[8.258621] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/local_setup.sh\n'}
+[8.259417] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/local_setup.zsh\n'}
+[8.276798] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/local_setup.dsv\n'}
+[8.277700] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/package.dsv\n'}
+[8.280039] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/ament_index/resource_index/packages/celeste_interfaces\n'}
+[8.280304] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_generator_cExport.cmake\n'}
+[8.280503] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[8.280668] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[8.280804] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[8.280930] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[8.281142] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[8.281276] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfaces__rosidl_typesupport_cExport.cmake\n'}
+[8.281467] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[8.281608] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_generator_cppExport.cmake\n'}
+[8.281817] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[8.282124] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[8.282509] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[8.282860] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[8.283231] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[8.283583] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[8.283969] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_generator_pyExport.cmake\n'}
+[8.284611] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/export_celeste_interfaces__rosidl_generator_pyExport-noconfig.cmake\n'}
+[8.284938] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[8.285266] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[8.285594] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[8.285921] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[8.286289] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[8.286558] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[8.286867] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[8.287208] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfacesConfig.cmake\n'}
+[8.287490] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/cmake/celeste_interfacesConfig-version.cmake\n'}
+[8.287846] (celeste_interfaces) StdoutLine: {'line': b'-- Installing: /home/nash/PycharmProjects/Celestial_Robot/celeste/install/celeste_interfaces/share/celeste_interfaces/package.xml\n'}
+[8.292420] (celeste_interfaces) CommandEnded: {'returncode': 0}
+[8.347292] (-) TimerEvent: {}
+[8.447643] (-) TimerEvent: {}
+[8.510514] (celeste_interfaces) JobEnded: {'identifier': 'celeste_interfaces', 'rc': 0}
+[8.511817] (-) EventReactorShutdown: {}

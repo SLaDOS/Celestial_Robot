@@ -1,0 +1,3 @@
+[console_scripts]
+return_action_server = my_experiment.return_action_server:main
+
