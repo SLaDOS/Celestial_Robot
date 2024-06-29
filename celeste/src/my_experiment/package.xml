@@ -7,6 +7,10 @@
   <maintainer email="nashdrovin@gmail.com">nash</maintainer>
   <license>GPL-3.0-only</license>
 
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
   <depend>celeste_interfaces</depend>
 
   <test_depend>ament_copyright</test_depend>

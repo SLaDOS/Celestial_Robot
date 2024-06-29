@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'return_action_server = my_experiment.return_action_server:main',
+            'teleop_keyboard = my_experiment.teleop_keyboard:main',
         ],
     },
 )
