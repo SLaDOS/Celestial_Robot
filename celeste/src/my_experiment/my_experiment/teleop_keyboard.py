@@ -87,6 +87,7 @@ e = """
 Communications Failed
 """
 
+
 class ReturnActionClient(Node):
 
     def __init__(self):
@@ -96,10 +97,36 @@ class ReturnActionClient(Node):
     def send_goal(self, target):
         goal_msg = Return.Goal()
         goal_msg.target = target
-
         self._action_client.wait_for_server()
+        self._send_goal_future = self._action_client.send_goal_async(
+            goal_msg,
+            feedback_callback=self.feedback_callback)
+        self._send_goal_future.add_done_callback(self.goal_response_callback)
+        print('send_goal end')
+        # return self._send_goal_future
 
-        return self._action_client.send_goal_async(goal_msg)
+    def goal_response_callback(self, future):
+        print('enter goal_response_callback')
+        goal_handle = future.result()
+        if not goal_handle.accepted:
+            self.get_logger().info('Goal rejected :(')
+            return
+
+        self.get_logger().info('Goal accepted :)')
+
+        self._get_result_future = goal_handle.get_result_async()
+        self._get_result_future.add_done_callback(self.get_result_callback)
+
+    def get_result_callback(self, future):
+        print('enter get_result_callback')
+        result = future.result().result
+        self.get_logger().info('Result: {0}'.format(result.success))
+
+    def feedback_callback(self, feedback_msg):
+        print('enter feedback_callback')
+        feedback = feedback_msg.feedback
+        self.get_logger().info('Received feedback: {0}'.format(feedback.partial_sequence))
+
 
 
 def get_key(settings):
@@ -208,8 +235,12 @@ def main():
                 print_vels(target_linear_velocity, target_angular_velocity)
             elif key == 'r':
                 point = Point(x=1.0, y=1.0, z=0.0)
-                future = return_action_client.send_goal(point)
-                rclpy.spin_until_future_complete(return_action_client, future)
+                return_action_client.send_goal(point)
+                rclpy.spin_once(return_action_client)
+                print('spin finished')
+                target_linear_velocity = 0.0
+                target_angular_velocity = 0.0
+                continue
             else:
                 if (key == '\x03'):
                     break
