@@ -22,6 +22,7 @@ setup(
         'console_scripts': [
             'return_action_server = my_experiment.return_action_server:main',
             'teleop_keyboard = my_experiment.teleop_keyboard:main',
+            'inspector = my_experiment.inspector:main',
         ],
     },
 )
