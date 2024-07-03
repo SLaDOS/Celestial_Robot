@@ -40,15 +40,14 @@ import sys
 import time
 
 import rclpy
+from rclpy import Future
 from rclpy.action import ActionClient
 from rclpy.node import Node
-
 
 from celeste_interfaces.action import Return
 from geometry_msgs.msg import Twist
 from geometry_msgs.msg import Point
 from rclpy.qos import QoSProfile
-
 
 if os.name == 'nt':
     import msvcrt
@@ -86,47 +85,6 @@ CTRL-C to quit
 e = """
 Communications Failed
 """
-
-
-class ReturnActionClient(Node):
-
-    def __init__(self):
-        super().__init__('return_action_client')
-        self._action_client = ActionClient(self, Return, 'return')
-
-    def send_goal(self, target):
-        goal_msg = Return.Goal()
-        goal_msg.target = target
-        self._action_client.wait_for_server()
-        self._send_goal_future = self._action_client.send_goal_async(
-            goal_msg,
-            feedback_callback=self.feedback_callback)
-        self._send_goal_future.add_done_callback(self.goal_response_callback)
-        print('send_goal end')
-        # return self._send_goal_future
-
-    def goal_response_callback(self, future):
-        print('enter goal_response_callback')
-        goal_handle = future.result()
-        if not goal_handle.accepted:
-            self.get_logger().info('Goal rejected :(')
-            return
-
-        self.get_logger().info('Goal accepted :)')
-
-        self._get_result_future = goal_handle.get_result_async()
-        self._get_result_future.add_done_callback(self.get_result_callback)
-
-    def get_result_callback(self, future):
-        print('enter get_result_callback')
-        result = future.result().result
-        self.get_logger().info('Result: {0}'.format(result.success))
-
-    def feedback_callback(self, feedback_msg):
-        print('enter feedback_callback')
-        feedback = feedback_msg.feedback
-        self.get_logger().info('Received feedback: {0}'.format(feedback.remaining))
-
 
 
 def get_key(settings):
@@ -172,17 +130,55 @@ def constrain(input_vel, low_bound, high_bound):
 
 
 def check_linear_limit_velocity(velocity):
-    if TURTLEBOT3_MODEL == 'burger':
-        return constrain(velocity, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
-    else:
-        return constrain(velocity, -WAFFLE_MAX_LIN_VEL, WAFFLE_MAX_LIN_VEL)
+    return constrain(velocity, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
 
 
 def check_angular_limit_velocity(velocity):
-    if TURTLEBOT3_MODEL == 'burger':
-        return constrain(velocity, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
-    else:
-        return constrain(velocity, -WAFFLE_MAX_ANG_VEL, WAFFLE_MAX_ANG_VEL)
+    return constrain(velocity, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
+
+
+class ReturnActionClient(Node):
+
+    def __init__(self):
+        super().__init__('return_action_client')
+        self._action_client = ActionClient(self, Return, 'return')
+
+    def send_goal(self, target):
+        goal_msg = Return.Goal()
+        goal_msg.target = target
+        self.get_logger().info('Waiting for server...')
+        if not self._action_client.wait_for_server(timeout_sec=2.0):
+            self.get_logger().info('Time out. No server available')
+            return
+        self._send_goal_future = self._action_client.send_goal_async(
+            goal_msg,
+            feedback_callback=self.feedback_callback)
+        self._send_goal_future.add_done_callback(self.goal_response_callback)
+
+        rclpy.spin_until_future_complete(self, self._send_goal_future)
+        goal_handle = self._send_goal_future.result()
+        get_result_future = goal_handle.get_result_async()
+
+        return get_result_future
+
+    def goal_response_callback(self, future):
+        goal_handle = future.result()
+        if not goal_handle.accepted:
+            self.get_logger().info('Goal rejected :(')
+            return
+        else:
+            self.get_logger().info('Goal accepted :)')
+
+        self._get_result_future = goal_handle.get_result_async()
+        self._get_result_future.add_done_callback(self.get_result_callback)
+
+    def get_result_callback(self, future):
+        result = future.result().result
+        self.get_logger().info('Result: {0}'.format(result.success))
+
+    def feedback_callback(self, feedback_msg):
+        feedback = feedback_msg.feedback
+        self.get_logger().info('Received feedback: {0:.2f}'.format(feedback.remaining))
 
 
 def main():
@@ -205,25 +201,25 @@ def main():
 
     try:
         print(msg)
-        while(1):
+        while 1:
             key = get_key(settings)
             if key == 'w':
-                target_linear_velocity =\
+                target_linear_velocity = \
                     check_linear_limit_velocity(target_linear_velocity + LIN_VEL_STEP_SIZE)
                 status = status + 1
                 print_vels(target_linear_velocity, target_angular_velocity)
             elif key == 'x':
-                target_linear_velocity =\
+                target_linear_velocity = \
                     check_linear_limit_velocity(target_linear_velocity - LIN_VEL_STEP_SIZE)
                 status = status + 1
                 print_vels(target_linear_velocity, target_angular_velocity)
             elif key == 'a':
-                target_angular_velocity =\
+                target_angular_velocity = \
                     check_angular_limit_velocity(target_angular_velocity + ANG_VEL_STEP_SIZE)
                 status = status + 1
                 print_vels(target_linear_velocity, target_angular_velocity)
             elif key == 'd':
-                target_angular_velocity =\
+                target_angular_velocity = \
                     check_angular_limit_velocity(target_angular_velocity - ANG_VEL_STEP_SIZE)
                 status = status + 1
                 print_vels(target_linear_velocity, target_angular_velocity)
@@ -235,9 +231,8 @@ def main():
                 print_vels(target_linear_velocity, target_angular_velocity)
             elif key == 'r':
                 point = Point(x=1.0, y=1.0, z=0.0)
-                return_action_client.send_goal(point)
-                rclpy.spin_once(return_action_client)
-                print('spin finished')
+                future = return_action_client.send_goal(point)
+                rclpy.spin_until_future_complete(return_action_client, future)
                 target_linear_velocity = 0.0
                 target_angular_velocity = 0.0
                 continue

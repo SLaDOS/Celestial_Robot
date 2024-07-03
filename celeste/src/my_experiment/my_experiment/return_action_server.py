@@ -12,7 +12,10 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 
 BURGER_MAX_LIN_VEL = 0.22
-BURGER_MAX_ANG_VEL = 2.84
+BURGER_MAX_ANG_VEL = 1.0
+TURN_SPEED_COEFFICIENT = 0.06
+MIN_TURN_SPEED = 0.1
+# BURGER_MAX_ANG_VEL = 2.84
 
 
 def constrain(input_vel, low_bound, high_bound):
@@ -74,11 +77,11 @@ class ReturnActionServer(Node):
         while 1:
             angle = self.angle_to_go(vector_to_target)
             current = twist.angular.z
-            control = check_angular_limit_velocity(0.02 * angle)
-            if 0.1 > control > 0:
-                control = 0.1
-            elif -0.1 < control < 0:
-                control = -0.1
+            control = check_angular_limit_velocity(TURN_SPEED_COEFFICIENT * angle)
+            if MIN_TURN_SPEED > control > 0:
+                control = MIN_TURN_SPEED
+            elif -MIN_TURN_SPEED < control < 0:
+                control = - MIN_TURN_SPEED
             if (control-current) > 0.01:
                 control = current + 0.01
             elif (control-current) < -0.01:
@@ -86,6 +89,7 @@ class ReturnActionServer(Node):
 
             if abs(angle) < 0.5:
                 self.get_logger().info('Success')
+                result.success = True
                 break
             twist.angular.z = control
             self.get_logger().info(f'{angle:.1f} degrees to go, angular velocity: {control:.2f},current:{current:.2f}')
@@ -94,12 +98,13 @@ class ReturnActionServer(Node):
             goal_handle.publish_feedback(feedback_msg)
             if time.time()-start > 5:
                 self.get_logger().info('Failed')
+                result.success = False
                 break
 
+        goal_handle.succeed()
         twist.angular.z = 0.0
         self.vel_publisher.publish(twist)
-        goal_handle.succeed()
-        result.success = False
+
         return result
 
     def angle_to_go(self, target_vector):
