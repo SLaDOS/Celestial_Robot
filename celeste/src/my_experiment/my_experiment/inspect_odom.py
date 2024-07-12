@@ -47,6 +47,7 @@ def get_average_x(msg):
 
 def listener_callback(msg):
     quaternion = msg.pose.pose.orientation
+    print(quaternion)
     target_vector = (0.0, 1.0)
     target_vector_normalized = target_vector / np.linalg.norm(target_vector)
     current_heading = quaternion_to_heading_vector(quaternion)
@@ -57,7 +58,7 @@ def listener_callback(msg):
 def main(args=None):
     rclpy.init(args=args)
     node = rclpy.create_node('inspector')
-    pub = node.create_subscription(Odometry, 'odom', callback=listener_callback, qos_profile=QoSProfile(depth=10))
+    sub = node.create_subscription(Odometry, 'odom', callback=listener_callback, qos_profile=QoSProfile(depth=10))
 
     rclpy.spin(node)
 
