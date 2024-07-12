@@ -1,8 +1,0 @@
-{
-  "package_name": "tutorial_interfaces",
-  "non_idl_tuples": [
-    "/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/src/tutorial_interfaces:msg/Num.msg",
-    "/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/src/tutorial_interfaces:msg/Sphere.msg",
-    "/home/nash/PycharmProjects/Celestial_Robot/learn/workspace1/src/tutorial_interfaces:srv/AddThreeInts.srv"
-  ]
-}
