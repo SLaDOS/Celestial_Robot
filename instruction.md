@@ -1,4 +1,4 @@
-Version Info:
+Info:
 
     Raspberry Pi Version: Raspberry Pi 4 Model B
     Robot: TURTLEBOT3 Burger
@@ -8,6 +8,7 @@ Version Info:
     Pi PASSWORD = celestial
     ROS_DOMAIN_ID = 133
     TurtleBot3_MAC_ADDRESS = D8:3A:DD:58:91:B1
+    Suitable MIN_TURN_SPEED = 0.1
 
 To get ip address:\
 check hotspot panel\

@@ -1,6 +1,7 @@
 import sys
 import time
-
+import datetime
+import math
 import numpy as np
 import argparse
 from scipy.spatial.transform import Rotation
@@ -8,6 +9,7 @@ from scipy.spatial.transform import Rotation
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
+import rosbag2_py
 
 from std_msgs.msg import String
 from std_msgs.msg import Int32MultiArray
@@ -40,6 +42,8 @@ class PolTester(Node):
                                   for i in range(POL_NUM)]
         self.odom_subscription = self.create_subscription(Odometry, 'odom', self.odom_sub_callback, qos_profile)
 
+        self.writer = rosbag2_py.SequentialWriter()
+
     def pol_sub_callback(self, msg, topic_num):
         self.pol_data[topic_num] = msg.data
 
@@ -70,30 +74,39 @@ def main(args=None):
     node = PolTester()
 
     # Wait for sensor data
+    node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
     while rclpy.ok() and not (node.odom_data_received and node.pol_data_received):
-        rclpy.spin_once(node)
-        node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
-        time.sleep(1)
+        rclpy.spin_once(node, timeout_sec=1)
+    node.get_logger().info("Test start.")
 
     # Move to zero on odometry
     goal_yaw = 0
     error_yaw = node.yaw - goal_yaw
-    rate = node.create_rate(100)
     start_time = time.time()
 
     while abs(error_yaw) > 0.011:  # TODO: Why 0.011
         rclpy.spin_once(node)
         node.get_logger().info(str(error_yaw))
-        node.command_velocity(0, -0.3 * error_yaw)
+        cmd_angular = -0.3 * error_yaw
+        cmd_angular = math.copysign(max(0.1, abs(cmd_angular)), cmd_angular)  # minimum speed
+        node.command_velocity(0, cmd_angular)
         error_yaw = node.yaw - goal_yaw
-        # rate.sleep()  # fixme: blocks
+        # rate.sleep()  # TODO: blocks, maybe not use it
         if time.time() - start_time > 10:
             node.get_logger().info('Time exceeded')
-            break
+            return
 
     node.command_velocity(0, 0)
     node.get_logger().info('Moved to zero on odometry')
-    rate.destroy()
+
+    # Pre-rotation wait
+    bag_path = 'my_bags/'+datetime.datetime.now().strftime('pol_op_tester_%Y_%m_%d-%H_%M_%S')
+    storage_options = rosbag2_py.StorageOptions(
+        uri=bag_path,
+        storage_id='sqlite3',
+    )
+    converter_options = rosbag2_py.ConverterOptions('cdr', 'cdr')
+    node.writer.open(storage_options, converter_options)
 
     # TODO: continue
     # while rclpy.ok() and node.traverse <= 2 * np.pi:
