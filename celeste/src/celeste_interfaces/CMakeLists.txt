@@ -20,11 +20,12 @@ set(msg_files
   "msg/filename.msg"
 )
 set(srv_files
-  "srv/filename.srv"
+  "srv/Velocity.srv"
 )
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${action_files}
+  ${srv_files}
   DEPENDENCIES geometry_msgs # Add packages that above messages depend on
 )
 
@@ -41,6 +42,6 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# ament_export_dependencies#(rosidl_default_runtime)
+ament_export_dependencies(rosidl_default_runtime)
 
 ament_package()
