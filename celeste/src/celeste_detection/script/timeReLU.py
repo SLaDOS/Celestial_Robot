@@ -1,9 +1,17 @@
-import rclpy
+import numpy as np
+import timeit
 
-if __name__ == '__main__':
-    node = rclpy.create_node("rospy_rate_test")
-    rate = node.create_rate(5)  # ROS Rate at 5Hz
+s = '''
+import numpy as np
+x = np.random.random((5000, 5000)) - 0.5
+'''
+print("max method:")
+print(timeit.timeit(setup=s, stmt='np.maximum(x, 0)', number=10))
 
-    while not rclpy.ok():
-        node.get_logger().info("Hello")
-        rate.sleep()
+print("multiplication method:")
+print(timeit.timeit(setup=s, stmt='x * (x > 0)', number=10))
+
+print("abs method:")
+print(timeit.timeit(setup=s, stmt='(abs(x) + x) / 2', number=10))
+
+

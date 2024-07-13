@@ -10,19 +10,32 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
 import rosbag2_py
+from rclpy.serialization import serialize_message
 
-from std_msgs.msg import String
 from std_msgs.msg import Int32MultiArray
+from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 
 POL_NUM = 8
+BAG_PATH = 'my_bags/' + datetime.datetime.now().strftime('pol_op_tester_%Y_%m_%d-%H_%M_%S')
+
+bookend = 0.15*POL_NUM
+
+
+def relu(x):
+    """
+    ReLU function. Clip negative values to zero.
+    :param x: The value to clip
+    :return: 0 if value < 0, otherwise the value.
+    """
+    return x * (x > 0)
 
 
 class PolTester(Node):
     def __init__(self):
         super().__init__('multi_pol_op_tester')
-        self.traverse = 0
+        # self.traverse = 0
         self.pol_data = [0.0] * POL_NUM
         self.pol_data_received = True  # Fixme
         self.odom_data = None
@@ -42,7 +55,36 @@ class PolTester(Node):
                                   for i in range(POL_NUM)]
         self.odom_subscription = self.create_subscription(Odometry, 'odom', self.odom_sub_callback, qos_profile)
 
+        # Initialize rosbag2 writer
         self.writer = rosbag2_py.SequentialWriter()
+        storage_options = rosbag2_py.StorageOptions(
+            uri=BAG_PATH,
+            storage_id='sqlite3',
+        )
+        converter_options = rosbag2_py.ConverterOptions('cdr', 'cdr')
+        self.writer.open(storage_options, converter_options)
+        for subscription in self.pol_subscriptions:
+            topic = rosbag2_py.TopicMetadata(name=subscription.topic,
+                                             type='std_msgs/msg/Int32MultiArray',
+                                             serialization_format='cdr')
+            self.writer.create_topic(topic)
+        topic = rosbag2_py.TopicMetadata(name='yaw',
+                                         type='std_msgs/msg/Float64',
+                                         serialization_format='cdr')
+        self.writer.create_topic(topic)
+
+    def write_all(self):
+        for i in range(len(self.pol_subscriptions)):
+            pol_msg = Int32MultiArray(data=self.pol_data[i])
+            self.writer.write(
+                self.pol_subscriptions[i].topic,
+                serialize_message(pol_msg),
+                self.get_clock().now().nanoseconds)
+        yaw_msg = Float64(data=self.yaw)
+        self.writer.write(
+            'yaw',
+            serialize_message(yaw_msg),
+            self.get_clock().now().nanoseconds)
 
     def pol_sub_callback(self, msg, topic_num):
         self.pol_data[topic_num] = msg.data
@@ -77,7 +119,7 @@ def main(args=None):
     node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
     while rclpy.ok() and not (node.odom_data_received and node.pol_data_received):
         rclpy.spin_once(node, timeout_sec=1)
-    node.get_logger().info("Test start.")
+    node.get_logger().info("Test start. Moving to zero...")
 
     # Move to zero on odometry
     goal_yaw = 0
@@ -86,9 +128,9 @@ def main(args=None):
 
     while abs(error_yaw) > 0.011:  # TODO: Why 0.011
         rclpy.spin_once(node)
-        node.get_logger().info(str(error_yaw))
+        # node.get_logger().info(str(error_yaw))
         cmd_angular = -0.3 * error_yaw
-        cmd_angular = math.copysign(max(0.1, abs(cmd_angular)), cmd_angular)  # minimum speed
+        cmd_angular = math.copysign(max(0.15, abs(cmd_angular)), cmd_angular)  # minimum speed
         node.command_velocity(0, cmd_angular)
         error_yaw = node.yaw - goal_yaw
         # rate.sleep()  # TODO: blocks, maybe not use it
@@ -99,19 +141,42 @@ def main(args=None):
     node.command_velocity(0, 0)
     node.get_logger().info('Moved to zero on odometry')
 
-    # Pre-rotation wait
-    bag_path = 'my_bags/'+datetime.datetime.now().strftime('pol_op_tester_%Y_%m_%d-%H_%M_%S')
-    storage_options = rosbag2_py.StorageOptions(
-        uri=bag_path,
-        storage_id='sqlite3',
-    )
-    converter_options = rosbag2_py.ConverterOptions('cdr', 'cdr')
-    node.writer.open(storage_options, converter_options)
+    # Pre-rotation wait # TODO: Why wait
+    node.get_logger().info('<Bookend>')
+    start_time = time.time()
+    current_time = time.time()
+    while rclpy.ok() and current_time - start_time < bookend:
+        rclpy.spin_once(node)
+        current_time = time.time()
+        # node.write_all()
 
-    # TODO: continue
-    # while rclpy.ok() and node.traverse <= 2 * np.pi:
-    #     rclpy.spin_once(node)
-    #     node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
+    # Rotate
+    corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
+    last_measure = corrected_yaw
+    traverse = 0
+    while rclpy.ok() and traverse <= 2*np.pi:
+        rclpy.spin_once(node)
+        node.command_velocity(0, 0.2)
+        corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
+
+        traverse = traverse + relu(corrected_yaw - last_measure)
+        node.get_logger().info(f"\nLast Measure: {last_measure}\n"
+                               f"Corrected Yaw: {corrected_yaw}\n"
+                               f"Traverse: {traverse}")
+        last_measure = corrected_yaw
+        node.write_all()
+        time.sleep(0.1)
+    node. command_velocity(0, 0)
+    node.get_logger().info('stop sent')
+
+    # Post rotation wait
+    start_time = time.time()
+    current_time = time.time()
+    node.get_logger().info('<Bookend>')
+    while rclpy.ok() and current_time - start_time < bookend:
+        rclpy.spin_once(node)
+        current_time = time.time()
+        # node.write_all()
 
     node.destroy_node()
     rclpy.shutdown()
