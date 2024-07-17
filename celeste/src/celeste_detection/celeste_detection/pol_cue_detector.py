@@ -1,152 +1,93 @@
-import math
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import Int32MultiArray
+import cue
+from math import log, sqrt, atan2, pi, sin, exp, isnan
 import numpy as np
-import roslib
-import rospy
-import std_msgs.msg
-import bb_util.msg
 
-# Node not currently linked to calibration routine.
-# TODO: link this up with the calibration routine
-calibration_offset = 0
+N_POL_OPS = 8
 
-# One vector per pol_op unit - non-configurable
-pol_op_responses = [[] for _ in range(N_POL_OPS)]
 
-# Subscription topics for each pol_op unit
-pol_sub_topics = [
-    "pol_op_0",
-    "pol_op_1",
-    "pol_op_2",
-    "pol_op_3",
-    "pol_op_4",
-    "pol_op_5",
-    "pol_op_6",
-    "pol_op_7",
-]
+class PolCueDetector(Node):
+    def __init__(self):
+        super().__init__('pol_cue_detector')
+        self.pol_op_responses = [None] * N_POL_OPS
+        self.n_sol_neurons = 8
+        self.pol_prefs = [0, 90, 180, 270, 45, 135, 225, 315]
+        self.sol_prefs = [0] * self.n_sol_neurons
 
-# Default number of sol neurons
-n_sol_neurons = 8
+        self.decode_sensor = self.bio_inspired_decode
+        self.activation = self.log_activation
 
-# Preferred angles for pol and sol neurons
-pol_prefs = np.radians([0, 90, 180, 270, 45, 135, 225, 315])
-sol_prefs = np.linspace(0, 2 * math.pi, n_sol_neurons, endpoint=False)
+        self.subscribers = [
+            self.create_subscription(Int32MultiArray, f'pol_op_{i}', self.create_callback(i), 10)
+            for i in range(N_POL_OPS)
+        ]
 
-# Polarization cue message
-pol_cue = bb_util.msg.Cue("pol", 1, 0, 0)
+        self.cue_pub = self.create_publisher(cue.Cue, 'pol_cue', 10)
 
-# Activation function for pol neurons
-activation = lambda x: np.log(x)
+        self.timer = self.create_timer(0.1, self.publish_cue)
+        self.pol_cue = cue.Cue("pol", 1, 0, 0)
 
-def radians(degrees):
-    return degrees * math.pi / 180
+    def create_callback(self, index):
+        def callback(msg):
+            self.pol_op_responses[index] = msg.data
+        return callback
 
-def degrees(radians):
-    return 180 * radians / math.pi
+    def log_activation(self, x):
+        return log(x)
 
-def init_parser(parser, argc, argv):
-    parser.add_argument(
-        "-a", "--activation",
-        help="Activation function for pol neurons (default: log)"
-    )
-    parser.add_argument(
-        "-n_sol", "--n_sol_neurons", type=int,
-        help="Number of sol neurons (default: 8)"
-    )
-    parser.add_argument(
-        "-h", "--help", action="help",
-        help="Show this help message and exit."
-    )
-    args = parser.parse_args(argv)
+    def sqrt_activation(self, x):
+        return sqrt(x)
 
-    if args.activation:
-        global activation
-        activation = {
-            "log": lambda x: np.log(x),
-            "sqrt": lambda x: np.sqrt(x),
-        }[args.activation]
+    def bio_inspired_decode(self):
+        pol_neuron_responses = [0] * N_POL_OPS
 
-    if args.n_sol_neurons:
-        global n_sol_neurons
-        n_sol_neurons = args.n_sol_neurons
-        global sol_prefs
-        sol_prefs = np.linspace(0, 2 * math.pi, n_sol_neurons, endpoint=False)
+        for i in range(N_POL_OPS):
+            s_vert = abs(self.pol_op_responses[i][2])
+            s_horiz = abs(self.pol_op_responses[i][3])
+            r_vert = self.activation(s_vert)
+            r_horiz = self.activation(s_horiz)
+            r_op = r_horiz - r_vert
+            r_po = r_horiz + r_vert
 
-def pol_callback(pol_msg, i):
-    pol_op_responses[i] = pol_msg.data
+            if r_po == 0:
+                r_po = float('nan')
 
-def bio_inspired_decode():
-    # Extract the relevant photodiodes and take their absolute response
-    pol_neuron_responses = np.zeros(N_POL_OPS)
-    for i in range(N_POL_OPS):
-        s_vert = abs(pol_op_responses[i][2])
-        s_horiz = abs(pol_op_responses[i][3])
-        r_vert = activation(s_vert)
-        r_horiz = activation(s_horiz)
-        r_op = r_horiz - r_vert
-        r_po = r_horiz + r_vert
-        pol_neuron_responses[i] = r_op / r_po if r_po != 0 else np.nan
+            pol_neuron_responses[i] = r_op / r_po
 
-    # Compute the response of the sol neurons
-    sol_neuron_responses = np.zeros(n_sol_neurons)
-    for z in range(n_sol_neurons):
-        r_sol_z = 0
-        for j in range(N_POL_OPS):
-            alpha_j = pol_prefs[j] - math.pi / 2
-            r_sol_z += (
-                n_sol_neurons / N_POL_OPS *
-                np.sin(alpha_j - sol_prefs[z]) *
-                pol_neuron_responses[j]
-            )
-        sol_neuron_responses[z] = r_sol_z
+        pol_sol_ratio = self.n_sol_neurons / N_POL_OPS
+        R = complex(0, 0)
 
-    # Compute the complex R value
-    R = np.complex(0, 0)
-    for z in range(n_sol_neurons):
-        R += (
-            sol_neuron_responses[z] *
-            np.exp(-1j * 2 * math.pi * (z - 1) / n_sol_neurons)
-        )
+        for z in range(self.n_sol_neurons):
+            r_sol_z = 0
+            for j in range(N_POL_OPS):
+                alpha_j = self.pol_prefs[j] - pi / 2
+                r_sol_z += pol_sol_ratio * sin(alpha_j - self.sol_prefs[z]) * pol_neuron_responses[j]
+            R += r_sol_z * exp(complex(0, -1) * 2 * pi * (z - 1) / self.n_sol_neurons)
 
-    # Compute the angle and certainty of the sensor reading
-    phi = -np.arctan2(-R.imag, R.real)
-    tau = np.sqrt(R.real ** 2 + R.imag ** 2)
-    return phi, tau
+        a = R.real
+        b = R.imag
+        phi = atan2(-b, a)
+        tau = sqrt(a * a + b * b)
+        phi = -phi
 
-def main():
-    rospy.init_node("pol_cue_detector")
+        return phi, tau
 
-    # Initialize the argument parser
-    init_parser(argparse.ArgumentParser(), rospy.myargv(), rospy.myargv()[1:])
+    def publish_cue(self):
+        if all(response is not None for response in self.pol_op_responses):
+            phi, tau = self.decode_sensor()
+            self.pol_cue.set_azimuth(phi)
+            self.pol_cue.set_contrast(tau)
+            self.cue_pub.publish(self.pol_cue.to_msg())
+            self.get_logger().info(self.pol_cue.to_string())
 
-    # Subscribe to the pol_op topics
-    pol_subs = []
-    for i, topic in enumerate(pol_sub_topics):
-        pol_subs.append(
-            rospy.Subscriber(
-                topic, std_msgs.msg.Int32MultiArray, pol_callback, i
-            )
-        )
+def main(args=None):
+    rclpy.init(args=args)
+    node = PolCueDetector()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
 
-    # Advertise the cue topic
-    cue_pub = rospy.Publisher("pol_cue", bb_util.msg.Cue, queue_size=10)
-
-    # Fill the pol_op_responses array with zeros
-    for i in range(N_POL_OPS):
-        pol_op_responses[i] = [0] * 4
-
-    # Spin at 10 Hz
-    rate = rospy.Rate(10)
-    while not rospy.is_shutdown():
-        try:
-            phi, tau = bio_inspired_decode()
-            pol_cue.azimuth = phi
-            pol_cue.contrast = tau
-            cue_pub.publish(pol_cue)
-            rospy.loginfo(pol_cue)
-        except Exception as e:
-            rospy.logerr(e)
-        rate.sleep()
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
-

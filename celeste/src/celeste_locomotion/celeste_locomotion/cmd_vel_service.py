@@ -3,6 +3,7 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from celeste_interfaces.srv import Velocity
 
+
 class CmdVelService(Node):
     def __init__(self):
         super().__init__('cmd_vel_service')
@@ -26,17 +27,15 @@ class CmdVelService(Node):
         self.command_velocity(request.linear, request.angular)
         return response
 
+
 def main(args=None):
     rclpy.init(args=args)
     node = CmdVelService()
-
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
+    rclpy.spin(node)
 
     node.destroy_node()
     rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

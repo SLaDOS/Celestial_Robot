@@ -17,7 +17,7 @@ set(action_files
   "action/Return.action"
 )
 set(msg_files
-  "msg/filename.msg"
+  "msg/cue_msg.msg"
 )
 set(srv_files
   "srv/Velocity.srv"
@@ -25,6 +25,7 @@ set(srv_files
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   ${action_files}
+  ${msg_files}
   ${srv_files}
   DEPENDENCIES geometry_msgs # Add packages that above messages depend on
 )
