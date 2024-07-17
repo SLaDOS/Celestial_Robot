@@ -8,7 +8,7 @@ import numpy as np
 typestore = get_typestore(Stores.LATEST)
 
 # Create reader instance and open for reading.
-with Reader('/celeste/my_bags/success-pol_op_tester_2024_07_17-13_10_57') as reader:
+with Reader('../my_bags/success-pol_op_tester_2024_07_17-13_10_57') as reader:
     # Topic and msgtype information is available on .connections list.
     for connection in reader.connections:
         print(connection.topic, connection.msgtype)
@@ -18,6 +18,7 @@ with Reader('/celeste/my_bags/success-pol_op_tester_2024_07_17-13_10_57') as rea
     t = []
     pols = [[] for x in range(8)]
     outs = []
+    t_pol = [[] for x in range(8)]
     angles = {
         'pol_op_0': (np.pi/4),
         'pol_op_1': (np.pi/4)*2,
@@ -38,6 +39,7 @@ with Reader('/celeste/my_bags/success-pol_op_tester_2024_07_17-13_10_57') as rea
         elif connection.topic[:-1] == 'pol_op_':
             pol_id = int(connection.topic[-1])
             pols[pol_id].append(msg.data)
+            t_pol[pol_id].append(timestamp)
 
     assert (len(pols[0])) == len(yaw)
 
