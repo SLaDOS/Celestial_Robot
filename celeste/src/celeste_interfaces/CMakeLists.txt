@@ -17,7 +17,8 @@ set(action_files
   "action/Return.action"
 )
 set(msg_files
-  "msg/cue_msg.msg"
+  "msg/CueMsg.msg"
+  "msg/CxActivity.msg"
 )
 set(srv_files
   "srv/Velocity.srv"

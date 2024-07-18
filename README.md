@@ -9,4 +9,4 @@ MSc project 2024
 - bb_graphics/
 - bb_util/msg/cx_activity.msg
 
-modify src/lib/POL_OP.cpp to only read from 0,90 
+- modify src/lib/POL_OP.cpp to only read from 0,90 

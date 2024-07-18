@@ -1,3 +1,6 @@
+from celeste_interfaces.msg import CueMsg
+
+
 class Cue:
     """
     Global Cue class to keep representation consistent.
@@ -19,7 +22,7 @@ class Cue:
         :param azimuth: The angle of the cue.
         """
         self.type = cue_type
-        self.sensitivity = sensitivity  # TODO: can I delete this
+        self.sensitivity = sensitivity  # TODO: can I delete this?
         self.contrast = contrast
         self.theta = azimuth
 
@@ -30,7 +33,6 @@ class Cue:
     def get_type(self) -> str:
         """Get the type parameter"""
         return self.type
-
 
     def get_theta(self) -> float:
         """Get the azimuth of the cue"""
@@ -61,7 +63,7 @@ class Cue:
         self.theta = t
 
     @staticmethod
-    def to_cue(cue_msg):
+    def to_cue(cue_msg: CueMsg):
         """
         Translate a cue_msg to a Cue object.
         :param cue_msg: The message containing cue information.
@@ -75,22 +77,21 @@ class Cue:
         )
         return result
 
-    def __str__(self):
+    def to_string(self):
         return f"Type: {self.type}\nSens: {self.sensitivity}\nCtst: {self.contrast}\nThta: {self.theta}\n"
 
-    @staticmethod
-    def to_msg(cue):
+    def to_msg(self):
         """
         Translate a Cue object into an equivalent message format.
         :param cue: The Cue object.
         :return: An equivalent message object.
         """
-        return {
-            'type': cue.get_type(),
-            'sensitivity': cue.get_sensitivity(),
-            'contrast': cue.get_contrast(),
-            'theta': cue.get_theta(),
-        }
+        return CueMsg(
+            type=self.get_type(),
+            sensitivity=self.get_sensitivity(),
+            contrast=self.get_contrast(),
+            theta=self.get_theta(),
+        )
 
     def __eq__(self, other):
         """

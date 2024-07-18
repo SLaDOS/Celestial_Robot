@@ -34,10 +34,12 @@ class PolCueDetector(Node):
             self.pol_op_responses[index] = msg.data
         return callback
 
-    def log_activation(self, x):
+    @staticmethod
+    def log_activation(x):
         return log(x)
 
-    def sqrt_activation(self, x):
+    @staticmethod
+    def sqrt_activation(x):
         return sqrt(x)
 
     def bio_inspired_decode(self):
@@ -82,12 +84,14 @@ class PolCueDetector(Node):
             self.cue_pub.publish(self.pol_cue.to_msg())
             self.get_logger().info(self.pol_cue.to_string())
 
+
 def main(args=None):
     rclpy.init(args=args)
     node = PolCueDetector()
     rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()
