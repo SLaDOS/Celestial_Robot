@@ -30,10 +30,9 @@ t_pol = [[] for x in range(8)]
 typestore = get_typestore(Stores.LATEST)
 
 # Create reader instance and open for reading.
-with Reader('../my_bags/success-pol_op_tester_2024_07_17-13_10_57') as reader:
+with Reader('../my_bags/saved_bags/success-pol_op_tester_2024_07_17-13_10_57') as reader:
     for connection in reader.connections:
         print(connection.topic, connection.msgtype)
-
     # Iterate over messages.
     for connection, timestamp, rawdata in reader.messages():
         msg = typestore.deserialize_cdr(rawdata, connection.msgtype)

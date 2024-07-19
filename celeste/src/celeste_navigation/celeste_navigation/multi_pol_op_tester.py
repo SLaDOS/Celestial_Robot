@@ -1,9 +1,7 @@
-import sys
 import time
 import datetime
 import math
 import numpy as np
-import argparse
 from scipy.spatial.transform import Rotation
 
 import rclpy
@@ -21,7 +19,6 @@ POL_NUM = 8
 BAG_PATH = 'my_bags/' + datetime.datetime.now().strftime('pol_op_tester_%Y_%m_%d-%H_%M_%S')
 
 BOOKEND = 2
-
 
 def relu(x):
     """
@@ -112,6 +109,16 @@ class PolTester(Node):
 
         self.vel_publisher.publish(twist)
 
+    def bookend(self, t=BOOKEND):
+        self.get_logger().info('<Bookend>')
+        start_time = time.time()
+        current_time = time.time()
+        while rclpy.ok() and current_time - start_time < t:
+            time.sleep(0.1)
+            rclpy.spin_once(self)
+            current_time = time.time()
+            self.write_all()
+
 
 def main(args=None):
     rclpy.init(args=args)
@@ -144,13 +151,7 @@ def main(args=None):
     node.get_logger().info('Moved to zero on odometry')
 
     # Pre-rotation wait, to have a time that it will be flat in the plot
-    node.get_logger().info('<Bookend>')
-    start_time = time.time()
-    current_time = time.time()
-    while rclpy.ok() and current_time - start_time < BOOKEND:
-        rclpy.spin_once(node)
-        current_time = time.time()
-        node.write_all()
+    node.bookend()
 
     # Rotate
     node.get_logger().info('Start rotate')
@@ -179,13 +180,7 @@ def main(args=None):
     node.get_logger().info('Stop rotate')
 
     # Post rotation wait
-    start_time = time.time()
-    current_time = time.time()
-    node.get_logger().info('<Bookend>')
-    while rclpy.ok() and current_time - start_time < BOOKEND:
-        rclpy.spin_once(node)
-        current_time = time.time()
-        node.write_all()
+    node.bookend()
 
     node.destroy_node()
     rclpy.shutdown()

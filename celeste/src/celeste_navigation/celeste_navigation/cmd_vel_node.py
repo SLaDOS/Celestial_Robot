@@ -3,6 +3,8 @@ from rclpy.node import Node
 from geometry_msgs.msg import Twist
 from celeste_interfaces.srv import Velocity
 
+BURGER_MAX_LIN_VEL = 0.22
+BURGER_MAX_ANG_VEL = 2.84
 
 class CmdVelService(Node):
     def __init__(self):
@@ -23,8 +25,18 @@ class CmdVelService(Node):
         self.cmd_publisher.publish(msg)
 
     def cmd_callback(self, request, response):
-        self.get_logger().info(f'I heard: angular - {request.angular}, linear - {request.linear}')
-        self.command_velocity(request.linear, request.angular)
+        angular = request.angular
+        linear = request.linear
+        self.get_logger().info(f'I heard: angular - {angular}, linear - {linear}')
+        if abs(angular) > BURGER_MAX_ANG_VEL:
+            response.success = False
+            self.get_logger().warn(f'angular exceed limit ({BURGER_MAX_ANG_VEL})')
+        elif abs(linear) > BURGER_MAX_LIN_VEL:
+            self.get_logger().warn(f'linear exceed limit ({BURGER_MAX_LIN_VEL})')
+            response.success = False
+        else:
+            self.command_velocity(request.linear, request.angular)
+            response.success = True
         return response
 
 

@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'celeste_detection'
+package_name = 'celeste_navigation'
 
 setup(
     name=package_name,
@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'pol_op_tester = celeste_detection.multi_pol_op_tester:main',
+            'pol_op_tester = celeste_navigation.multi_pol_op_tester:main',
+            'cmd_vel_node = celeste_navigation.cmd_vel_node:main',
         ],
     },
 )
