@@ -1,19 +1,35 @@
+"""
+**WARNING**: If the cmd_vel_node is running then starting
+this node will cause the robot to move!
+
+**file**: pi_node.py
+
+**brief**: Host a CX model subscribed to a single cue topic.
+
+This node hosts a CentralComplex model and allows an operator to run a
+path integration experiment.
+
+Start this node (make sure the cmd_vel_service is not running) to start
+the CentralComplex. Drive the robot manually (using turtlebot3_teleop_key
+or any other suitable method) to a target location. Stop teleoperation.
+Start the cmd_vel_node to allow this node to communicate
+with the motors on the turtlebot. The robot will then home.
+
+If you actually want to run path integration experiments then there
+may be ways to streamline this process but as a proof of principle
+this was sufficient.
+
+"""
 import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Quaternion, Vector3
 from std_msgs.msg import String
-from celeste_interfaces.msg import CueMsg, CxActivity  # Adjust imports based on actual package structure
-from celeste_interfaces.srv import Velocity  # Adjust imports based on actual package structure
+from celeste_interfaces.msg import CueMsg, CxActivity
+from celeste_interfaces.srv import Velocity
 import argparse
 import numpy as np
 import cx_model
-
-
-def clean_velocity(lin_vel, factor=100):
-    if factor == 0:
-        return 0
-    return ((lin_vel * factor) // 1) / factor
 
 
 class PiNode(Node):
@@ -35,22 +51,29 @@ class PiNode(Node):
         current_angle = msg.theta
         CXMotor = self.cx.unimodal_monolithic_CX(current_angle, self.velocity)
 
-        cx_status = []
-        self.cx.get_status(cx_status)
+        cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
+
+        self.get_logger().debug(f'CX_MOTOR:{CXMotor}')
+
+        # If CXMotor small enough, then allow forward movement,
+        # else set linear velocity to zero and turn on the spot.
+        # Threshold of CXMotor < 1 arbitrarily chosen.
 
         angular = 0.7
         linear = 0.1
 
         request = Velocity.Request()
         request.linear = linear if abs(CXMotor) < 1 else 0
-        request.angular = angular if CXMotor > 0 else -angular if CXMotor != 0 else 0
+        if CXMotor != 0:
+            request.angular = angular if CXMotor > 0 else -angular
+        else:
+            request.angular = 0
 
         self.client.call_async(request)
 
     def odom_callback(self, msg):
-        linear_velocity = clean_velocity(msg.twist.twist.linear.x)
-        self.velocity = linear_velocity
+        self.velocity = msg.twist.twist.linear.x
 
     def cx_status_publish(self, status):
         msg = CxActivity()
@@ -67,15 +90,16 @@ def main(args=None):
     rclpy.init(args=args)
 
     parser = argparse.ArgumentParser(description='PI Node Arguments')
-    parser.add_argument('-s', '--subscribe_topic', type=str, required=True,
-                        help='Set the subscription topic, must be of type bb_util/cue_msg')
-    parser.add_argument('-p', '--publish_topic', type=str, default='cx_status',
+    parser.add_argument('-s', '--subscribe', default='pol_cue',
+                        help='Set the subscription topic, '
+                             'must be of type celeste_interfaces/msg/CueMsg')
+    parser.add_argument('-p', '--publish', default='cx_status',
                         help='Override the CX status publisher.')
+    parser.parse_args(['-h'])
 
     args, unknown = parser.parse_known_args()
 
     pi_node = PiNode(args)
-
     rclpy.spin(pi_node)
 
     pi_node.destroy_node()

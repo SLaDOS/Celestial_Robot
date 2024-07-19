@@ -5,9 +5,9 @@ class CentralComplex:
     """
     Class definition of the Central Complex.
 
-   The central complex path integration model as defined by Stone et al.
-   Ported from the AntBot implementation provided by Luca Scimeca. This
-   version of the model does not implement TN neurons for speed measurement.
+    The central complex path integration model as defined by Stone et al.
+    Ported from the AntBot implementation provided by Luca Scimeca. This
+    version of the model does not implement TN neurons for speed measurement.
     """
     CX_N_TL2 = 16  # The number of TL2 neurons in the model.
     CX_N_CL1 = 16  # The number of CL1 neurons in the model.
@@ -209,7 +209,7 @@ class CentralComplex:
         """
         Update the CPU4 inputs given the current TB1 (direction) response and the agent's current speed.
 
-        .:note::
+        note:
             This function does not sigmoid the output. It just formats
             the CPU4 input into a single vector which can be sigmoided. This is
             used to implement the t - 1 term in the CPU4 update rule
@@ -217,8 +217,8 @@ class CentralComplex:
 
         :param speed:
         :param tb1:
-        :param cpu4_mem:
-        :return:
+        :param cpu4_mem: The CPU4 activity which will be sigmoided.
+        :return: cpu4_mem
         """
         ones = np.ones(tb1.shape) - tb1
         diff_matrix = np.full(cpu4_mem.shape, speed * self.cpu4_mem_loss)
@@ -245,7 +245,7 @@ class CentralComplex:
 
         :param tb1: tb1 The current TB1 activity.
         :param cpu4: cpu4 The current CPU4 activity.
-        :param cpu1: output
+        :param cpu1: The CPU1 layer to be updated.
         :return: cpu1
         """
         cpu1 = self.W_CPU4_CPU1 @ cpu4 - self.W_TB1_CPU1 @ tb1
@@ -275,7 +275,8 @@ class CentralComplex:
         self.CL1 = self.cl1_output(self.TL2, self.CL1)
         self.TB1 = self.tb1_output(self.CL1, self.TB1)
         self.MEM = self.cpu4_update(speed, self.TB1, self.MEM)
-        self.CPU4 = self.cpu4_output(self.MEM)
+        self.CPU4 = self.MEM
+        self.CPU4 = self.cpu4_output(self.CPU4)
         self.CPU1 = self.cpu1_output(self.TB1, self.CPU4, self.CPU1)
         return self.motor_output(self.CPU1)
 
@@ -285,8 +286,7 @@ class CentralComplex:
         read elsewhere in the ROS sofwtware ecosystem (implemented primarily for
         visualising the CX activity).
 
-        :return: The data structure to be filled with the network
-                             state.
+        :return: The data structure to be filled with the network state.
         """
         activity = [
             self.TL2.flatten().tolist(),
