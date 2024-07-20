@@ -32,7 +32,6 @@ def relu(x):
 class PolTester(Node):
     def __init__(self):
         super().__init__('multi_pol_op_tester')
-        # self.traverse = 0
         self.pol_data = [0.0] * POL_NUM
         self.pol_data_received = [False]*POL_NUM
         self.odom_data = None

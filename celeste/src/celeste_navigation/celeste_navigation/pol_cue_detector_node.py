@@ -1,9 +1,10 @@
+import numpy as np
+from numpy import log, sqrt, arctan2, pi, sin, exp, isnan
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int32MultiArray
-import cue
-from math import log, sqrt, atan2, pi, sin, exp, isnan
-import numpy as np
+from celeste_navigation import cue  # IDE may report error for no module 'cue'
+from celeste_interfaces.msg import CueMsg
 
 N_POL_OPS = 8
 
@@ -17,14 +18,14 @@ class PolCueDetector(Node):
         self.sol_prefs = [0] * self.n_sol_neurons
 
         self.decode_sensor = self.bio_inspired_decode
-        self.activation = self.log_activation
+        self.activation = self.sqrt_activation  # TODO: use which? log() get 0
 
         self.subscribers = [
             self.create_subscription(Int32MultiArray, f'pol_op_{i}', self.create_callback(i), 10)
             for i in range(N_POL_OPS)
         ]
 
-        self.cue_pub = self.create_publisher(cue.Cue, 'pol_cue', 10)
+        self.cue_pub = self.create_publisher(CueMsg, 'pol_cue', 10)
 
         self.timer = self.create_timer(0.1, self.publish_cue)
         self.pol_cue = cue.Cue("pol", 1, 0, 0)
@@ -36,6 +37,8 @@ class PolCueDetector(Node):
 
     @staticmethod
     def log_activation(x):
+        print(x)
+
         return log(x)
 
     @staticmethod
@@ -44,7 +47,6 @@ class PolCueDetector(Node):
 
     def bio_inspired_decode(self):
         pol_neuron_responses = [0] * N_POL_OPS
-
         for i in range(N_POL_OPS):
             s_vert = abs(self.pol_op_responses[i][2])
             s_horiz = abs(self.pol_op_responses[i][3])
@@ -54,7 +56,7 @@ class PolCueDetector(Node):
             r_po = r_horiz + r_vert
 
             if r_po == 0:
-                r_po = float('nan')
+                r_po = float('nan')  # TODO: often 0?
 
             pol_neuron_responses[i] = r_op / r_po
 
@@ -64,13 +66,14 @@ class PolCueDetector(Node):
         for z in range(self.n_sol_neurons):
             r_sol_z = 0
             for j in range(N_POL_OPS):
-                alpha_j = self.pol_prefs[j] - pi / 2
+                alpha_j = np.radians(self.pol_prefs[j] - 90)  # TODO: degrees or radians?
                 r_sol_z += pol_sol_ratio * sin(alpha_j - self.sol_prefs[z]) * pol_neuron_responses[j]
             R += r_sol_z * exp(complex(0, -1) * 2 * pi * (z - 1) / self.n_sol_neurons)
-
         a = R.real
         b = R.imag
-        phi = atan2(-b, a)
+        angle = np.angle(R)
+        phi = arctan2(-b, a)
+        print(f'R:{R},phi:{phi},np.angle:{angle}')
         tau = sqrt(a * a + b * b)
         phi = -phi
 

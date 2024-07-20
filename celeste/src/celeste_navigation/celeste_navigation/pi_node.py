@@ -29,7 +29,7 @@ from celeste_interfaces.msg import CueMsg, CxActivity
 from celeste_interfaces.srv import Velocity
 import argparse
 import numpy as np
-import cx_model
+from celeste_navigation import cx_model
 
 
 class PiNode(Node):
@@ -37,10 +37,10 @@ class PiNode(Node):
         super().__init__('pi_node')
         self.cx = cx_model.CentralComplex()
         self.velocity = 0.0
-        self.pub = self.create_publisher(CxActivity, args.publish_topic, 10)
+        self.pub = self.create_publisher(CxActivity, args.publish, 10)
         self.client = self.create_client(Velocity, 'update_velocity')
 
-        self.create_subscription(CueMsg, args.subscribe_topic, self.cue_callback, 10)
+        self.create_subscription(CueMsg, args.subscribe, self.cue_callback, 10)
         self.create_subscription(Odometry, 'odom', self.odom_callback, 10)
 
         self.get_logger().info('Running...')
@@ -88,17 +88,14 @@ class PiNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-
     parser = argparse.ArgumentParser(description='PI Node Arguments')
     parser.add_argument('-s', '--subscribe', default='pol_cue',
                         help='Set the subscription topic, '
                              'must be of type celeste_interfaces/msg/CueMsg')
     parser.add_argument('-p', '--publish', default='cx_status',
                         help='Override the CX status publisher.')
-    parser.parse_args(['-h'])
 
-    args, unknown = parser.parse_known_args()
-
+    args = parser.parse_args()
     pi_node = PiNode(args)
     rclpy.spin(pi_node)
 

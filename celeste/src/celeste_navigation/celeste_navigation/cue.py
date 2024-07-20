@@ -78,7 +78,7 @@ class Cue:
         return result
 
     def to_string(self):
-        return f"Type: {self.type}\nSens: {self.sensitivity}\nCtst: {self.contrast}\nThta: {self.theta}\n"
+        return f"\nType: {self.type}\nSens: {self.sensitivity}\nCtst: {self.contrast}\nThta: {self.theta}\n"
 
     def to_msg(self):
         """
@@ -88,9 +88,9 @@ class Cue:
         """
         return CueMsg(
             type=self.get_type(),
-            sensitivity=self.get_sensitivity(),
-            contrast=self.get_contrast(),
-            theta=self.get_theta(),
+            sensitivity=float(self.get_sensitivity()),
+            contrast=float(self.get_contrast()),
+            theta=float(self.get_theta()),
         )
 
     def __eq__(self, other):

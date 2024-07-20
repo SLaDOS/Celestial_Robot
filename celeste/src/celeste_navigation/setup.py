@@ -21,7 +21,9 @@ setup(
     entry_points={
         'console_scripts': [
             'pol_op_tester = celeste_navigation.multi_pol_op_tester:main',
-            'cmd_vel_node = celeste_navigation.cmd_vel_node:main',
+            'cmd_vel = celeste_navigation.cmd_vel_node:main',
+            'pol_cue_detector = celeste_navigation.pol_cue_detector_node:main',
+            'pi = celeste_navigation.pi_node:main',
         ],
     },
 )
