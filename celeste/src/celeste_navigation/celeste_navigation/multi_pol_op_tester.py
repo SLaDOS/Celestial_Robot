@@ -16,9 +16,10 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 
 POL_NUM = 8
-BAG_PATH = 'my_bags/' + datetime.datetime.now().strftime('pol_op_tester_%Y_%m_%d-%H_%M_%S')
+TEST_NUM = 12
+BAG_PATH = datetime.datetime.now().strftime('my_bags/test_%Y_%m_%d-%H_%M')
+BOOKEND = 2  # second(s)
 
-BOOKEND = 2
 
 def relu(x):
     """
@@ -54,7 +55,7 @@ class PolTester(Node):
         # Initialize rosbag2 writer
         self.writer = rosbag2_py.SequentialWriter()
         storage_options = rosbag2_py.StorageOptions(
-            uri=BAG_PATH,
+            uri=BAG_PATH + datetime.datetime.now().strftime('pol_op_tester_%Y_%m_%d-%H_%M_%S'),
             storage_id='sqlite3',
         )
         converter_options = rosbag2_py.ConverterOptions('cdr', 'cdr')
@@ -186,4 +187,5 @@ def main(args=None):
 
 
 if __name__ == '__main__':
-    main()
+    for i in range(TEST_NUM):
+        main()

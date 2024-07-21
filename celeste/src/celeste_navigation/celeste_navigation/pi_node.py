@@ -63,12 +63,13 @@ class PiNode(Node):
         angular = 0.7
         linear = 0.1
 
+        # TODO: Stop (about 1s) and wait for sensor reading
         request = Velocity.Request()
-        request.linear = linear if abs(CXMotor) < 1 else 0
-        if CXMotor != 0:
-            request.angular = angular if CXMotor > 0 else -angular
+        request.linear = linear if abs(CXMotor) < 1.0 else 0.0
+        if CXMotor != 0.0:
+            request.angular = angular if CXMotor > 0.0 else -angular
         else:
-            request.angular = 0
+            request.angular = 0.0
 
         self.client.call_async(request)
 

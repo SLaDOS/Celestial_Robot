@@ -28,22 +28,22 @@ class CentralComplex:
         self.tl2_slope = 6.8  # TL2 activation slope
         self.tl2_bias = 3.0  # TL2 activation bias
         self.tl2_prefs = np.array([  # The TL2 receptive fields
-            0,
-            0.78539816,
-            1.57079633,
-            2.35619449,
-            3.14159265,
-            3.92699082,
-            4.71238898,
-            5.49778714,
-            0,
-            0.78539816,
-            1.57079633,
-            2.35619449,
-            3.14159265,
-            3.92699082,
-            4.71238898,
-            5.49778714
+            [0],
+            [0.78539816],
+            [1.57079633],
+            [2.35619449],
+            [3.14159265],
+            [3.92699082],
+            [4.71238898],
+            [5.49778714],
+            [0],
+            [0.78539816],
+            [1.57079633],
+            [2.35619449],
+            [3.14159265],
+            [3.92699082],
+            [4.71238898],
+            [5.49778714],
         ])
 
         self.cl1_slope = 3.0  # CL1 activation slope
@@ -62,10 +62,10 @@ class CentralComplex:
         self.cpu1_slope = 6.0  # CPU1 activation slope
         self.cpu1_bias = 2.0  # CPU1 activation bias
 
-        self.W_CL1_TB1 = np.eye(self.CX_N_TB1)  # CL1 -> TB1 connections
+        self.W_CL1_TB1 = np.tile((np.eye(self.CX_N_TB1)), (1, 2))  # CL1 -> TB1 connections
         self.W_TB1_TB1 = self.gen_tb1_tb1_weights(self.tb1_tb1_weight)  # TB1 -> TB1 connections
-        self.W_TB1_CPU1 = np.eye(self.CX_N_TB1)  # TB1 -> CPU1 connections
-        self.W_TB1_CPU4 = np.eye(self.CX_N_TB1)  # TB1 -> CPU4 connections
+        self.W_TB1_CPU1 = np.tile(np.eye(self.CX_N_TB1), (2, 1))  # TB1 -> CPU1 connections
+        self.W_TB1_CPU4 = np.tile(np.eye(self.CX_N_TB1), (2, 1))  # TB1 -> CPU4 connections
         self.W_CPU4_CPU1 = np.array([  # CPU4 -> CPU1 connections
             [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -146,20 +146,20 @@ class CentralComplex:
         v = 1 / (1 + np.exp(-(v * slope + bias)))
         return v
 
-    @staticmethod
-    def dot(a, b):
-        """
-        Dot product which allows Eigen Matrices to be used as input.
-
-        :param a: Matrix a
-        :param b: Matrix b
-        :return: a dot b
-        """
-        if a.shape[0] == 1:
-            a = a.T
-        if b.shape[1] == 1:
-            b = b.T
-        return np.dot(a.T, b).item()
+    # @staticmethod
+    # def dot(a, b):
+    #     """
+    #     Dot product which allows Eigen Matrices to be used as input.
+    #
+    #     :param a: Matrix a
+    #     :param b: Matrix b
+    #     :return: a dot b
+    #     """
+    #     if a.shape[0] == 1:
+    #         a = a.T
+    #     if b.shape[1] == 1:
+    #         b = b.T
+    #     return np.dot(a.T, b).item()
 
     def tl2_output(self, theta, output):
         """
@@ -223,7 +223,8 @@ class CentralComplex:
         ones = np.ones(tb1.shape) - tb1
         diff_matrix = np.full(cpu4_mem.shape, speed * self.cpu4_mem_loss)
         cpu4_mem -= diff_matrix
-        diff_matrix = self.W_TB1_CPU4 @ ones * (speed * self.cpu4_mem_gain)
+        diff_matrix = (self.W_TB1_CPU4 @ ones) * (speed * self.cpu4_mem_gain)
+
         cpu4_mem += diff_matrix
         cpu4_mem = np.clip(cpu4_mem, 0, 1)
         return cpu4_mem
@@ -260,7 +261,8 @@ class CentralComplex:
         :return: The network output which will be positive or negative depending on
         whether the model is indicating a left or right turn.
         """
-        return self.dot(self.W_CPU1_motor, cpu1)
+        output = float(np.dot(self.W_CPU1_motor, cpu1))
+        return output
 
     def unimodal_monolithic_CX(self, theta, speed):
         """

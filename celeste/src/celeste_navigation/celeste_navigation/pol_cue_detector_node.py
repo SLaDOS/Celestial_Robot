@@ -73,7 +73,7 @@ class PolCueDetector(Node):
         b = R.imag
         angle = np.angle(R)
         phi = arctan2(-b, a)
-        print(f'R:{R},phi:{phi},np.angle:{angle}')
+        print(f'R:{R},phi:{phi},angle:{angle}')
         tau = sqrt(a * a + b * b)
         phi = -phi
 
