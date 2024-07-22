@@ -6,11 +6,13 @@ from celeste_interfaces.srv import Velocity
 BURGER_MAX_LIN_VEL = 0.22
 BURGER_MAX_ANG_VEL = 2.84
 
+
 class CmdVelService(Node):
     def __init__(self):
         super().__init__('cmd_vel_service')
         self.cmd_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
         self.cmd_service = self.create_service(Velocity, 'update_velocity', self.cmd_callback)
+        self.declare_parameter('CX_return', False)
 
     def command_velocity(self, linear, angular):
         msg = Twist()
@@ -25,6 +27,9 @@ class CmdVelService(Node):
         self.cmd_publisher.publish(msg)
 
     def cmd_callback(self, request, response):
+        if not self.get_parameter('CX_return').get_parameter_value().bool_value:
+            response.success = False
+            return response
         angular = request.angular
         linear = request.linear
         self.get_logger().info(f'I heard: angular - {angular}, linear - {linear}')

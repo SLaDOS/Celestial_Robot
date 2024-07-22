@@ -3,7 +3,7 @@ from numpy import log, sqrt, arctan2, pi, sin, exp, isnan
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int32MultiArray
-from celeste_navigation import cue  # IDE may report error for no module 'cue'
+from celeste_navigation import cue
 from celeste_interfaces.msg import CueMsg
 
 N_POL_OPS = 8
@@ -55,8 +55,8 @@ class PolCueDetector(Node):
             r_op = r_horiz - r_vert
             r_po = r_horiz + r_vert
 
-            if r_po == 0:
-                r_po = float('nan')  # TODO: often 0?
+            if r_po == 0:  # TODO: often 0?
+                r_po = float('nan')
 
             pol_neuron_responses[i] = r_op / r_po
 

@@ -10,3 +10,7 @@ MSc project 2024
 - bb_util/msg/cx_activity.msg
 
 - modify src/lib/POL_OP.cpp to only read from 0,90 
+
+
+- Speed from Odometery very small: like -2.9402836822163325e-14
+- CX_MOTOR also small: like 8.881784197001252e-16

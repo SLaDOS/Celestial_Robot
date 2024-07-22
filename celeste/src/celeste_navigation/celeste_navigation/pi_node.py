@@ -1,7 +1,4 @@
 """
-**WARNING**: If the cmd_vel_node is running then starting
-this node will cause the robot to move!
-
 **file**: pi_node.py
 
 **brief**: Host a CX model subscribed to a single cue topic.
@@ -20,6 +17,10 @@ may be ways to streamline this process but as a proof of principle
 this was sufficient.
 
 """
+import argparse
+import numpy as np
+from scipy.spatial.transform import Rotation
+
 import rclpy
 from rclpy.node import Node
 from nav_msgs.msg import Odometry
@@ -27,9 +28,8 @@ from geometry_msgs.msg import Quaternion, Vector3
 from std_msgs.msg import String
 from celeste_interfaces.msg import CueMsg, CxActivity
 from celeste_interfaces.srv import Velocity
-import argparse
-import numpy as np
 from celeste_navigation import cx_model
+
 
 
 class PiNode(Node):
@@ -37,6 +37,7 @@ class PiNode(Node):
         super().__init__('pi_node')
         self.cx = cx_model.CentralComplex()
         self.velocity = 0.0
+        self.yaw_from_odom = 0.0
         self.pub = self.create_publisher(CxActivity, args.publish, 10)
         self.client = self.create_client(Velocity, 'update_velocity')
 
@@ -50,11 +51,10 @@ class PiNode(Node):
 
         current_angle = msg.theta
         CXMotor = self.cx.unimodal_monolithic_CX(current_angle, self.velocity)
-
         cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
 
-        self.get_logger().debug(f'CX_MOTOR:{CXMotor}')
+        self.get_logger().info(f'CX_MOTOR:{CXMotor}')
 
         # If CXMotor small enough, then allow forward movement,
         # else set linear velocity to zero and turn on the spot.
@@ -75,6 +75,29 @@ class PiNode(Node):
 
     def odom_callback(self, msg):
         self.velocity = msg.twist.twist.linear.x
+
+        orientation = msg.pose.pose.orientation
+        quat = [orientation.x, orientation.y, orientation.z, orientation.w]
+        rot = Rotation.from_quat(quat)
+        self.yaw_from_odom = rot.as_euler('xyz', degrees=False)[2]
+
+        # TODO:use odom to test
+        angular = 0.7
+        linear = 0.1
+        self.get_logger().info(f'Yaw:{self.yaw_from_odom}, Vel:{self.velocity*10**11:.2f}')
+        CXMotor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.velocity)
+        cx_status = self.cx.get_status()
+        self.cx_status_publish(cx_status)
+        self.get_logger().info(f'CX_MOTOR:{CXMotor}')
+        request = Velocity.Request()
+        request.linear = linear if abs(CXMotor) < 1.0 else 0.0
+        if CXMotor != 0.0:
+            request.angular = angular if CXMotor > 0.0 else -angular
+        else:
+            request.angular = 0.0
+        self.client.call_async(request)
+        # TODO: end
+
 
     def cx_status_publish(self, status):
         msg = CxActivity()
