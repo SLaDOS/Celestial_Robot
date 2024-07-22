@@ -17,7 +17,7 @@ from nav_msgs.msg import Odometry
 
 POL_NUM = 8
 TEST_NUM = 12
-BAG_PATH = datetime.datetime.now().strftime('my_bags/test_%Y_%m_%d-%H_%M')
+BAG_PATH = datetime.datetime.now().strftime('my_bags/test_%Y_%m_%d-%H_%M/')
 BOOKEND = 2  # second(s)
 
 
@@ -86,7 +86,7 @@ class PolTester(Node):
     def pol_sub_callback(self, msg, topic_num):
         self.pol_data[topic_num] = msg.data
         self.pol_data_received[topic_num] = True
-        print(f'{topic_num} heard')
+        # print(f'{topic_num} heard')
 
     def odom_sub_callback(self, msg):
         self.odom_data_received = True
@@ -122,70 +122,71 @@ class PolTester(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    node = PolTester()
+    for i in range(TEST_NUM):
+        print(f'{i+1} in {TEST_NUM}')
+        node = PolTester()
 
-    # Wait for sensor data
-    node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
-    while rclpy.ok() and not (node.odom_data_received and (sum(node.pol_data_received) >= POL_NUM)):
-        rclpy.spin_once(node, timeout_sec=1)
-    node.get_logger().info("Test start. Moving to zero...")
+        # Wait for sensor data
+        node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
+        while rclpy.ok() and not (node.odom_data_received and (sum(node.pol_data_received) >= POL_NUM)):
+            rclpy.spin_once(node, timeout_sec=1)
+        node.get_logger().info("Test start. Moving to zero...")
 
-    # Move to zero on odometry
-    goal_yaw = 0
-    error_yaw = node.yaw - goal_yaw
-    start_time = time.time()
-
-    while abs(error_yaw) > 0.011:
-        rclpy.spin_once(node)
-        # node.get_logger().info(str(error_yaw))
-        cmd_angular = -0.3 * error_yaw
-        cmd_angular = math.copysign(max(0.15, abs(cmd_angular)), cmd_angular)  # minimum speed
-        node.command_velocity(0, cmd_angular)
+        # Move to zero on odometry
+        goal_yaw = 0
         error_yaw = node.yaw - goal_yaw
-        # rate.sleep()  # blocks, maybe not use it
-        if time.time() - start_time > 10:
-            node.get_logger().info('Time exceeded')
-            return
+        start_time = time.time()
 
-    node.command_velocity(0, 0)
-    node.get_logger().info('Moved to zero on odometry')
-
-    # Pre-rotation wait, to have a time that it will be flat in the plot
-    node.bookend()
-
-    # Rotate
-    node.get_logger().info('Start rotate')
-    corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
-    last_measure = corrected_yaw
-    traverse = 0
-    while rclpy.ok() and traverse <= 2*np.pi:
-        rclpy.spin_once(node)
-        node.command_velocity(0, 0.3)
-        time.sleep(0.5)
-        node.command_velocity(0, 0)
-        rclpy.spin_once(node)
-        corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
-        traverse = traverse + relu(corrected_yaw - last_measure)
-        node.get_logger().info(f"\nLast Measure: {last_measure}\n"
-                               f"Corrected Yaw: {corrected_yaw}\n"
-                               f"Traverse: {traverse}")
-        last_measure = corrected_yaw
-        node.pol_data_received = [False] * POL_NUM
-        # Wait for all sensors read
-        while sum(node.pol_data_received) < POL_NUM:
+        while abs(error_yaw) > 0.011:
             rclpy.spin_once(node)
-        else:
-            node.write_all()
-    node. command_velocity(0, 0)
-    node.get_logger().info('Stop rotate')
+            # node.get_logger().info(str(error_yaw))
+            cmd_angular = -0.3 * error_yaw
+            cmd_angular = math.copysign(max(0.15, abs(cmd_angular)), cmd_angular)  # minimum speed
+            node.command_velocity(0, cmd_angular)
+            error_yaw = node.yaw - goal_yaw
+            # rate.sleep()  # blocks, maybe not use it
+            if time.time() - start_time > 10:
+                node.get_logger().info('Time exceeded')
+                return
 
-    # Post rotation wait
-    node.bookend()
+        node.command_velocity(0, 0)
+        node.get_logger().info('Moved to zero on odometry')
 
-    node.destroy_node()
+        # Pre-rotation wait, to have a time that it will be flat in the plot
+        node.bookend()
+
+        # Rotate
+        node.get_logger().info('Start rotate')
+        corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
+        last_measure = corrected_yaw
+        traverse = 0
+        while rclpy.ok() and traverse <= 2*np.pi:
+            rclpy.spin_once(node)
+            node.command_velocity(0, 0.3)
+            time.sleep(0.5)
+            node.command_velocity(0, 0)
+            rclpy.spin_once(node)
+            corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
+            traverse = traverse + relu(corrected_yaw - last_measure)
+            # node.get_logger().info(f"\nLast Measure: {last_measure}\n"
+            #                        f"Corrected Yaw: {corrected_yaw}\n"
+            #                        f"Traverse: {traverse}")
+            last_measure = corrected_yaw
+            node.pol_data_received = [False] * POL_NUM
+            # Wait for all sensors read
+            while sum(node.pol_data_received) < POL_NUM:
+                rclpy.spin_once(node)
+            else:
+                node.write_all()
+        node.command_velocity(0, 0)
+        node.get_logger().info('Stop rotate')
+
+        # Post rotation wait
+        node.bookend()
+
+        node.destroy_node()
     rclpy.shutdown()
 
 
 if __name__ == '__main__':
-    for i in range(TEST_NUM):
-        main()
+    main()
