@@ -40,10 +40,10 @@ class PiNode(Node):
         self.vel_from_odom = 0.0
         self.yaw_from_odom = 0.0
         self.vel_from_joint = 0.0
-        self.pub = self.create_publisher(CxActivity, args.publish, 10)
+        self.pub = self.create_publisher(CxActivity, 'cx_status', 10)
         self.client = self.create_client(Velocity, 'update_velocity')
 
-        self.create_subscription(CueMsg, args.subscribe, self.cue_callback, 10)
+        self.create_subscription(CueMsg, 'pol_cue', self.cue_callback, 10)
         self.create_subscription(Odometry, 'odom', self.odom_callback, 10)
         self.create_subscription(JointState, 'joint_states', self.joint_callback, 10)
 
@@ -116,14 +116,13 @@ class PiNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    parser = argparse.ArgumentParser(description='PI Node Arguments')
-    parser.add_argument('-s', '--subscribe', default='pol_cue',
-                        help='Set the subscription topic, '
-                             'must be of type celeste_interfaces/msg/CueMsg')
-    parser.add_argument('-p', '--publish', default='cx_status',
-                        help='Override the CX status publisher.')
-
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(description='PI Node Arguments')
+    # parser.add_argument('-s', '--subscribe', default='pol_cue',
+    #                     help='Set the subscription topic, '
+    #                          'must be of type celeste_interfaces/msg/CueMsg')
+    # parser.add_argument('-p', '--publish', default='cx_status',
+    #                     help='Override the CX status publisher.')
+    # args = parser.parse_args()
     pi_node = PiNode(args)
     rclpy.spin(pi_node)
 
