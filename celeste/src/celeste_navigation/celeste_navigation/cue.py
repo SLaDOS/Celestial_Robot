@@ -22,7 +22,7 @@ class Cue:
         :param azimuth: The angle of the cue.
         """
         self.type = cue_type
-        self.sensitivity = sensitivity  # TODO: can I delete this?
+        self.sensitivity = sensitivity  # TODO: remove this?
         self.contrast = contrast
         self.theta = azimuth
 

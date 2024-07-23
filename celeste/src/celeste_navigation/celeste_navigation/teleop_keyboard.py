@@ -15,7 +15,6 @@ from rclpy.parameter import Parameter
 from nav_msgs.msg import Odometry
 
 
-
 if os.name == 'nt':
     import msvcrt
 else:
@@ -133,6 +132,7 @@ def main():
     status = 0
     target_linear_velocity = 0.0
     target_angular_velocity = 0.0
+    twist = Twist()
     try:
         print(msg)
         while 1:
@@ -172,7 +172,7 @@ def main():
             if status == 50:
                 print(msg)
                 status = 0
-            twist = Twist()
+
             twist.linear.x = target_linear_velocity
             twist.linear.y = 0.0
             twist.linear.z = 0.0
@@ -182,8 +182,8 @@ def main():
 
             node.pub.publish(twist)
             rclpy.spin_once(node)
-            if node.velocity_from_odom != 0 and target_linear_velocity != 0:
-                print(f'{abs(target_linear_velocity / node.velocity_from_odom):.2e}')
+            # if node.velocity_from_odom != 0 and target_linear_velocity != 0:
+            #     print(f'{abs(target_linear_velocity / node.velocity_from_odom):.2e}')
 
     except Exception as e:
         print(e)
