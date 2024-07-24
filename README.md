@@ -11,6 +11,4 @@ MSc project 2024
 
 - modify src/lib/POL_OP.cpp to only read from 0,90 
 
-
-- Speed from Odometery very small: like -2.9402836822163325e-14
-- CX_MOTOR also small: like 8.881784197001252e-16
+- clear, cloud, very cloud, near building, near grass 

@@ -5,6 +5,11 @@ import numpy as np
 from skylight import ephemeris, observer
 from datetime import datetime
 import time
+import glob
+
+BAG = '../my_bags/test_2024_07_22-18_05/'
+
+bagfiles = glob.glob(BAG+"*")
 
 MAX_INT = 11000.0
 LON = 55.945011324580385
@@ -20,87 +25,89 @@ angles = {
     'pol_op_6': np.radians(225),
     'pol_op_7': np.radians(315),
 }
-yaw = []
-t = []
-pols = [[] for x in range(8)]
-outs = []
-t_pol = [[] for x in range(8)]
+
 
 # Create a typestore and get the string class.
 typestore = get_typestore(Stores.LATEST)
 
-# Create reader instance and open for reading.
-with Reader('../my_bags/saved_bags/success-pol_op_tester_2024_07_17-13_10_57') as reader:
-    for connection in reader.connections:
-        print(connection.topic, connection.msgtype)
-    # Iterate over messages.
-    for connection, timestamp, rawdata in reader.messages():
-        msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
-        if connection.topic == 'yaw':
+for bagname in bagfiles:
+    yaw = []
+    t = []
+    pols = [[] for x in range(8)]
+    outs = []
+    t_pol = [[] for x in range(8)]
+
+    with Reader(bagname) as reader:
+        # for connection in reader.connections:
+        #     print(connection.topic, connection.msgtype)
+        # Iterate over messages.
+        for connection, timestamp, rawdata in reader.messages():
             msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
-            yaw.append(msg.data)
-            t.append(timestamp)
-        elif connection.topic[:-1] == 'pol_op_':
-            pol_id = int(connection.topic[-1])
-            pols[pol_id].append(msg.data)
-            t_pol[pol_id].append(timestamp)
-assert len(yaw) == len(pols[0]) == len(pols[1]) == len(pols[2]) == len(pols[3]) \
-       == len(pols[4]) == len(pols[5]) == len(pols[6]) == len(pols[7])
+            if connection.topic == 'yaw':
+                msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
+                yaw.append(msg.data)
+                t.append(timestamp)
+            elif connection.topic[:-1] == 'pol_op_':
+                pol_id = int(connection.topic[-1])
+                pols[pol_id].append(msg.data)
+                t_pol[pol_id].append(timestamp)
+    assert len(yaw) == len(pols[0]) == len(pols[1]) == len(pols[2]) == len(pols[3]) \
+           == len(pols[4]) == len(pols[5]) == len(pols[6]) == len(pols[7])
 
-record_time = datetime.fromtimestamp(t[0]/10**9)
-print(f'Record Start Time: {record_time}')
-sun = ephemeris.Sun(observer.Observer(LON, LAT, date=record_time))
-print(f'Sun Azimuth: {sun.az}')
+    record_time = datetime.fromtimestamp(t[0]/10**9)
+    print(f'Record Start Time: {record_time}')
+    sun = ephemeris.Sun(observer.Observer(LON, LAT, date=record_time))
+    print(f'Sun Azimuth: {sun.az}')
 
-data_num = len(pols[0])
-P, I, C = np.zeros((3, data_num, len(pols)))
-js = [0, 2, 4, 6, 1, 3, 5, 7]
-for _data_id in range(len(pols[0])):
-    z = 0
-    for _pol_id in range(len(pols)):
-        pol = pols[_pol_id][_data_id]
-        i90 = np.clip(abs(pol[2]) / MAX_INT, np.finfo(float).eps, 1)
-        i0 = np.clip(abs(pol[3]) / MAX_INT, np.finfo(float).eps, 1)
-        i = (i0 + i90) / 2.0
-        p = (i0 - i90) / (2 * i)
-        assert 1 > p > -1, f'p = {p}'
-        c = i - p
-        P[_data_id, js[_pol_id]] = p
-        I[_data_id, js[_pol_id]] = i
-        C[_data_id, js[_pol_id]] = c
-        z += c * np.exp(1j * angles['pol_op_' + str(_pol_id)])
+    data_num = len(pols[0])
+    P, I, C = np.zeros((3, data_num, len(pols)))
+    js = [0, 2, 4, 6, 1, 3, 5, 7]
+    for _data_id in range(len(pols[0])):
+        z = 0
+        for _pol_id in range(len(pols)):
+            pol = pols[_pol_id][_data_id]
+            i90 = np.clip(abs(pol[2]) / MAX_INT, np.finfo(float).eps, 1)
+            i0 = np.clip(abs(pol[3]) / MAX_INT, np.finfo(float).eps, 1)
+            i = (i0 + i90) / 2.0
+            p = (i0 - i90) / (2 * i)
+            assert 1 > p > -1, f'p = {p}'
+            c = i - p
+            P[_data_id, js[_pol_id]] = p
+            I[_data_id, js[_pol_id]] = i
+            C[_data_id, js[_pol_id]] = c
+            z += c * np.exp(1j * angles['pol_op_' + str(_pol_id)])
 
-    out = np.angle(z)
-    outs.append(out)
+        out = np.angle(z)+sun.az
+        outs.append(out)
 
-    # # The .messages() method accepts connection filters.
-    # connections = [x for x in reader.connections if x.topic == '/imu_raw/Imu']
-    # for connection, timestamp, rawdata in reader.messages(connections=connections):
-    #     msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
-    #     print(msg.header.frame_id)
+        # # The .messages() method accepts connection filters.
+        # connections = [x for x in reader.connections if x.topic == '/imu_raw/Imu']
+        # for connection, timestamp, rawdata in reader.messages(connections=connections):
+        #     msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
+        #     print(msg.header.frame_id)
 
-assert len(outs) == len(yaw)
+    assert len(outs) == len(yaw)
 
-yaw_uw = np.unwrap(np.degrees(yaw), period=360) + np.degrees(outs[0])
-out_uw = np.unwrap(np.degrees(outs), period=360)
-fig, ax = plt.subplots()
-ax.plot(np.array(t) - t[0], yaw_uw)
-ax.plot(np.array(t) - t[0], out_uw)
-ax.set(xlabel='time', ylabel='yaw',
-       title='title')
-ax.grid()
-plt.show()
+    yaw_uw = np.unwrap(np.degrees(yaw), period=360) + np.degrees(outs[0])
+    out_uw = np.unwrap(np.degrees(outs), period=360)
+    fig, ax = plt.subplots()
+    ax.plot(np.array(t) - t[0], yaw_uw)
+    ax.plot(np.array(t) - t[0], out_uw)
+    ax.set(xlabel='time', ylabel='yaw',
+           title='title')
+    ax.grid()
+    plt.show()
 
-plt.figure('P', figsize=(10, 6))
-plt.subplot(311)
-plt.imshow(-P.T)
-plt.subplot(312)
-plt.imshow(I.T)
-plt.subplot(313)
-plt.imshow(C.T)
-plt.tight_layout()
-plt.show()
+    plt.figure('P', figsize=(10, 6))
+    plt.subplot(311)
+    plt.imshow(-P.T)
+    plt.subplot(312)
+    plt.imshow(I.T)
+    plt.subplot(313)
+    plt.imshow(C.T)
+    plt.tight_layout()
+    plt.show()
 
-rmse = np.sqrt(np.mean(np.square(yaw_uw - out_uw)))
-print(f"RMSE: {rmse:.2f}")
+    rmse = np.sqrt(np.mean(np.square(yaw_uw - out_uw)))
+    print(f"RMSE: {rmse:.2f}")
 

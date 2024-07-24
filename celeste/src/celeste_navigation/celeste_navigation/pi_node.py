@@ -95,11 +95,8 @@ class PiNode(Node):
         self.cx_status_publish(cx_status)
         self.get_logger().info(f'CX_MOTOR:{CXMotor}')
         request = Velocity.Request()
-        request.linear = linear if abs(CXMotor) < 1.0 else 0.0
-        if CXMotor != 0.0:
-            request.angular = angular if CXMotor > 0.0 else -angular
-        else:
-            request.angular = 0.0
+        request.linear = linear * float(abs(CXMotor) < 1.0)
+        request.angular = angular * np.sign(CXMotor)
         self.client.call_async(request)
         # TODO: end
 
