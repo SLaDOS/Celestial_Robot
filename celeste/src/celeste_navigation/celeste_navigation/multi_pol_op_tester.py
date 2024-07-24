@@ -14,11 +14,12 @@ from std_msgs.msg import Int32MultiArray
 from std_msgs.msg import Float64
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
+from turtlebot3_msgs.srv import Sound
 
 POL_NUM = 8
 TEST_NUM = 12
 BAG_PATH = datetime.datetime.now().strftime('my_bags/test_%Y_%m_%d-%H_%M/')
-BOOKEND = 2  # second(s)
+BOOKEND = 3  # second(s)
 
 
 def relu(x):
@@ -28,6 +29,14 @@ def relu(x):
     :return: 0 if value < 0, otherwise the value.
     """
     return x * (x > 0)
+
+
+def play_sound(key):
+    sound_client = rclpy.create_node('speaker').create_client(Sound, 'sound')
+    request = Sound.Request()
+    request.value = key
+    print("Sound playing...")
+    sound_client.call_async(request)
 
 
 class PolTester(Node):
@@ -122,6 +131,8 @@ class PolTester(Node):
 
 def main(args=None):
     rclpy.init(args=args)
+    play_sound(1)
+    print('Test start')
     for i in range(TEST_NUM):
         print(f'{i+1} in {TEST_NUM}')
         node = PolTester()
@@ -130,11 +141,12 @@ def main(args=None):
         node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
         while rclpy.ok() and not (node.odom_data_received and (sum(node.pol_data_received) >= POL_NUM)):
             rclpy.spin_once(node, timeout_sec=1)
-        node.get_logger().info("Test start. Moving to zero...")
+        node.get_logger().info(f"Test{i+1} start. Moving to initial orientation...")
 
-        # Move to zero on odometry
-        goal_yaw = 0
-        error_yaw = node.yaw - goal_yaw
+        # Move to start position
+        if i == 0:
+            start_yaw = node.yaw
+        error_yaw = node.yaw - start_yaw
         start_time = time.time()
 
         while abs(error_yaw) > 0.011:
@@ -143,24 +155,27 @@ def main(args=None):
             cmd_angular = -0.3 * error_yaw
             cmd_angular = math.copysign(max(0.15, abs(cmd_angular)), cmd_angular)  # minimum speed
             node.command_velocity(0, cmd_angular)
-            error_yaw = node.yaw - goal_yaw
+            error_yaw = node.yaw - start_yaw
             # rate.sleep()  # blocks, maybe not use it
             if time.time() - start_time > 10:
                 node.get_logger().info('Time exceeded')
                 return
 
         node.command_velocity(0, 0)
-        node.get_logger().info('Moved to zero on odometry')
+        node.get_logger().info('Moved to initial orientation')
 
         # Pre-rotation wait, to have a time that it will be flat in the plot
         node.bookend()
 
         # Rotate
-        node.get_logger().info('Start rotate')
+        node.get_logger().info('Start rotating...')
         corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
         last_measure = corrected_yaw
         traverse = 0
         while rclpy.ok() and traverse <= 2*np.pi:
+            process = int(traverse/(2*np.pi/50)) + 1
+            print('\r['+process*'='+relu(50-process)*' '+']', end='')
+
             rclpy.spin_once(node)
             node.command_velocity(0, 0.3)
             time.sleep(0.5)
@@ -168,9 +183,6 @@ def main(args=None):
             rclpy.spin_once(node)
             corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
             traverse = traverse + relu(corrected_yaw - last_measure)
-            # node.get_logger().info(f"\nLast Measure: {last_measure}\n"
-            #                        f"Corrected Yaw: {corrected_yaw}\n"
-            #                        f"Traverse: {traverse}")
             last_measure = corrected_yaw
             node.pol_data_received = [False] * POL_NUM
             # Wait for all sensors read
@@ -178,13 +190,16 @@ def main(args=None):
                 rclpy.spin_once(node)
             else:
                 node.write_all()
+        else:
+            print()
         node.command_velocity(0, 0)
-        node.get_logger().info('Stop rotate')
+        node.get_logger().info('Stop rotating')
 
         # Post rotation wait
         node.bookend()
 
         node.destroy_node()
+    play_sound(0)
     rclpy.shutdown()
 
 
