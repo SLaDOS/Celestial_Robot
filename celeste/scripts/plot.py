@@ -7,9 +7,9 @@ from datetime import datetime
 import time
 import glob
 
-BAG = '../my_bags/test_2024_07_22-18_05/'
+BAG = '../my_bags/test_2024_07_24-14_19/'
 
-bagfiles = glob.glob(BAG+"*")
+bagfiles = glob.glob(BAG+"pol_op*")
 
 MAX_INT = 11000.0
 LON = 55.945011324580385
@@ -96,18 +96,20 @@ for bagname in bagfiles:
     ax.set(xlabel='time', ylabel='yaw',
            title='title')
     ax.grid()
-    plt.show()
+    plt.savefig(bagname+'plot1')
 
-    plt.figure('P', figsize=(10, 6))
-    plt.subplot(311)
-    plt.imshow(-P.T)
-    plt.subplot(312)
-    plt.imshow(I.T)
-    plt.subplot(313)
-    plt.imshow(C.T)
-    plt.tight_layout()
-    plt.show()
+    # plt.figure('P', figsize=(10, 6))
+    # plt.subplot(311)
+    # plt.imshow(-P.T)
+    # plt.subplot(312)
+    # plt.imshow(I.T)
+    # plt.subplot(313)
+    # plt.imshow(C.T)
+    # plt.tight_layout()
+    # plt.savefig(bagname+'plot2')
 
     rmse = np.sqrt(np.mean(np.square(yaw_uw - out_uw)))
     print(f"RMSE: {rmse:.2f}")
 
+    print('sleeping...')
+    # time.sleep(1)

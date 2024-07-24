@@ -1,0 +1,74 @@
+rosbag2_bagfile_information:
+  version: 5
+  storage_identifier: sqlite3
+  duration:
+    nanoseconds: 56816251264
+  starting_time:
+    nanoseconds_since_epoch: 1721834684786295740
+  message_count: 945
+  topics_with_message_count:
+    - topic_metadata:
+        name: yaw
+        type: std_msgs/msg/Float64
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: pol_op_7
+        type: std_msgs/msg/Int32MultiArray
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: pol_op_6
+        type: std_msgs/msg/Int32MultiArray
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: pol_op_4
+        type: std_msgs/msg/Int32MultiArray
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: pol_op_2
+        type: std_msgs/msg/Int32MultiArray
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: pol_op_5
+        type: std_msgs/msg/Int32MultiArray
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: pol_op_3
+        type: std_msgs/msg/Int32MultiArray
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: pol_op_1
+        type: std_msgs/msg/Int32MultiArray
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+    - topic_metadata:
+        name: pol_op_0
+        type: std_msgs/msg/Int32MultiArray
+        serialization_format: cdr
+        offered_qos_profiles: ""
+      message_count: 105
+  compression_format: ""
+  compression_mode: ""
+  relative_file_paths:
+    - pol_op_tester_2024_07_24-16_24_41_0.db3
+  files:
+    - path: pol_op_tester_2024_07_24-16_24_41_0.db3
+      starting_time:
+        nanoseconds_since_epoch: 1721834684786295740
+      duration:
+        nanoseconds: 56816251264
+      message_count: 945

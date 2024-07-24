@@ -33,6 +33,9 @@ def relu(x):
 
 def play_sound(key):
     sound_client = rclpy.create_node('speaker').create_client(Sound, 'sound')
+    if not sound_client.wait_for_service(timeout_sec=1.0):
+        print('Sound service not available')
+        return
     request = Sound.Request()
     request.value = key
     print("Sound playing...")
