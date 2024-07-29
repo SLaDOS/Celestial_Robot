@@ -2,6 +2,4 @@
 /celeste/install/
 /celeste/log/
 /.idea/
-/learn/*/build/
-/learn/*/install/
-/learn/*/log/
+/celeste/my_bags/**/plots/
