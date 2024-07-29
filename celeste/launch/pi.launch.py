@@ -15,5 +15,10 @@ def generate_launch_description():
             output='screen',
             executable='pi',
         ),
+        Node(
+            package='celeste_navigation',
+            output='screen',
+            executable='pol_cue_detector',
+        ),
 
     ])

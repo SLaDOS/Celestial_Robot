@@ -5,7 +5,10 @@ import numpy as np
 from skylight import ephemeris, observer
 from datetime import datetime
 import time
+import os
 import glob
+from pathlib import Path
+
 
 BAG = '../my_bags/test_2024_07_24-16_21/'
 
