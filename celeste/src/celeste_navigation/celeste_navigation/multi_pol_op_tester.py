@@ -1,3 +1,4 @@
+import threading
 import time
 import datetime
 import math
@@ -6,9 +7,11 @@ from scipy.spatial.transform import Rotation
 
 import rclpy
 from rclpy.node import Node
-from rclpy.qos import QoSProfile
-import rosbag2_py
+from rclpy.qos import qos_profile_sensor_data
+from rclpy.executors import MultiThreadedExecutor
 from rclpy.serialization import serialize_message
+import rosbag2_py
+
 
 from std_msgs.msg import Int32MultiArray
 from std_msgs.msg import Float64
@@ -47,11 +50,12 @@ class PolTester(Node):
         super().__init__('multi_pol_op_tester')
         self.pol_data = [0.0] * POL_NUM
         self.pol_data_received = [False]*POL_NUM
+        self.pol_data_received_time = [0.0] * POL_NUM
         self.odom_data = None
         self.odom_data_received = False
         self.yaw = None
-        qos_profile = QoSProfile(depth=10)
-        self.vel_publisher = self.create_publisher(Twist, 'cmd_vel', qos_profile)
+
+        self.vel_publisher = self.create_publisher(Twist, 'cmd_vel', 10)
         self.pol_subscriptions = [self.create_subscription(msg_type=Int32MultiArray,
                                                            topic='pol_op_' + str(i),
 
@@ -59,10 +63,11 @@ class PolTester(Node):
                                                            lambda msg, topic_num=i:
                                                            self.pol_sub_callback(msg, topic_num),
 
-                                                           qos_profile=qos_profile
+                                                           qos_profile=qos_profile_sensor_data
                                                            )
                                   for i in range(POL_NUM)]
-        self.odom_subscription = self.create_subscription(Odometry, 'odom', self.odom_sub_callback, qos_profile)
+        self.odom_subscription = self.create_subscription(Odometry, 'odom',
+                                                          self.odom_sub_callback, qos_profile_sensor_data)
 
         # Initialize rosbag2 writer
         self.writer = rosbag2_py.SequentialWriter()
@@ -98,7 +103,9 @@ class PolTester(Node):
     def pol_sub_callback(self, msg, topic_num):
         self.pol_data[topic_num] = msg.data
         self.pol_data_received[topic_num] = True
-        # print(f'{topic_num} heard')
+        now = time.time()
+        print(f'{topic_num}:{now-self.pol_data_received_time[topic_num]}')
+        self.pol_data_received_time[topic_num] = now
 
     def odom_sub_callback(self, msg):
         self.odom_data_received = True
@@ -133,77 +140,89 @@ class PolTester(Node):
 
 
 def main(args=None):
-    rclpy.init(args=args)
-    play_sound(1)
-    print('Test start')
-    for i in range(TEST_NUM):
-        print(f'{i+1} in {TEST_NUM}')
-        node = PolTester()
+    try:
+        rclpy.init(args=args)
+        play_sound(1)
+        print('Test start')
 
-        # Wait for sensor data
-        node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
-        while rclpy.ok() and not (node.odom_data_received and (sum(node.pol_data_received) >= POL_NUM)):
-            rclpy.spin_once(node, timeout_sec=1)
-        node.get_logger().info(f"Test{i+1} start. Moving to initial orientation...")
+        for i in range(TEST_NUM):
+            print(f'{i+1} in {TEST_NUM}')
+            node = PolTester()
+            # executor = rclpy.executors.SingleThreadedExecutor()
+            # executor.add_node(node)
+            # threading.Thread(target=executor.spin).start()
 
-        # Move to start position
-        if i == 0:
-            start_yaw = node.yaw
-        error_yaw = node.yaw - start_yaw
-        start_time = time.time()
+            # Wait for sensor data
+            node.get_logger().info("Awaiting pol/odom data. Start the sensor nodes.")
+            while rclpy.ok() and not (node.odom_data_received and (sum(node.pol_data_received) >= POL_NUM)):
+                # time.sleep(0.1)
+                rclpy.spin_once(node, timeout_sec=1)
+            node.get_logger().info(f"Test{i+1} start. Moving to initial orientation...")
 
-        while abs(error_yaw) > 0.011:
-            rclpy.spin_once(node)
-            # node.get_logger().info(str(error_yaw))
-            cmd_angular = -0.3 * error_yaw
-            cmd_angular = math.copysign(max(0.15, abs(cmd_angular)), cmd_angular)  # minimum speed
-            node.command_velocity(0, cmd_angular)
+            # Move to start position
+            if i == 0:
+                start_yaw = node.yaw
             error_yaw = node.yaw - start_yaw
-            # rate.sleep()  # blocks, maybe not use it
-            if time.time() - start_time > 10:
-                node.get_logger().info('Time exceeded')
-                return
+            start_time = time.time()
 
-        node.command_velocity(0, 0)
-        node.get_logger().info('Moved to initial orientation')
-
-        # Pre-rotation wait, to have a time that it will be flat in the plot
-        node.bookend()
-
-        # Rotate
-        node.get_logger().info('Start rotating...')
-        corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
-        last_measure = corrected_yaw
-        traverse = 0
-        while rclpy.ok() and traverse <= 2*np.pi:
-            process = int(traverse/(2*np.pi/50)) + 1
-            print('\r['+process*'='+relu(50-process)*' '+']', end='')
-
-            rclpy.spin_once(node)
-            node.command_velocity(0, 0.3)
-            time.sleep(0.5)
-            node.command_velocity(0, 0)
-            rclpy.spin_once(node)
-            corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
-            traverse = traverse + relu(corrected_yaw - last_measure)
-            last_measure = corrected_yaw
-            # Wait for all sensors read
-            node.pol_data_received = [False] * POL_NUM
-            while sum(node.pol_data_received) < POL_NUM:
+            while abs(error_yaw) > 0.011:
                 rclpy.spin_once(node)
+                # node.get_logger().info(str(error_yaw))
+                cmd_angular = -0.3 * error_yaw
+                cmd_angular = math.copysign(max(0.15, abs(cmd_angular)), cmd_angular)  # minimum speed
+                node.command_velocity(0, cmd_angular)
+                error_yaw = node.yaw - start_yaw
+                # rate.sleep()  # blocks, maybe not use it
+                if time.time() - start_time > 10:
+                    node.get_logger().info('Time exceeded')
+                    return
+
+            node.command_velocity(0, 0)
+            node.get_logger().info('Moved to initial orientation')
+
+            # Pre-rotation wait, to have a time that it will be flat in the plot
+            node.bookend()
+
+            # Rotate
+            node.get_logger().info('Start rotating...')
+            corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
+            last_measure = corrected_yaw
+            traverse = 0
+            while rclpy.ok() and traverse <= 2*np.pi:
+                process = int(traverse/(2*np.pi/50)) + 1
+                print('\r['+process*'='+relu(50-process)*' '+']', end='')
+
+                rclpy.spin_once(node)
+                node.command_velocity(0, 0.3)
+                time.sleep(0.5)
+                node.command_velocity(0, 0)
+                rclpy.spin_once(node)
+                corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
+                traverse = traverse + relu(corrected_yaw - last_measure)
+                last_measure = corrected_yaw
+                # Wait for all sensors read
+                now = time.time()
+                node.pol_data_received = [False] * POL_NUM
+                while sum(node.pol_data_received) < POL_NUM:
+                    print(node.pol_data_received)
+                    rclpy.spin_once(node)
+                else:
+                    print(time.time() - now)
+                    node.write_all()
             else:
-                node.write_all()
-        else:
-            print()
-        node.command_velocity(0, 0)
-        node.get_logger().info('Stop rotating')
+                print()
+            node.command_velocity(0, 0)
+            node.get_logger().info('Stop rotating')
 
-        # Post rotation wait
-        node.bookend()
+            # Post rotation wait
+            node.bookend()
 
-        node.destroy_node()
-    play_sound(0)
-    rclpy.shutdown()
+            node.destroy_node()
+        play_sound(0)
+        rclpy.shutdown()
+    except (KeyboardInterrupt, ExternalShutdownException):
+        pass
+
 
 
 if __name__ == '__main__':

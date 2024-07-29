@@ -14,7 +14,7 @@ ros2 pkg create --build-type ament_cmake_python --license GPL-3.0-only packagena
 source /opt/ros/humble/setup.bash
 rosdep install -i --from-path src --rosdistro humble -y
 colcon build
-colcon build --packages-select celeste_
+colcon build --packages-select celeste_navigation
 
 **** after build, open a new terminal for running ****
 
