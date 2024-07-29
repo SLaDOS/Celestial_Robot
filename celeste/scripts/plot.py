@@ -10,7 +10,7 @@ import glob
 from pathlib import Path
 
 
-BAG = '../my_bags/test_2024_07_24-16_21/'
+BAG = '../my_bags/4 photodiodes/test_2024_07_22-18_05/'
 
 bagfiles = glob.glob(BAG+"pol_op*")
 
@@ -99,7 +99,9 @@ for bagname in bagfiles:
     ax.set(xlabel='time', ylabel='yaw',
            title='title')
     ax.grid()
-    plt.savefig(bagname+'plot1')
+    plot_directory = BAG+'plots/'
+    Path(plot_directory).mkdir(parents=False, exist_ok=True)
+    plt.savefig(plot_directory+os.path.basename(bagname)+'-plot1')
 
     # plt.figure('P', figsize=(10, 6))
     # plt.subplot(311)
