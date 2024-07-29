@@ -64,9 +64,9 @@ rosbag2_bagfile_information:
   compression_format: ""
   compression_mode: ""
   relative_file_paths:
-    - success-pol_op_tester_2024_07_17-13_10_57_0.db3
+    - pol_op_tester_2024_07_17-13_10_57_0.db3
   files:
-    - path: success-pol_op_tester_2024_07_17-13_10_57_0.db3
+    - path: pol_op_tester_2024_07_17-13_10_57_0.db3
       starting_time:
         nanoseconds_since_epoch: 1721218260196747828
       duration:

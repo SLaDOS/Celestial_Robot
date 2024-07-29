@@ -7,7 +7,7 @@ from datetime import datetime
 import time
 import glob
 
-BAG = '../my_bags/test_2024_07_24-14_19/'
+BAG = '../my_bags/test_2024_07_24-16_21/'
 
 bagfiles = glob.glob(BAG+"pol_op*")
 
