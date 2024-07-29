@@ -204,7 +204,6 @@ def main(args=None):
                 now = time.time()
                 node.pol_data_received = [False] * POL_NUM
                 while sum(node.pol_data_received) < POL_NUM:
-                    print(node.pol_data_received)
                     rclpy.spin_once(node)
                 else:
                     print(time.time() - now)

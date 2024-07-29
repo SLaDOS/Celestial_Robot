@@ -10,7 +10,7 @@ import glob
 from pathlib import Path
 
 
-BAG = '../my_bags/test_2024_07_29-15_12/'
+BAG = '../my_bags/test_2024_07_29-19_29/'
 
 bagfiles = glob.glob(BAG+"pol_op*")
 
