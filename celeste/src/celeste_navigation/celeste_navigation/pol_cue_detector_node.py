@@ -1,6 +1,7 @@
 import numpy as np
 from numpy import log, sqrt, arctan2, pi, sin, exp, isnan
 import rclpy
+from rclpy.qos import qos_profile_sensor_data
 from rclpy.node import Node
 from std_msgs.msg import Int32MultiArray
 from celeste_navigation import cue
@@ -21,7 +22,7 @@ class PolCueDetector(Node):
         self.activation = self.sqrt_activation  # TODO: use which? log() get 0
 
         self.subscribers = [
-            self.create_subscription(Int32MultiArray, f'pol_op_{i}', self.create_callback(i), 10)
+            self.create_subscription(Int32MultiArray, f'pol_op_{i}', self.create_callback(i), qos_profile_sensor_data)
             for i in range(N_POL_OPS)
         ]
 

@@ -187,8 +187,8 @@ def main(args=None):
             corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
             traverse = traverse + relu(corrected_yaw - last_measure)
             last_measure = corrected_yaw
-            node.pol_data_received = [False] * POL_NUM
             # Wait for all sensors read
+            node.pol_data_received = [False] * POL_NUM
             while sum(node.pol_data_received) < POL_NUM:
                 rclpy.spin_once(node)
             else:

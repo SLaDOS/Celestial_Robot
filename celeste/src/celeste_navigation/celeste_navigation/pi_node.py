@@ -23,6 +23,7 @@ from scipy.spatial.transform import Rotation
 
 import rclpy
 from rclpy.node import Node
+from rclpy.qos import qos_profile_sensor_data
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Quaternion, Vector3
 from std_msgs.msg import String
@@ -43,11 +44,32 @@ class PiNode(Node):
         self.pub = self.create_publisher(CxActivity, 'cx_status', 10)
         self.client = self.create_client(Velocity, 'update_velocity')
 
-        self.create_subscription(CueMsg, 'pol_cue', self.cue_callback, 10)
-        self.create_subscription(Odometry, 'odom', self.odom_callback, 10)
-        self.create_subscription(JointState, 'joint_states', self.joint_callback, 10)
+        self.create_subscription(CueMsg, 'pol_cue', self.cue_callback, qos_profile_sensor_data)
+        self.create_subscription(Odometry, 'odom', self.odom_callback, qos_profile_sensor_data)
+        self.create_subscription(JointState, 'joint_states', self.joint_callback, qos_profile_sensor_data)
 
         self.get_logger().info('Running...')
+
+    def navigate(self,CXMotor):
+        """If CXMotor small enough, then allow forward movement,
+        else set linear velocity to zero and turn on the spot.
+        Threshold of CXMotor < 1 arbitrarily chosen.
+
+        :param CXMotor: computed from CX model
+        :return: None
+        """
+        angular = 0.7
+        linear = 0.1
+
+        # TODO: Stop (about 1s) and wait for sensor reading
+        request = Velocity.Request()
+        request.linear = linear if abs(CXMotor) < 1.0 else 0.0
+        if CXMotor != 0.0:
+            request.angular = angular if CXMotor > 0.0 else -angular
+        else:
+            request.angular = 0.0
+
+        self.client.call_async(request)
 
     def joint_callback(self, msg):
         self.vel_from_joint = (msg.velocity[0]+msg.velocity[1])/2
@@ -61,23 +83,8 @@ class PiNode(Node):
         self.cx_status_publish(cx_status)
 
         self.get_logger().info(f'CX_MOTOR:{CXMotor}')
+        self.navigate(CXMotor)
 
-        # If CXMotor small enough, then allow forward movement,
-        # else set linear velocity to zero and turn on the spot.
-        # Threshold of CXMotor < 1 arbitrarily chosen.
-
-        angular = 0.7
-        linear = 0.1
-
-        # TODO: Stop (about 1s) and wait for sensor reading
-        request = Velocity.Request()
-        request.linear = linear if abs(CXMotor) < 1.0 else 0.0
-        if CXMotor != 0.0:
-            request.angular = angular if CXMotor > 0.0 else -angular
-        else:
-            request.angular = 0.0
-
-        self.client.call_async(request)
 
     def odom_callback(self, msg):
         self.vel_from_odom = msg.twist.twist.linear.x
