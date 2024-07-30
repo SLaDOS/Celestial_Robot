@@ -184,13 +184,15 @@ def main(args=None):
             process = int(traverse / (2 * np.pi / 50)) + 1
             print(
                 # '\r' +
-                '[' + process * '=' + relu(50 - process) * ' ' + ']',
+                '[' + process * '=' + relu(50 - process) * ' ' + ']'+f'{i+1}/{TEST_NUM}',
                 # end='',
             )
 
+            rclpy.spin_once(node)
             node.command_velocity(0, 0.3)
             time.sleep(0.5)
             node.command_velocity(0, 0)
+            rclpy.spin_once(node)
             corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
             traverse = traverse + relu(corrected_yaw - last_measure)
             last_measure = corrected_yaw

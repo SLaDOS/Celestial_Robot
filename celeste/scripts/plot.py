@@ -10,11 +10,12 @@ import glob
 from pathlib import Path
 
 
-BAG = '../my_bags/test_2024_07_29-19_29/'
+BAG = '../my_bags/saved/test_2024_07_30-16_03/'
 
 bagfiles = glob.glob(BAG+"pol_op*")
 
 MAX_INT = 11000.0
+# Edinburgh
 LON = 55.945011324580385
 LAT = -3.1867749119995956
 
@@ -58,9 +59,7 @@ for bagname in bagfiles:
            == len(pols[4]) == len(pols[5]) == len(pols[6]) == len(pols[7])
 
     record_time = datetime.fromtimestamp(t[0]/10**9)
-    print(f'Record Start Time: {record_time}')
     sun = ephemeris.Sun(observer.Observer(LON, LAT, date=record_time))
-    print(f'Sun Azimuth: {sun.az}')
 
     data_num = len(pols[0])
     P, I, C = np.zeros((3, data_num, len(pols)))
@@ -80,7 +79,7 @@ for bagname in bagfiles:
             C[_data_id, js[_pol_id]] = c
             z += c * np.exp(1j * angles['pol_op_' + str(_pol_id)])
 
-        out = np.angle(z)+sun.az
+        out = np.angle(z) + sun.az
         outs.append(out)
 
         # # The .messages() method accepts connection filters.
@@ -91,8 +90,9 @@ for bagname in bagfiles:
 
     assert len(outs) == len(yaw)
 
-    yaw_uw = np.unwrap(np.degrees(yaw), period=360) + np.degrees(outs[0])
+    yaw_uw = np.unwrap(np.degrees(yaw), period=360) - np.degrees(yaw[0]) + np.degrees(outs[0])
     out_uw = np.unwrap(np.degrees(outs), period=360)
+    print(out_uw[0])
     fig, ax = plt.subplots()
     ax.plot(np.array(t) - t[0], yaw_uw)
     ax.plot(np.array(t) - t[0], out_uw)
@@ -116,5 +116,3 @@ for bagname in bagfiles:
     rmse = np.sqrt(np.mean(np.square(yaw_uw - out_uw)))
     print(f"RMSE: {rmse:.2f}")
 
-    print('sleeping...')
-    # time.sleep(1)
