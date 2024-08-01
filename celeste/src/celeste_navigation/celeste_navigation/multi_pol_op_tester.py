@@ -141,7 +141,6 @@ class PolTester(Node):
 def main(args=None):
     rclpy.init(args=args)
     # play_sound(1)
-    print('Test start')
 
     for i in range(TEST_NUM):
         print(f'{i + 1} in {TEST_NUM}')
@@ -153,17 +152,17 @@ def main(args=None):
             rclpy.spin_once(node, timeout_sec=1)
         node.get_logger().info(f"Test{i + 1} start. Moving to initial orientation...")
 
-        # Move to start position
+        # Move to start position  fixme: draft after about 6 rounds
         if i == 0:
             start_yaw = node.yaw
         error_yaw = node.yaw - start_yaw
         start_time = time.time()
 
         while abs(error_yaw) > 0.011:
-            rclpy.spin_once(node)
             cmd_angular = -0.3 * error_yaw
             cmd_angular = math.copysign(max(0.15, abs(cmd_angular)), cmd_angular)  # minimum speed
             node.command_velocity(0, cmd_angular)
+            rclpy.spin_once(node)
             error_yaw = node.yaw - start_yaw
             if time.time() - start_time > 10:
                 node.get_logger().info('Time exceeded')
