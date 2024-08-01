@@ -6,11 +6,9 @@
 This node hosts a CentralComplex model and allows an operator to run a
 path integration experiment.
 
-Start this node (make sure the cmd_vel_service is not running) to start
-the CentralComplex. Drive the robot manually (using turtlebot3_teleop_key
-or any other suitable method) to a target location. Stop teleoperation.
-Start the cmd_vel_node to allow this node to communicate
-with the motors on the turtlebot. The robot will then home.
+Start this node to start the CentralComplex.
+
+Drive the robot manually to a target location.
 
 If you actually want to run path integration experiments then there
 may be ways to streamline this process but as a proof of principle
@@ -50,12 +48,12 @@ class PiNode(Node):
 
         self.get_logger().info('Running...')
 
-    def navigate(self,CXMotor):
+    def navigate(self, cx_motor):
         """If CXMotor small enough, then allow forward movement,
         else set linear velocity to zero and turn on the spot.
         Threshold of CXMotor < 1 arbitrarily chosen.
 
-        :param CXMotor: computed from CX model
+        :param cx_motor: computed from CX model
         :return: None
         """
         angular = 0.7
@@ -63,11 +61,8 @@ class PiNode(Node):
 
         # TODO: Stop (about 1s) and wait for sensor reading
         request = Velocity.Request()
-        request.linear = linear if abs(CXMotor) < 1.0 else 0.0
-        if CXMotor != 0.0:
-            request.angular = angular if CXMotor > 0.0 else -angular
-        else:
-            request.angular = 0.0
+        request.linear = linear * float(abs(cx_motor) < 1.0)
+        request.angular = angular * np.sign(cx_motor)
 
         self.client.call_async(request)
 
@@ -78,13 +73,12 @@ class PiNode(Node):
         self.get_logger().info(f'Cue info: (R: {msg.contrast}, T: {msg.theta})')
 
         current_angle = msg.theta
-        CXMotor = self.cx.unimodal_monolithic_CX(current_angle, self.vel_from_odom)
+        cx_motor = self.cx.unimodal_monolithic_CX(current_angle, self.vel_from_odom)
         cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
 
-        self.get_logger().info(f'CX_MOTOR:{CXMotor}')
-        self.navigate(CXMotor)
-
+        self.get_logger().info(f'CX_MOTOR:{cx_motor}')
+        self.navigate(cx_motor)
 
     def odom_callback(self, msg):
         self.vel_from_odom = msg.twist.twist.linear.x
@@ -94,18 +88,13 @@ class PiNode(Node):
         rot = Rotation.from_quat(quat)
         self.yaw_from_odom = rot.as_euler('xyz', degrees=False)[2]
 
-        # TODO:use odom to test
-        angular = 0.7
-        linear = 0.1
-        CXMotor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)
+        # todo: use odom to test
+        cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)
         cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
-        self.get_logger().info(f'CX_MOTOR:{CXMotor}')
-        request = Velocity.Request()
-        request.linear = linear * float(abs(CXMotor) < 1.0)
-        request.angular = angular * np.sign(CXMotor)
-        self.client.call_async(request)
-        # TODO: end
+        self.get_logger().info(f'CX_MOTOR:{cx_motor}')
+        self.navigate(cx_motor)
+        # todo: end
 
     def cx_status_publish(self, status):
         msg = CxActivity()
