@@ -51,7 +51,7 @@ class PiNode(Node):
     def navigate(self, cx_motor):
         """If CXMotor small enough, then allow forward movement,
         else set linear velocity to zero and turn on the spot.
-        Threshold of CXMotor < 1 arbitrarily chosen.
+        Threshold of CXMotor < 1 arbitrarily chosen. todo: <1 or other number? Only turn when > 0.05 (or other number?)
 
         :param cx_motor: computed from CX model
         :return: None
