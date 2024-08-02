@@ -11,6 +11,9 @@ N_POL_OPS = 8
 
 
 class PolCueDetector(Node):
+    """
+    Publish cue every 0.1 seconds.
+    """
     def __init__(self):
         super().__init__('pol_cue_detector')
         self.pol_op_responses = [None] * N_POL_OPS
@@ -38,8 +41,6 @@ class PolCueDetector(Node):
 
     @staticmethod
     def log_activation(x):
-        print(x)
-
         return log(x)
 
     @staticmethod

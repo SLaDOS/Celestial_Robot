@@ -30,6 +30,7 @@ from celeste_interfaces.srv import Velocity
 from celeste_navigation import cx_model
 from sensor_msgs.msg import JointState
 
+N_POL_OPS = 8
 
 
 class PiNode(Node):
@@ -38,17 +39,27 @@ class PiNode(Node):
         self.cx = cx_model.CentralComplex()
         self.vel_from_odom = 0.0
         self.yaw_from_odom = 0.0
+        self.yaw_from_pol = 0.0
         self.vel_from_joint = 0.0
-        self.pub = self.create_publisher(CxActivity, 'cx_status', 10)
-        self.client = self.create_client(Velocity, 'update_velocity')
+        self.pol_op_received = [0] * N_POL_OPS
 
+        self.pub = self.create_publisher(CxActivity, 'cx_status', 10)
+        self.cmd_vel_client = self.create_client(Velocity, 'update_velocity')
         self.create_subscription(CueMsg, 'pol_cue', self.cue_callback, qos_profile_sensor_data)
         self.create_subscription(Odometry, 'odom', self.odom_callback, qos_profile_sensor_data)
         self.create_subscription(JointState, 'joint_states', self.joint_callback, qos_profile_sensor_data)
+        [
+            self.create_subscription(Int32MultiArray,
+                                     f'pol_op_{i}',
+                                     self.create_pol_callback(i),
+                                     qos_profile_sensor_data)
+            for i in range(N_POL_OPS)
+        ]
 
+        self.create_timer(0.1, self.timer_callback)
         self.get_logger().info('Running...')
 
-    def navigate(self, cx_motor):
+    def commend_velocity(self, cx_motor):
         """If CXMotor small enough, then allow forward movement,
         else set linear velocity to zero and turn on the spot.
         Threshold of CXMotor < 1 arbitrarily chosen. todo: <1 or other number? Only turn when > 0.05 (or other number?)
@@ -59,26 +70,41 @@ class PiNode(Node):
         angular = 0.7
         linear = 0.1
 
-        # TODO: Stop (about 1s) and wait for sensor reading
         request = Velocity.Request()
         request.linear = linear * float(abs(cx_motor) < 1.0)
+        # TODO: need >0.5 second interval between every two turns (to wait for Pols reading).
         request.angular = angular * np.sign(cx_motor)
 
-        self.client.call_async(request)
+        self.cmd_vel_client.call_async(request)
+
+    def create_pol_callback(self, index):
+        def callback(msg):
+            self.pol_op_received[index] += 1
+        return callback
 
     def joint_callback(self, msg):
         self.vel_from_joint = (msg.velocity[0]+msg.velocity[1])/2
 
     def cue_callback(self, msg):
         self.get_logger().info(f'Cue info: (R: {msg.contrast}, T: {msg.theta})')
+        self.yaw_from_pol = msg.theta
 
-        current_angle = msg.theta
-        cx_motor = self.cx.unimodal_monolithic_CX(current_angle, self.vel_from_odom)
+    def timer_callback(self):
+        """
+        Called at a fix rate
+        :return:
+        """
+        # cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_pol, self.vel_from_odom)
+        # todo: use odom to test
+        cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)
+        # todo: end
         cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
-
         self.get_logger().info(f'CX_MOTOR:{cx_motor}')
-        self.navigate(cx_motor)
+        self.commend_velocity(cx_motor)
+
+    def reset_pol_received(self):
+        self.pol_op_received = [0] * N_POL_OPS
 
     def odom_callback(self, msg):
         self.vel_from_odom = msg.twist.twist.linear.x
@@ -87,14 +113,6 @@ class PiNode(Node):
         quat = [orientation.x, orientation.y, orientation.z, orientation.w]
         rot = Rotation.from_quat(quat)
         self.yaw_from_odom = rot.as_euler('xyz', degrees=False)[2]
-
-        # todo: use odom to test
-        cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)
-        cx_status = self.cx.get_status()
-        self.cx_status_publish(cx_status)
-        self.get_logger().info(f'CX_MOTOR:{cx_motor}')
-        self.navigate(cx_motor)
-        # todo: end
 
     def cx_status_publish(self, status):
         msg = CxActivity()
