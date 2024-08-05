@@ -9,11 +9,10 @@ import os
 import glob
 from pathlib import Path
 
-
-BAG = '../my_bags/saved/test_2024_07_30-16_03/'
+BAG = '../my_bags/4 photodiodes/test_2024_07_17-13_10/'
 
 bagfiles = glob.glob(BAG+"pol_op*")
-
+print(bagfiles)
 MAX_INT = 11000.0
 # Edinburgh
 LON = 55.945011324580385
