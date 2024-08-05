@@ -23,8 +23,8 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from nav_msgs.msg import Odometry
-from geometry_msgs.msg import Quaternion, Vector3
-from std_msgs.msg import String
+# from geometry_msgs.msg import Quaternion, Vector3
+from std_msgs.msg import Int32MultiArray
 from celeste_interfaces.msg import CueMsg, CxActivity
 from celeste_interfaces.srv import Velocity
 from celeste_navigation import cx_model
@@ -42,6 +42,7 @@ class PiNode(Node):
         self.yaw_from_pol = 0.0
         self.vel_from_joint = 0.0
         self.pol_op_received = [0] * N_POL_OPS
+        self.last_angular_cmd = 0.0
 
         self.pub = self.create_publisher(CxActivity, 'cx_status', 10)
         self.cmd_vel_client = self.create_client(Velocity, 'update_velocity')
@@ -70,12 +71,17 @@ class PiNode(Node):
         angular = 0.7
         linear = 0.1
 
-        request = Velocity.Request()
-        request.linear = linear * float(abs(cx_motor) < 1.0)
         # TODO: need >0.5 second interval between every two turns (to wait for Pols reading).
+        request = Velocity.Request()
+        cx_motor = cx_motor*10e6
+
+        self.get_logger().info(f'CX_MOTOR:{cx_motor}')
+        request.linear = linear * float(abs(cx_motor) < 100.0)
         request.angular = angular * np.sign(cx_motor)
+        # if self.last_angular_cmd!=0.0 and np.sign(request.angular)!=np.sign(self.last_angular_cmd):
 
         self.cmd_vel_client.call_async(request)
+        self.last_angular_cmd = request.angular
 
     def create_pol_callback(self, index):
         def callback(msg):
@@ -97,10 +103,8 @@ class PiNode(Node):
         # cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_pol, self.vel_from_odom)
         # todo: use odom to test
         cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)
-        # todo: end
         cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
-        self.get_logger().info(f'CX_MOTOR:{cx_motor}')
         self.commend_velocity(cx_motor)
 
     def reset_pol_received(self):

@@ -279,11 +279,12 @@ class CentralComplex:
         self.MEM = self.cpu4_update(speed, self.TB1, self.MEM)
         self.CPU4 = self.MEM
         self.CPU4 = self.cpu4_output(self.CPU4)
-        low = min(self.CPU4)
-        for i in self.CPU4:
-            cpu4 = i[0]-low
-            print(f'{i[0]:.5f}'+'--' * int(cpu4//0.00001)
-                  )
+        # test
+        # low = min(self.CPU4)
+        # for i in self.CPU4:
+        #     cpu4 = i[0]-low
+        #     print(f'{i[0]:.5f}'+'--' * int(cpu4//0.00001)
+        #           )
         self.CPU1 = self.cpu1_output(self.TB1, self.CPU4, self.CPU1)
         return self.motor_output(self.CPU1)
 
