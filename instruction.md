@@ -4,8 +4,9 @@ Info:
     Robot: TURTLEBOT3 Burger
     Raspberry Pi System: Ubuntu 22.04 Server
     Host PC System: Ubuntu 22.04 Desktop
+    ROS: Humble
 
-    Pi PASSWORD = celestial
+    Raspberry Pi PASSWORD = celestial
     ROS_DOMAIN_ID = 133
     TurtleBot3_MAC_ADDRESS = D8:3A:DD:58:91:B1
     Suitable MIN_TURN_SPEED = 0.1
@@ -21,12 +22,12 @@ TurtleBot static IP address: \
 
 ## Troubleshooting:
 
-### When set static IP on Ubuntu Server 22.04 (solved):
+###  Set static IP on Ubuntu Server 22.04 (solved):
 
 ``` `gateway4` has been deprecated, use default routes instead```
 https://unix.stackexchange.com/questions/681220/netplan-generate-gateway4-has-been-deprecated-use-default-routes-instead
 
-### Connect robot to ubuntu server (solved)
+### Cannot connect robot to hotspot on Ubuntu Server 22.04
 
 Similar problems: https://bugs.launchpad.net/ubuntu/+source/wpa/+bug/1972790
 
@@ -55,10 +56,10 @@ solving reference:
 https://superuser.com/questions/1764148/ssh-into-device-through-wsl-when-connected-via-hotspot?newreg=ee5035b5bbba4b90b391249d9ff4969a
 
 1. edit `.wslconfig` in `C:\Users\Nash Xu` with:
-  ```
-  [wsl2]
-  networkingMode=mirrored
-  ```
+      ```
+      [wsl2]
+      networkingMode=mirrored
+      ```
 2. open WSL
 3. `$ ssh "nash xu"@localhost`
 
@@ -66,9 +67,9 @@ https://superuser.com/questions/1764148/ssh-into-device-through-wsl-when-connect
 edit `/boot/firmware/overlays/README`
 add new line `dtparam=i2c_vc=on`
 
-### Further: Add more I2C pins 
+#### Further: Add more I2C pins 
 
-This has not been tested.
+*This has been tested without pulling up to 3V3 and failed.
 
 Bit bang I2C on the GPIO: edit `/boot/firmware/overlays/README` 
 with new line `dtoverlay=i2c-gpio,bus=2,i2c_gpio_sda=17,i2c_gpio_scl=27`
