@@ -107,6 +107,15 @@ class PiNode(Node):
         self.cx_status_publish(cx_status)
         self.commend_velocity(cx_motor)
 
+        # cpu1_l = np.mean(self.cx.CPU1[:8] * np.exp(1j * np.linspace(0, 2*np.pi, 8, endpoint=False)))
+        # cpu1_r = np.mean(self.cx.CPU1[8:] * np.exp(1j * np.linspace(0, 2*np.pi, 8, endpoint=False)))
+        # self.get_logger().info(f"CPU1: L = {np.angle(cpu1_l, deg=True):.0f}:{abs(cpu1_l):.4f}, "
+        #                        f"R = {np.angle(cpu1_r, deg=True):.0f}:{abs(cpu1_r):.4f}")
+        # cpu4_l = np.mean(self.cx.CPU4[:8] * 10e6 * np.exp(1j * np.linspace(0, 2 * np.pi, 8, endpoint=False)))
+        # cpu4_r = np.mean(self.cx.CPU4[8:] * 10e6 * np.exp(1j * np.linspace(0, 2 * np.pi, 8, endpoint=False)))
+        # self.get_logger().info(f"CPU4: L = {np.angle(cpu4_l, deg=True):.0f}:{abs(cpu4_l):.4f}, "
+        #                        f"R = {np.angle(cpu4_r, deg=True):.0f}:{abs(cpu4_r):.4f}")
+
     def reset_pol_received(self):
         self.pol_op_received = [0] * N_POL_OPS
 

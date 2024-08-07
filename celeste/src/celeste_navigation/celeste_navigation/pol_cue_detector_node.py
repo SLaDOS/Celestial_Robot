@@ -18,11 +18,11 @@ class PolCueDetector(Node):
         super().__init__('pol_cue_detector')
         self.pol_op_responses = [None] * N_POL_OPS
         self.n_sol_neurons = 8
-        self.pol_prefs = [0, 90, 180, 270, 45, 135, 225, 315]
-        self.sol_prefs = [0] * self.n_sol_neurons
+        self.pol_prefs = [i*np.pi/4 for i in [0, 2, 4, 6, 1, 3, 5, 7]]
+        self.sol_prefs = np.linspace(0, 2 * np.pi, self.n_sol_neurons, endpoint=False)
 
         self.decode_sensor = self.bio_inspired_decode
-        self.activation = self.sqrt_activation  # TODO: use which? log() get 0
+        self.activation = self.sqrt_activation
 
         self.subscribers = [
             self.create_subscription(Int32MultiArray, f'pol_op_{i}', self.create_callback(i), qos_profile_sensor_data)
@@ -62,15 +62,18 @@ class PolCueDetector(Node):
 
             pol_neuron_responses[i] = r_op / r_po
 
-        pol_sol_ratio = self.n_sol_neurons / N_POL_OPS
+        # pol_sol_ratio = self.n_sol_neurons / N_POL_OPS
         R = complex(0, 0)
 
-        for z in range(self.n_sol_neurons):
-            r_sol_z = 0
-            for j in range(N_POL_OPS):
-                alpha_j = np.radians(self.pol_prefs[j] - 90)  # TODO: degrees or radians?
-                r_sol_z += pol_sol_ratio * sin(alpha_j - self.sol_prefs[z]) * pol_neuron_responses[j]
-            R += r_sol_z * exp(complex(0, -1) * 2 * pi * (z - 1) / self.n_sol_neurons)
+        for j in range(N_POL_OPS):
+            R += pol_neuron_responses[j] * exp(1j * self.pol_prefs[j])
+        # for z in range(self.n_sol_neurons):
+        #     r_sol_z = 0
+        #     for j in range(N_POL_OPS):
+        #         alpha_j = np.radians(self.pol_prefs[j] - 90)
+        #         r_sol_z += pol_sol_ratio * sin(alpha_j - self.sol_prefs[z]) * pol_neuron_responses[j]
+        #     R += r_sol_z * exp(complex(0, -1) * 2 * pi * (z - 1) / self.n_sol_neurons)
+
         a = R.real
         b = R.imag
         angle = np.angle(R)
