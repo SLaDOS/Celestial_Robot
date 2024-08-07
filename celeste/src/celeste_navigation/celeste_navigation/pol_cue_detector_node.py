@@ -57,7 +57,7 @@ class PolCueDetector(Node):
             r_op = r_horiz - r_vert
             r_po = r_horiz + r_vert
 
-            if r_po == 0:  # TODO: often 0?
+            if r_po == 0:
                 r_po = float('nan')
 
             pol_neuron_responses[i] = r_op / r_po
