@@ -57,7 +57,7 @@ def get_key(settings):
     if os.name == 'nt':
         return msvcrt.getch().decode('utf-8')
     tty.setraw(sys.stdin.fileno())
-    rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
+    rlist, _, _ = select.select([sys.stdin], [], [], None)
     if rlist:
         key = sys.stdin.read(1)
     else:
@@ -168,8 +168,10 @@ def main():
                 print_vels(target_linear_velocity, target_angular_velocity)
                 node.send_parameter(False)
             elif key == 'r':
+                target_linear_velocity = 0.0
+                target_angular_velocity = 0.0
+                print_vels(target_linear_velocity, target_angular_velocity)
                 node.send_parameter(True)
-                continue
             elif key == '\x03':
                 break
 
@@ -186,8 +188,6 @@ def main():
 
             node.pub.publish(twist)
             rclpy.spin_once(node)
-            # if node.velocity_from_odom != 0 and target_linear_velocity != 0:
-            #     print(f'{abs(target_linear_velocity / node.velocity_from_odom):.2e}')
 
     except Exception as e:
         print(e)

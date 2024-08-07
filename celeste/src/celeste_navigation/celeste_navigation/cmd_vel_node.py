@@ -32,7 +32,7 @@ class CmdVelService(Node):
             return response
         angular = request.angular
         linear = request.linear
-        self.get_logger().info(f'I heard: angular - {angular}, linear - {linear}')
+        # self.get_logger().info(f'I heard: \n angular - {angular:.2f}, linear - {linear:.2f}')
         if abs(angular) > BURGER_MAX_ANG_VEL:
             response.success = False
             self.get_logger().warn(f'angular exceed limit ({BURGER_MAX_ANG_VEL})')

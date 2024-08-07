@@ -78,7 +78,6 @@ class PolCueDetector(Node):
         b = R.imag
         angle = np.angle(R)
         phi = arctan2(-b, a)
-        print(f'R:{R},phi:{phi},angle:{angle}')
         tau = sqrt(a * a + b * b)
         phi = -phi
 
@@ -90,7 +89,7 @@ class PolCueDetector(Node):
             self.pol_cue.set_azimuth(phi)
             self.pol_cue.set_contrast(tau)
             self.cue_pub.publish(self.pol_cue.to_msg())
-            self.get_logger().info(self.pol_cue.to_string())
+            # self.get_logger().info(self.pol_cue.to_string())
 
 
 def main(args=None):
