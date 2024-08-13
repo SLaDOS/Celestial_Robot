@@ -8,7 +8,9 @@ path integration experiment.
 
 Start this node to start the CentralComplex.
 
-Drive the robot manually to a target location.
+Start node "teleop" to drive the robot manually to a target location, then press r to return.
+
+Restart this node to reset the CentralComplex, i.e., set current location as CX_motor=0.
 
 If you actually want to run path integration experiments then there
 may be ways to streamline this process but as a proof of principle
@@ -36,19 +38,23 @@ N_POL_OPS = 8
 
 
 class PiNode(Node):
+    cx_threshold = 10  # the threshold robot decide to turn
+    timer_sec = 0.05  # the rate cx_motor is computed
+    keep_turn_sec = 0.1  # every time turn for 0.1 seconds
+    keep_move_sec = 1.5  # every move forward for at least 1.5 seconds
+    cx_motor_amplifier = 10e6  #
 
     def __init__(self, args):
         super().__init__('pi_node')
         self.cx = cx_model.CentralComplex()
-        self.timer = 0.05
         self.vel_from_odom = 0.0
         self.yaw_from_odom = 0.0
         self.yaw_from_pol = 0.0
         self.vel_from_joint = 0.0
         self.pol_op_received = [0] * N_POL_OPS
         self.previous_cx_motor = 0.0
-        self.keep_move = 0
-        self.keep_turn = 0
+        self.keep_move_round = 0
+        self.keep_turn_round = 0
 
         self.pub = self.create_publisher(CxActivity, 'cx_status', 10)
         self.cmd_vel_client = self.create_client(Velocity, 'update_velocity')
@@ -63,7 +69,7 @@ class PiNode(Node):
             for i in range(N_POL_OPS)
         ]
 
-        self.create_timer(self.timer, self.timer_callback)
+        self.create_timer(PiNode.timer_sec, self.timer_callback)
         self.get_logger().info('Running...')
 
     def timer_callback(self):
@@ -71,13 +77,12 @@ class PiNode(Node):
         Called at a fix rate
         :return:
         """
-        # cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_pol, self.vel_from_odom)
+        cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_pol, self.vel_from_joint)
         # todo: use odom to test
-        cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)
+        # cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)
         cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
         self.commend_velocity_sharply(cx_motor)
-        # self.commend_velocity(cx_motor)
 
         # cpu1_l = np.mean(self.cx.CPU1[:8] * np.exp(1j * np.linspace(0, 2*np.pi, 8, endpoint=False)))
         # cpu1_r = np.mean(self.cx.CPU1[8:] * np.exp(1j * np.linspace(0, 2*np.pi, 8, endpoint=False)))
@@ -88,10 +93,10 @@ class PiNode(Node):
         # self.get_logger().info(f"CPU4: L = {np.angle(cpu4_l, deg=True):.0f}:{abs(cpu4_l):.4f}, "
         #                        f"R = {np.angle(cpu4_r, deg=True):.0f}:{abs(cpu4_r):.4f}")
 
-    def commend_velocity(self, cx_motor):
+    def commend_velocity_smoothly(self, cx_motor):
         """If CXMotor small enough, then allow forward movement,
         else set linear velocity to zero and turn on the spot.
-        Threshold of CXMotor < 1 arbitrarily chosen. todo: <1 or other number? Only turn when > 0.05 (or other number?)
+        Threshold of CXMotor < 1 arbitrarily chosen.
 
         :param cx_motor: computed from CX model
         :return: None
@@ -99,11 +104,10 @@ class PiNode(Node):
         angular = 0.7
         linear = 0.1
 
-        # TODO: need >0.5 second interval between every two turns (to wait for Pols reading).
         request = Velocity.Request()
-        cx_motor = cx_motor*10e6
+        cx_motor = cx_motor * PiNode.cx_motor_amplifier
         self.get_logger().info(f'CX_MOTOR:{cx_motor}')
-        request.linear = linear * float(abs(cx_motor) < 50.0)
+        request.linear = linear * float(abs(cx_motor) < PiNode.cx_threshold)
         request.angular = angular * np.sign(cx_motor)
 
         self.cmd_vel_client.call_async(request)
@@ -113,28 +117,28 @@ class PiNode(Node):
         linear = 0.1
 
         request = Velocity.Request(linear=0.0, angular=0.0)
-        cx_motor = cx_motor * 10e6
+        cx_motor = cx_motor * PiNode.cx_motor_amplifier
         self.get_logger().info(f'CX_MOTOR:{cx_motor}')
-        if self.keep_move > 0 or self.keep_turn > 0:
-            if self.keep_move > 0:
-                self.keep_move -= 1
-            elif self.keep_turn > 0:
-                self.keep_turn -= 1
-                if self.keep_turn == 0:
+        if self.keep_move_round > 0 or self.keep_turn_round > 0:
+            if self.keep_move_round > 0:
+                self.keep_move_round -= 1
+            elif self.keep_turn_round > 0:
+                self.keep_turn_round -= 1
+                if self.keep_turn_round == 0:
                     request = Velocity.Request(linear=0.0, angular=0.0)
                     self.cmd_vel_client.call_async(request)
                     self.reset_pol_received()
-        elif np.sign(cx_motor)*np.sign(self.previous_cx_motor) != -1 and abs(cx_motor) > 10:
+        elif np.sign(cx_motor)*np.sign(self.previous_cx_motor) != -1 and abs(cx_motor) > PiNode.cx_threshold:
             self.get_logger().info(f'{self.pol_op_received}')
-            # wait for all pols read before turn
+            # Wait for all pols read before turn
             if all([received >= 1 for received in self.pol_op_received]):
                 request.angular = angular * np.sign(cx_motor)
                 self.cmd_vel_client.call_async(request)
-                self.keep_turn = 0.1/self.timer  # turn for 0.1 seconds
+                self.keep_turn_round = PiNode.keep_turn_sec / PiNode.timer_sec
         else:
             request.linear = linear
             self.cmd_vel_client.call_async(request)
-            self.keep_move = 1.5/self.timer  # move forward for 1.5 seconds
+            self.keep_move_round = PiNode.keep_move_sec / PiNode.timer_sec
 
         self.previous_cx_motor = cx_motor
 
