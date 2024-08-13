@@ -44,6 +44,7 @@ w/x : increase/decrease linear velocity (Burger : ~ 0.22)
 a/d : increase/decrease angular velocity (Burger : ~ 2.84)
 
 space key, s : force stop
+r : return by CX model
 
 CTRL-C to quit
 """
