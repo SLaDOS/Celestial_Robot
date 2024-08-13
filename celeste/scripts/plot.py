@@ -9,7 +9,10 @@ import os
 import glob
 from pathlib import Path
 
-BAG = '../my_bags/4 photodiodes/test_2024_07_17-13_10/'
+
+
+
+BAG = '../my_bags/saved/test_2024_07_30-15_49/'
 
 bagfiles = glob.glob(BAG+"pol_op*")
 print(bagfiles)
@@ -96,7 +99,7 @@ for bagname in bagfiles:
     ax.plot(np.array(t) - t[0], yaw_uw)
     ax.plot(np.array(t) - t[0], out_uw)
     ax.set(xlabel='time', ylabel='yaw',
-           title='title')
+           title=f'{bagname[-19:]}')
     ax.grid()
     plot_directory = BAG+'plots/'
     Path(plot_directory).mkdir(parents=False, exist_ok=True)
@@ -112,6 +115,5 @@ for bagname in bagfiles:
     # plt.tight_layout()
     # plt.savefig(bagname+'plot2')
 
-    rmse = np.sqrt(np.mean(np.square(yaw_uw - out_uw)))
+    rmse = np.sqrt(np.mean(np.square((yaw_uw - out_uw + 180) % 360 - 180)))
     print(f"RMSE: {rmse:.2f}")
-
