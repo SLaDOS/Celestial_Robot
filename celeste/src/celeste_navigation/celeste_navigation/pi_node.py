@@ -75,11 +75,9 @@ class PiNode(Node):
     def timer_callback(self):
         """
         Called at a fix rate
-        :return:
         """
-        cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_pol, self.vel_from_joint)
-        # todo: use odom to test
-        # cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)
+        # cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_pol, self.vel_from_joint)
+        cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)  # todo: use odom to test
         cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
         self.commend_velocity_sharply(cx_motor)
@@ -113,6 +111,13 @@ class PiNode(Node):
         self.cmd_vel_client.call_async(request)
 
     def commend_velocity_sharply(self, cx_motor):
+        """
+        Compared with commend_velocity_smoothly(), this function turns faster,
+        but can only turn or move at one time, so robot can wait for sensors reading
+
+        :param cx_motor: computed from CX model
+        :return:
+        """
         angular = 1.2
         linear = 0.1
 
@@ -129,7 +134,6 @@ class PiNode(Node):
                     self.cmd_vel_client.call_async(request)
                     self.reset_pol_received()
         elif np.sign(cx_motor)*np.sign(self.previous_cx_motor) != -1 and abs(cx_motor) > PiNode.cx_threshold:
-            self.get_logger().info(f'{self.pol_op_received}')
             # Wait for all pols read before turn
             if all([received >= 1 for received in self.pol_op_received]):
                 request.angular = angular * np.sign(cx_motor)
