@@ -43,81 +43,31 @@ def compare(x, ground_truth, error_type=None, axis=None, std=False):
     return result
 
 
-def compute_sensor_output_from_responses(res_pol, res_int, spatial_resolution=8, polarisation=True, intensity=True,
-                                         algorithm=None):
+def compute_sensor_output_from_responses(pol, iny, yaw, pol_angles, polarisation=True, intensity=True):
 
-    if algorithm is md.eigenvectors:
-        res_000, res_045, res_090, res_135 = res_pol
-        res_pol = res_090 - res_000
-    else:
-        res_000, res_045, res_090, res_135 = None, None, None, None
-        s000, s045, s090, s135 = None, None, None, None
-        s000_i, s045_i, s090_i, s135_i = None, None, None, None
-
-    nb_recordings, nb_samples = res_pol.shape
+    nb_samples, spatial_resolution = pol.shape
     sol_angles = cs.circ_norm(np.linspace(0, 2 * np.pi, 8, endpoint=False))
-    pol_angles = cs.circ_norm(np.linspace(0, 2 * np.pi, spatial_resolution, endpoint=False))
-    imu_angles = cs.circ_norm(np.linspace(0, 2 * np.pi, nb_samples, endpoint=False))
-    all_pol_angles = np.zeros((nb_recordings, nb_samples), dtype='float32')
+    all_pol_angles = np.zeros(nb_samples, dtype='float32')
 
-    for i in range(nb_recordings):
+    for s in range(nb_samples):
+        pol_i = pol[s]
+        int_i = iny[s]
 
-        pol = res_pol[i]
-        iny = res_int[i]
+        # calculate the SOL responses
+        sol = np.zeros(8, dtype='float32')
+        if polarisation and not intensity:
+            sol = md.pol2sol(-pol_i, pol_prefs=pol_angles, sol_prefs=sol_angles)
+        elif intensity and not polarisation:
+            sol = md.pol2sol(int_i, pol_prefs=pol_angles, sol_prefs=sol_angles)
+        elif intensity and polarisation:
+            sol = md.pol2sol(int_i - pol_i, pol_prefs=pol_angles, sol_prefs=sol_angles)
+        elif not intensity and not polarisation:
+            sol_i = md.pol2sol(int_i, pol_prefs=pol_angles, sol_prefs=sol_angles)  # intensity
+            sol_p = md.pol2sol(-pol_i, pol_prefs=pol_angles, sol_prefs=sol_angles)  # polarisation
+            sol = (sol_i + sol_p) / 2
+        all_pol_angles[s], sigma = md.sol2angle(sol)
 
-        if algorithm is md.eigenvectors:
-            s000 = res_000[i]
-            s045 = res_045[i]
-            s090 = res_090[i]
-            s135 = res_135[i]
-
-        for s in range(nb_samples):
-            # get the desired absolute rotation of the compass (with respect to north)
-            rotate = imu_angles[s]
-
-            #
-            # # calculate the distance between the orientation of each unit in the desired compass orientation
-            # # and the orientation of each unit in the dataset
-            # a_dist = abs(circ_norm(imu_angles[:, None] - pol_angles[None, :] + rotate))
-            #
-            # # keep the dataset entries with the 3 closest orientations for each sensor
-            # i_closest = np.argsort(a_dist, axis=0)[:3]
-            #
-            # # calculate the median response of the POL and INT units on the preferred angles
-            # pol_i = np.median(pol[i_closest], axis=0)
-            # int_i = np.median(iny[i_closest], axis=0)
-
-            imu_r = cs.circ_norm(imu_angles + rotate)
-            i_sort = np.argsort(imu_r)
-
-            pol_i = np.interp(pol_angles, imu_r[i_sort], pol[i_sort])
-            int_i = np.interp(pol_angles, imu_r[i_sort], iny[i_sort])
-            if algorithm is md.eigenvectors:
-                s000_i = np.interp(pol_angles, imu_r[i_sort], s000[i_sort])
-                s045_i = np.interp(pol_angles, imu_r[i_sort], s045[i_sort])
-                s090_i = np.interp(pol_angles, imu_r[i_sort], s090[i_sort])
-                s135_i = np.interp(pol_angles, imu_r[i_sort], s135[i_sort])
-
-            # calculate the SOL responses
-            sol = np.zeros(8, dtype='float32')
-            if algorithm is None:
-                if polarisation and not intensity:
-                    sol = md.pol2sol(-pol_i, pol_prefs=pol_angles, sol_prefs=sol_angles)
-                elif intensity and not polarisation:
-                    sol = md.pol2sol(int_i, pol_prefs=pol_angles, sol_prefs=sol_angles)
-                elif intensity and polarisation:
-                    sol = md.pol2sol(int_i - pol_i, pol_prefs=pol_angles, sol_prefs=sol_angles)
-                elif not intensity and not polarisation:
-                    sol_i = md.pol2sol(int_i, pol_prefs=pol_angles, sol_prefs=sol_angles)  # intensity
-                    sol_p = md.pol2sol(-pol_i, pol_prefs=pol_angles, sol_prefs=sol_angles)  # polarisation
-                    sol = (sol_i + sol_p) / 2
-                all_pol_angles[i, s], sigma = md.sol2angle(sol)
-            elif algorithm is md.four_zeros:
-                all_pol_angles[i, s], = algorithm(pol_i, pol_prefs=pol_angles)
-            elif algorithm is md.eigenvectors:
-                all_pol_angles[i, s], = algorithm(s000_i, s045_i, s090_i, s135_i, pol_prefs=pol_angles)
-
-    imu_angles = np.array([imu_angles] * nb_recordings)
+    imu_angles = np.array(yaw)
     return np.squeeze(all_pol_angles + np.pi) % (2 * np.pi) - np.pi, np.squeeze(imu_angles)
 
 

@@ -1,3 +1,4 @@
+import pandas
 from rosbags.rosbag2 import Reader
 from rosbags.typesys import Stores, get_typestore
 from matplotlib import pyplot as plt
@@ -18,8 +19,8 @@ bagfiles = glob.glob(BAG+"pol_op*")
 print(bagfiles)
 MAX_INT = 11000.0
 # Edinburgh
-LON = 55.945011324580385
-LAT = -3.1867749119995956
+LAT = 55.945011324580385
+LON = -3.1867749119995956
 
 angles = {
     'pol_op_0': np.radians(0),
@@ -35,8 +36,9 @@ angles = {
 
 # Create a typestore and get the string class.
 typestore = get_typestore(Stores.LATEST)
+df_lst = []
 
-for bagname in bagfiles:
+for i_b, bagname in enumerate(bagfiles):
     yaw = []
     t = []
     pols = [[] for x in range(8)]
@@ -61,7 +63,8 @@ for bagname in bagfiles:
            == len(pols[4]) == len(pols[5]) == len(pols[6]) == len(pols[7])
 
     record_time = datetime.fromtimestamp(t[0]/10**9)
-    sun = ephemeris.Sun(observer.Observer(LON, LAT, date=record_time))
+    print(record_time)
+    sun = ephemeris.Sun(observer.Observer(LON, LAT, date=record_time, degrees=True))
 
     data_num = len(pols[0])
     P, I, C = np.zeros((3, data_num, len(pols)))
@@ -81,39 +84,22 @@ for bagname in bagfiles:
             C[_data_id, js[_pol_id]] = c
             z += c * np.exp(1j * angles['pol_op_' + str(_pol_id)])
 
-        out = np.angle(z) + sun.az
-        outs.append(out)
+            new_pol_row = {'time': record_time, 'unit_type': 'POL', 'response': p,
+                           'sun_azimuth': np.degrees(sun.az), 'sun_elevation': np.degrees(sun.alt),
+                           'yaw': np.degrees(yaw[_data_id]),
+                           'device_yaw': np.degrees(angles['pol_op_' + str(_pol_id)]),
+                           'rotation': i_b+1,
+                           'session': 'session1'
+                           }
+            df_lst.append(new_pol_row)
+            new_int_row = {'time': record_time, 'unit_type': 'INT', 'response': i,
+                           'sun_azimuth': np.degrees(sun.az), 'sun_elevation': np.degrees(sun.alt),
+                           'yaw': np.degrees(yaw[_data_id]),
+                           'device_yaw': np.degrees(angles['pol_op_' + str(_pol_id)]),
+                           'rotation': i_b+1,
+                           'session': 'session1'
+                           }
+            df_lst.append(new_int_row)
 
-        # # The .messages() method accepts connection filters.
-        # connections = [x for x in reader.connections if x.topic == '/imu_raw/Imu']
-        # for connection, timestamp, rawdata in reader.messages(connections=connections):
-        #     msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
-        #     print(msg.header.frame_id)
-
-    assert len(outs) == len(yaw)
-
-    yaw_uw = np.unwrap(np.degrees(yaw), period=360) - np.degrees(yaw[0]) + np.degrees(outs[0])
-    out_uw = np.unwrap(np.degrees(outs), period=360)
-    print(out_uw[0])
-    fig, ax = plt.subplots()
-    ax.plot(np.array(t) - t[0], yaw_uw)
-    ax.plot(np.array(t) - t[0], out_uw)
-    ax.set(xlabel='time', ylabel='yaw',
-           title=f'{bagname[-19:]}')
-    ax.grid()
-    plot_directory = BAG+'plots/'
-    Path(plot_directory).mkdir(parents=False, exist_ok=True)
-    plt.savefig(plot_directory+os.path.basename(bagname)+'-plot1')
-
-    # plt.figure('P', figsize=(10, 6))
-    # plt.subplot(311)
-    # plt.imshow(-P.T)
-    # plt.subplot(312)
-    # plt.imshow(I.T)
-    # plt.subplot(313)
-    # plt.imshow(C.T)
-    # plt.tight_layout()
-    # plt.savefig(bagname+'plot2')
-
-    rmse = np.sqrt(np.mean(np.square((yaw_uw - out_uw + 180) % 360 - 180)))
-    print(f"RMSE: {rmse:.2f}")
+df = pandas.DataFrame(df_lst)
+df.to_csv('./csv/pol_ops.csv', index=False)

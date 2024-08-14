@@ -8,10 +8,7 @@ import pandas as pd
 
 min_rs, max_rs = 3, 20
 
-default_collections = ['sardinia', 'south_africa']
-default_raw = "raw_dataset.csv"
 default_pooled = "pooled_dataset.csv"
-default_error = "error_dataset.csv"
 data_base = os.path.abspath(os.path.join(os.getcwd(), '.', 'csv'))
 out_base = os.path.abspath(os.path.join(os.getcwd(), '.', 'csv', 'plots'))
 if not os.path.exists(out_base):
@@ -44,6 +41,7 @@ solar_elevation_selected = [
 
 def plot_circ_error_bars(theta, rho, errors, color='black', edge_color='black', alpha=1., axis=None):
     q25, q75 = cs.circ_norm(np.asanyarray(errors))
+    assert not (np.isnan(q25) or np.isnan(q75)), f'{errors}'
     q25 += 2 * np.pi
     q75 -= 2 * np.pi
     while q75 < theta and not np.isclose(q75, theta):
@@ -121,26 +119,16 @@ def plot_responses_over_imu(x, y, sun=None, negative=False, prediction=None, err
     return axis, np.angle(arrow)
 
 
-def plot_responses(*collections, calculate_predictions=True, figure=None, ring_size=20, dataset_path=None):
-
-    if len(collections) < 1:
-        collections = default_collections
+def plot_responses(sessions=None, calculate_predictions=True, figure=None, ring_size=8, dataset_path=None):
 
     if dataset_path is None:
         dataset_path = os.path.join(data_base, default_pooled)
     dataset_base = os.path.dirname(dataset_path)
-    clean_df = pd.read_csv(dataset_path)
+    df = pd.read_csv(dataset_path)
+    # df = df.iloc[:, :-5]
 
-    df = clean_df[np.any([clean_df["collection"] == c for c in collections], axis=0)]
-    df = df.iloc[:, :-5]
-
-    if figure is None:
-        sessions = np.unique(df["session"])
-    elif figure in [4, '4', "4a"]:
+    if sessions is None:
         sessions = solar_elevation_selected
-
-    else:
-        sessions = None
 
     if sessions is not None:
         mosaic = [[f"{image_file} int", f"{image_file} pol", f"{image_file} int-pol"]
@@ -151,51 +139,66 @@ def plot_responses(*collections, calculate_predictions=True, figure=None, ring_s
 
         for i_s, session in enumerate(sessions):
             dfs = df[df["session"] == session]
-            dfs["direction"] = dfs["direction"] % 360
             print(f"Session {i_s + 1: 2d}: {session}")
 
             sun_azi = np.deg2rad(np.mean(dfs["sun_azimuth"].to_numpy()))
 
-            pol_res = dfs[dfs["unit_type"] == "POL"]
-            int_res = dfs[dfs["unit_type"] == "INT"]
+            dfs_ = dfs.groupby(
+                ["time", "unit_type", "sun_azimuth", "sun_elevation", "yaw", "device_yaw", "rotation", "session"],
+                as_index=False
+            ).mean()
 
-            pol_res = pol_res.pivot(index="rotation", columns="direction", values="response").to_numpy()
-            int_res = int_res.pivot(index="rotation", columns="direction", values="response").to_numpy()
+            pol_res = dfs_[dfs_["unit_type"] == "POL"]
+            int_res = dfs_[dfs_["unit_type"] == "INT"]
 
-            if calculate_predictions:
-                # nb_recordings x nb_samples
-                ang_pol, x_pol = analysis.compute_sensor_output_from_responses(
-                    pol_res, int_res, ring_size, polarisation=True, intensity=False)
-                ang_int, x_int = analysis.compute_sensor_output_from_responses(
-                    pol_res, int_res, ring_size, polarisation=False, intensity=True)
-                ang_inp, x_inp = analysis.compute_sensor_output_from_responses(
-                    pol_res, int_res, ring_size, polarisation=True, intensity=True)
+            rotations = dfs_["rotation"].unique()
 
-                pol_q25, pol_q50, pol_q75 = cs.circ_quantiles(ang_pol - x_pol, axis=-1)
-                int_q25, int_q50, int_q75 = cs.circ_quantiles(ang_int - x_int, axis=-1)
-                inp_q25, inp_q50, inp_q75 = cs.circ_quantiles(ang_inp - x_inp, axis=-1)
-            else:
-                pol_q25, pol_q50, pol_q75 = [[None] * pol_res.shape[0]] * 3
-                int_q25, int_q50, int_q75 = [[None] * pol_res.shape[0]] * 3
-                inp_q25, inp_q50, inp_q75 = [[None] * pol_res.shape[0]] * 3
+            for r in rotations:
+                # Check these two:
+                pol_res_df = pol_res[pol_res["rotation"] == r].pivot_table(index="yaw", columns="device_yaw",
+                                                                           values="response")
+                int_res_df = int_res[int_res["rotation"] == r].pivot_table(index="yaw", columns="device_yaw",
+                                                                           values="response")
+                pol_res_ = pol_res_df.to_numpy()
+                int_res_ = int_res_df.to_numpy()
 
-            for r in range(pol_res.shape[0]):
-                x_imu = np.linspace(0, 2 * np.pi, pol_res.shape[1], endpoint=False)
-                y_pol = pol_res[r]
-                y_iny = int_res[r]
-                y_inp = int_res[r] - pol_res[r]
+                yaws = np.radians(pol_res_df.index.to_list())
+                device_yaw = np.radians(pol_res_df.columns.to_list())
+
+                if calculate_predictions:
+                    # nb_recordings x nb_samples
+                    ang_pol, x_pol = analysis.compute_sensor_output_from_responses(
+                        pol_res_, int_res_, yaws, device_yaw, polarisation=True, intensity=False)
+                    ang_int, x_int = analysis.compute_sensor_output_from_responses(
+                        pol_res_, int_res_, yaws, device_yaw, polarisation=False, intensity=True)
+                    ang_inp, x_inp = analysis.compute_sensor_output_from_responses(
+                        pol_res_, int_res_, yaws, device_yaw, polarisation=True, intensity=True)
+
+                    pol_q25, pol_q50, pol_q75 = cs.circ_quantiles(ang_pol - x_pol, axis=-1)
+                    # assert not any(np.isnan(pol_q25)), f'{ang_pol, x_pol}'
+                    int_q25, int_q50, int_q75 = cs.circ_quantiles(ang_int - x_int, axis=-1)
+                    inp_q25, inp_q50, inp_q75 = cs.circ_quantiles(ang_inp - x_inp, axis=-1)
+                else:
+                    pol_q25, pol_q50, pol_q75 = [[None] * pol_res_.shape[0]] * 3
+                    int_q25, int_q50, int_q75 = [[None] * pol_res_.shape[0]] * 3
+                    inp_q25, inp_q50, inp_q75 = [[None] * pol_res_.shape[0]] * 3
+
+                x_imu = (yaws[:, None] - device_yaw[None, :]).flatten() % (2 * np.pi)
+                y_pol = pol_res_.flatten()
+                y_iny = int_res_.flatten()
+                y_inp = (int_res_ - pol_res_).flatten()
 
                 plot_responses_over_imu(
                     x_imu, y_pol, axis=ax[f"{session} pol"], color=p_colour,
-                    prediction=pol_q50[r], error=(pol_q25[r], pol_q75[r]),
+                    prediction=pol_q50, error=(pol_q25, pol_q75),
                     c=r, sun=sun_azi, x_ticks=False, filtered=False, negative=True)
                 plot_responses_over_imu(
                     x_imu, y_iny, axis=ax[f"{session} int"], color=i_colour,
-                    prediction=int_q50[r], error=(int_q25[r], int_q75[r]),
+                    prediction=int_q50, error=(int_q25, int_q75),
                     c=r, sun=sun_azi, x_ticks=False, filtered=False)
                 plot_responses_over_imu(
                     x_imu, y_inp, axis=ax[f"{session} int-pol"], color=c_colour,
-                    prediction=inp_q50[r], error=(inp_q25[r], inp_q75[r]),
+                    prediction=inp_q50, error=(inp_q25, inp_q75),
                     c=r, sun=sun_azi, x_ticks=False, filtered=False)
 
         # Add text
@@ -218,7 +221,10 @@ if __name__ == '__main__':
     if outfile is not None and outfile.lower() in out_extensions:
         outfile = os.path.join(out_base, f"fig_{figure_no}.{outfile.lower()}")
 
-    fig_out = plot_responses(figure=4)
+    fig_out = plot_responses(figure=4,
+                             dataset_path='./csv/pol_ops.csv',
+                             sessions=['session1']
+                             )
 
     if fig_out is not None and outfile is not None:
         fig_out.savefig(outfile, bbox_inches="tight")
