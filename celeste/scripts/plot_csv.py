@@ -1,3 +1,4 @@
+import glob
 import os
 import matplotlib.pyplot as plt
 
@@ -6,9 +7,6 @@ import analysis
 import circstats as cs
 import pandas as pd
 
-min_rs, max_rs = 3, 20
-
-default_pooled = "pooled_dataset.csv"
 data_base = os.path.abspath(os.path.join(os.getcwd(), '.', 'csv'))
 out_base = os.path.abspath(os.path.join(os.getcwd(), '.', 'csv', 'plots'))
 if not os.path.exists(out_base):
@@ -63,7 +61,6 @@ def plot_circ_error_bars(theta, rho, errors, color='black', edge_color='black', 
 
 def plot_responses_over_imu(x, y, sun=None, negative=False, prediction=None, error=None, axis=None,
                             c=0, color="red", y_padding=.1, x_ticks=True, y_min=-1, y_max=1, filtered=False):
-
     if axis is None:
         axis = plt.subplot(111)
 
@@ -105,7 +102,7 @@ def plot_responses_over_imu(x, y, sun=None, negative=False, prediction=None, err
 
     axis.set_yticks([-1, 0])
     axis.set_yticklabels([""] * 2)
-    axis.set_xticks([-3*np.pi/4, -np.pi/2, -np.pi/4, 0, np.pi/4, np.pi/2, 3*np.pi/4, np.pi])
+    axis.set_xticks([-3 * np.pi / 4, -np.pi / 2, -np.pi / 4, 0, np.pi / 4, np.pi / 2, 3 * np.pi / 4, np.pi])
     axis.set_xticklabels(["", "W", "", "N", "", "E", "", "S"])
     axis.spines["polar"].set_visible(False)
 
@@ -119,13 +116,9 @@ def plot_responses_over_imu(x, y, sun=None, negative=False, prediction=None, err
     return axis, np.angle(arrow)
 
 
-def plot_responses(sessions=None, calculate_predictions=True, figure=None, ring_size=8, dataset_path=None):
-
-    if dataset_path is None:
-        dataset_path = os.path.join(data_base, default_pooled)
+def plot_responses(dataset_path, sessions=None, figure=None, figsize=(9, 2)):
     dataset_base = os.path.dirname(dataset_path)
     df = pd.read_csv(dataset_path)
-    # df = df.iloc[:, :-5]
 
     if sessions is None:
         sessions = solar_elevation_selected
@@ -134,7 +127,7 @@ def plot_responses(sessions=None, calculate_predictions=True, figure=None, ring_
         mosaic = [[f"{image_file} int", f"{image_file} pol", f"{image_file} int-pol"]
                   for image_file in sessions]
 
-        fig, ax = plt.subplot_mosaic(mosaic, figsize=(9, 2 * len(sessions)),
+        fig, ax = plt.subplot_mosaic(mosaic, figsize=(figsize[0], figsize[1] * len(sessions)),
                                      subplot_kw={'projection': 'polar'})
 
         for i_s, session in enumerate(sessions):
@@ -165,25 +158,19 @@ def plot_responses(sessions=None, calculate_predictions=True, figure=None, ring_
                 yaws = np.radians(pol_res_df.index.to_list())
                 device_yaw = np.radians(pol_res_df.columns.to_list())
 
-                if calculate_predictions:
-                    # nb_recordings x nb_samples
-                    ang_pol, x_pol = analysis.compute_sensor_output_from_responses(
-                        pol_res_, int_res_, yaws, device_yaw, polarisation=True, intensity=False)
-                    ang_int, x_int = analysis.compute_sensor_output_from_responses(
-                        pol_res_, int_res_, yaws, device_yaw, polarisation=False, intensity=True)
-                    ang_inp, x_inp = analysis.compute_sensor_output_from_responses(
-                        pol_res_, int_res_, yaws, device_yaw, polarisation=True, intensity=True)
+                # nb_recordings x nb_samples
+                ang_pol, x_pol = analysis.compute_sensor_output_from_responses(
+                    pol_res_, int_res_, yaws, device_yaw, polarisation=True, intensity=False)
+                ang_int, x_int = analysis.compute_sensor_output_from_responses(
+                    pol_res_, int_res_, yaws, device_yaw, polarisation=False, intensity=True)
+                ang_inp, x_inp = analysis.compute_sensor_output_from_responses(
+                    pol_res_, int_res_, yaws, device_yaw, polarisation=True, intensity=True)
 
-                    pol_q25, pol_q50, pol_q75 = cs.circ_quantiles(ang_pol - x_pol, axis=-1)
-                    # assert not any(np.isnan(pol_q25)), f'{ang_pol, x_pol}'
-                    int_q25, int_q50, int_q75 = cs.circ_quantiles(ang_int - x_int, axis=-1)
-                    inp_q25, inp_q50, inp_q75 = cs.circ_quantiles(ang_inp - x_inp, axis=-1)
-                else:
-                    pol_q25, pol_q50, pol_q75 = [[None] * pol_res_.shape[0]] * 3
-                    int_q25, int_q50, int_q75 = [[None] * pol_res_.shape[0]] * 3
-                    inp_q25, inp_q50, inp_q75 = [[None] * pol_res_.shape[0]] * 3
+                pol_q25, pol_q50, pol_q75 = cs.circ_quantiles(ang_pol - x_pol, axis=-1)
+                int_q25, int_q50, int_q75 = cs.circ_quantiles(ang_int - x_int, axis=-1)
+                inp_q25, inp_q50, inp_q75 = cs.circ_quantiles(ang_inp - x_inp, axis=-1)
 
-                x_imu = (yaws[:, None] - device_yaw[None, :]).flatten() % (2 * np.pi)
+                x_imu = (device_yaw[None, :] - yaws[:, None]).flatten() % (2 * np.pi)
                 y_pol = pol_res_.flatten()
                 y_iny = int_res_.flatten()
                 y_inp = (int_res_ - pol_res_).flatten()
@@ -214,17 +201,22 @@ def plot_responses(sessions=None, calculate_predictions=True, figure=None, ring_
 
 
 if __name__ == '__main__':
-    outfile = 'png'
-    out_extensions = ['png', 'jpeg', 'jpg', 'svg', 'pdf']
-    figure_no = '1'
+    csv_path = './csv/'
+    csv_paths = glob.glob(csv_path+"*.csv")
 
-    if outfile is not None and outfile.lower() in out_extensions:
-        outfile = os.path.join(out_base, f"fig_{figure_no}.{outfile.lower()}")
+    for csv_path in csv_paths:
+        print(csv_path)
+        outfile = 'png'
+        out_extensions = ['png', 'jpeg', 'jpg', 'svg', 'pdf']
 
-    fig_out = plot_responses(figure=4,
-                             dataset_path='./csv/pol_ops.csv',
-                             sessions=['session1']
-                             )
+        if outfile is not None and outfile.lower() in out_extensions:
+            outfile = os.path.join(out_base, f"{csv_path[-25:-4]}.{outfile.lower()}")
 
-    if fig_out is not None and outfile is not None:
-        fig_out.savefig(outfile, bbox_inches="tight")
+        fig_out = plot_responses(figure=4,
+                                 figsize=(4, 2),
+                                 dataset_path=csv_path,
+                                 sessions=['session1']
+                                 )
+
+        if fig_out is not None and outfile is not None:
+            fig_out.savefig(outfile, bbox_inches="tight")

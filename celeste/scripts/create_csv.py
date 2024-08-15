@@ -8,12 +8,10 @@ from datetime import datetime
 import time
 import os
 import glob
-from pathlib import Path
 
-
-
-
-BAG = '../my_bags/test_2024_08_14-10_43/'
+BAG = ('../my_bags/saved/'
+       'test_2024_07_24-14_19'
+       '/')
 
 bagfiles = glob.glob(BAG+"pol_op*")
 print(bagfiles)
@@ -63,7 +61,6 @@ for i_b, bagname in enumerate(bagfiles):
            == len(pols[4]) == len(pols[5]) == len(pols[6]) == len(pols[7])
 
     record_time = datetime.fromtimestamp(t[0]/10**9)
-    print(record_time)
     sun = ephemeris.Sun(observer.Observer(LON, LAT, date=record_time, degrees=True))
 
     data_num = len(pols[0])
@@ -102,4 +99,4 @@ for i_b, bagname in enumerate(bagfiles):
             df_lst.append(new_int_row)
 
 df = pandas.DataFrame(df_lst)
-df.to_csv('./csv/pol_ops.csv', index=False)
+df.to_csv(f'./csv/{BAG[-22:-1]}.csv', index=False)

@@ -74,7 +74,6 @@ def compute_sensor_output_from_responses(pol, iny, yaw, pol_angles, polarisation
 def get_sensor_responses(data, imu_samples=360, imu_drift=0., nb_nearest=11):
 
     i_valid = [[0, 1, 2, 3, 6]]
-    # i_valid = [[1, 2]]
 
     imu_angles = (np.linspace(0, 2 * np.pi, imu_samples, endpoint=False) + np.pi) % (2 * np.pi) - np.pi
     all_pol_res = np.zeros(imu_samples, dtype='float32')

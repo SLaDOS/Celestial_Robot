@@ -10,16 +10,14 @@ import glob
 from pathlib import Path
 
 
-
-
-BAG = '../my_bags/test_2024_08_14-10_43/'
+BAG = '../my_bags/saved/test_2024_07_22-18_05/'
 
 bagfiles = glob.glob(BAG+"pol_op*")
 print(bagfiles)
 MAX_INT = 11000.0
 # Edinburgh
-LON = 55.945011324580385
-LAT = -3.1867749119995956
+LAT = 55.945011324580385
+LON = -3.1867749119995956
 
 angles = {
     'pol_op_0': np.radians(0),
@@ -61,7 +59,7 @@ for bagname in bagfiles:
            == len(pols[4]) == len(pols[5]) == len(pols[6]) == len(pols[7])
 
     record_time = datetime.fromtimestamp(t[0]/10**9)
-    sun = ephemeris.Sun(observer.Observer(LON, LAT, date=record_time))
+    sun = ephemeris.Sun(observer.Observer(LON, LAT, date=record_time, degrees=True))
 
     data_num = len(pols[0])
     P, I, C = np.zeros((3, data_num, len(pols)))
@@ -96,11 +94,12 @@ for bagname in bagfiles:
     out_uw = np.unwrap(np.degrees(outs), period=360)
     print(out_uw[0])
     fig, ax = plt.subplots()
-    ax.plot(np.array(t) - t[0], yaw_uw)
-    ax.plot(np.array(t) - t[0], out_uw)
+    ax.plot(np.array(t) - t[0], yaw_uw, label='Yaw from IMU (Unwrapped)')
+    ax.plot(np.array(t) - t[0], out_uw, label='Predict from Pol (Unwrapped)')
     ax.set(xlabel='time', ylabel='yaw',
            title=f'{bagname[-19:]}')
     ax.grid()
+    ax.legend()
     plot_directory = BAG+'plots/'
     Path(plot_directory).mkdir(parents=False, exist_ok=True)
     plt.savefig(plot_directory+os.path.basename(bagname)+'-plot1')
