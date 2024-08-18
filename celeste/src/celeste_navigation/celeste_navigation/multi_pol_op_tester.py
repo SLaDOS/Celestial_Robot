@@ -18,8 +18,8 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from turtlebot3_msgs.srv import Sound
 
+TEST_NUM = 7  # IMU may draft after 6 rounds
 POL_NUM = 8
-TEST_NUM = 12
 BAG_PATH = datetime.datetime.now().strftime('my_bags/test_%Y_%m_%d-%H_%M/')
 BOOKEND = 3  # second(s)
 
@@ -141,6 +141,7 @@ class PolTester(Node):
 def main(args=None):
     rclpy.init(args=args)
     # play_sound(1)
+    start_yaw = 0
 
     for i in range(TEST_NUM):
         print(f'{i + 1} in {TEST_NUM}')
@@ -164,6 +165,7 @@ def main(args=None):
             node.command_velocity(0, cmd_angular)
             rclpy.spin_once(node)
             error_yaw = node.yaw - start_yaw
+            # print(f'yaw:{node.yaw}, error{error_yaw}')
             if time.time() - start_time > 10:
                 node.get_logger().info('Time exceeded')
                 return
@@ -176,6 +178,7 @@ def main(args=None):
 
         # Rotate
         node.get_logger().info('Start rotating...')
+        print(f'yaw:{node.yaw}')
         corrected_yaw = node.yaw if node.yaw >= 0 else 2 * np.pi + node.yaw
         last_measure = corrected_yaw
         traverse = 0
@@ -183,7 +186,7 @@ def main(args=None):
             process = int(traverse / (2 * np.pi / 50)) + 1
             print(
                 # '\r' +
-                '[' + process * '=' + relu(50 - process) * ' ' + ']'+f'{i+1}/{TEST_NUM}',
+                '[' + process * '=' + relu(50 - process) * ' ' + ']'+f'{i+1}/{TEST_NUM}, yaw:{node.yaw}',
                 # end='',
             )
 

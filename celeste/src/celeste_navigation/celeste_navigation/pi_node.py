@@ -156,6 +156,7 @@ class PiNode(Node):
 
     def cue_callback(self, msg):
         self.yaw_from_pol = msg.theta
+        self.get_logger().info(f'{np.degrees(self.yaw_from_pol):.2f}')
 
     def reset_pol_received(self):
         self.pol_op_received = [0] * N_POL_OPS
