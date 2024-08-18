@@ -8,7 +8,7 @@ import circstats as cs
 import pandas as pd
 
 data_base = os.path.abspath(os.path.join(os.getcwd(), '.', 'csv'))
-out_base = os.path.abspath(os.path.join(os.getcwd(), '.', 'csv', 'plots'))
+out_base = os.path.abspath(os.path.join(os.getcwd(), '.', 'plots'))
 if not os.path.exists(out_base):
     os.makedirs(out_base)
 
@@ -132,7 +132,6 @@ def plot_responses(dataset_path, sessions=None, figure=None, figsize=(9, 2)):
 
         for i_s, session in enumerate(sessions):
             dfs = df[df["session"] == session]
-            print(f"Session {i_s + 1: 2d}: {session}")
 
             sun_azi = np.deg2rad(np.mean(dfs["sun_azimuth"].to_numpy()))
 
@@ -205,7 +204,7 @@ if __name__ == '__main__':
     csv_paths = glob.glob(csv_path+"*.csv")
 
     for csv_path in csv_paths:
-        print(csv_path)
+        print('Start: ', csv_path)
         outfile = 'png'
         out_extensions = ['png', 'jpeg', 'jpg', 'svg', 'pdf']
 
@@ -213,10 +212,12 @@ if __name__ == '__main__':
             outfile = os.path.join(out_base, f"{csv_path[-25:-4]}.{outfile.lower()}")
 
         fig_out = plot_responses(figure=4,
-                                 figsize=(4, 2),
+                                 figsize=(18, 9),
                                  dataset_path=csv_path,
                                  sessions=['session1']
                                  )
 
         if fig_out is not None and outfile is not None:
             fig_out.savefig(outfile, bbox_inches="tight")
+
+        print('Done: ', csv_path)
