@@ -1,8 +1,6 @@
 # Celestial_Robot
 
 ## TODO:
-- bb_graphics/
-
 - clear, cloud, very cloud, near building, near grass 
 
 
@@ -87,18 +85,9 @@ More information see`/boot/firmware/overlays/README`
 
 ##### Need pull up
 > You need to ensure that you have suitable pulls to 3V3 on all the GPIO used to bit bang I2C. 
-> For information GPIO 2/3 have 1k8 pulls to 3V3. \
-> Reference: https://forums.raspberrypi.com/viewtopic.php?t=108653#p1563253
-
-> Also see https://forums.raspberrypi.com/viewtopic.php?t=353041 for pull up
-
-## ROS 2
-
-### Create a package dedicated to ROS2 custom messages
-https://roboticsbackend.com/ros2-create-custom-message/#Create_a_package_dedicated_to_ROS2_custom_messages
-
-> In theory you could create custom messages in any package you want, but this could lead to many problems. For example, if you create the message in package A and you need this message in package B, you’ll have to add a dependency to package A. This will quickly result in a dependency mess with unneeded and cycling dependencies.
+> For information GPIO 2/3 have 1k8 pulls to 3V3. 
 > 
-> So, the best practice here is to create a package dedicated to ROS2 custom messages, and only that. Then you’ll be able to add a dependency to this package, from any package requiring your custom interfaces.
-
+> Reference: https://forums.raspberrypi.com/viewtopic.php?t=108653#p1563253
+>
+> Also see https://forums.raspberrypi.com/viewtopic.php?t=353041 for pull up
 
