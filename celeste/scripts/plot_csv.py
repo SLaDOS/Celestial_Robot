@@ -188,9 +188,9 @@ def plot_responses(dataset_path, sessions=None, figure=None, figsize=(9, 2)):
                     c=r, sun=sun_azi, x_ticks=False, filtered=False)
 
         # Add text
-        ax[f"{sessions[0]} pol"].set_title("POL", fontsize=8)
-        ax[f"{sessions[0]} int"].set_title("INT", fontsize=8)
-        ax[f"{sessions[0]} int-pol"].set_title("INT-POL", fontsize=8)
+        ax[f"{sessions[0]} pol"].set_title("p", fontsize=20, fontstyle='italic')
+        ax[f"{sessions[0]} int"].set_title("I", fontsize=20, fontstyle='italic')
+        ax[f"{sessions[0]} int-pol"].set_title("c", fontsize=20, fontstyle='italic')
         fig.tight_layout()
     else:
         print(f"Figure {figure} is not supported for this type of plot.")
@@ -202,9 +202,9 @@ def plot_responses(dataset_path, sessions=None, figure=None, figsize=(9, 2)):
 if __name__ == '__main__':
     csv_path = './csv/'
     csv_paths = glob.glob(csv_path+"*.csv")
+    plt.rcParams['font.family'] = 'serif'
 
     for csv_path in csv_paths:
-        print('Start: ', csv_path)
         outfile = 'png'
         out_extensions = ['png', 'jpeg', 'jpg', 'svg', 'pdf']
 
@@ -212,7 +212,7 @@ if __name__ == '__main__':
             outfile = os.path.join(out_base, f"{csv_path[-25:-4]}.{outfile.lower()}")
 
         fig_out = plot_responses(figure=4,
-                                 figsize=(18, 9),
+                                 figsize=(6, 3),
                                  dataset_path=csv_path,
                                  sessions=['session1']
                                  )

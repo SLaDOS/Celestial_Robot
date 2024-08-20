@@ -206,7 +206,7 @@ def main(args=None):
                 # empty the QoS queue before get data
                 rclpy.spin_once(node)
             else:
-                if time.time() - now < 0.1:
+                if time.time() - now < 0.05:
                     raise Exception(f'Time interval ({time.time() - now}) is too short.')
                 node.write_all()
                 print(time.time() - now)
