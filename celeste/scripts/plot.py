@@ -10,7 +10,7 @@ import glob
 from pathlib import Path
 
 
-BAG = '../my_bags/test_2024_08_18-12_28/'
+BAG = '../my_bags/saved/test_2024_08_18-14_33/'
 
 bagfiles = glob.glob(BAG+"pol_op*")
 print(bagfiles)
@@ -82,24 +82,24 @@ for bagname in bagfiles:
         out = np.angle(z) + sun.az
         outs.append(out)
 
-        # # The .messages() method accepts connection filters.
-        # connections = [x for x in reader.connections if x.topic == '/imu_raw/Imu']
-        # for connection, timestamp, rawdata in reader.messages(connections=connections):
-        #     msg = typestore.deserialize_cdr(rawdata, connection.msgtype)
-        #     print(msg.header.frame_id)
-
     assert len(outs) == len(yaw)
 
     yaw_uw = np.unwrap(np.degrees(yaw), period=360) - np.degrees(yaw[0]) + np.degrees(outs[0])
     out_uw = np.unwrap(np.degrees(outs), period=360)
-    print(out_uw[0])
+    rmse = np.sqrt(np.mean(np.square((yaw_uw - out_uw + 180) % 360 - 180)))
+
     fig, ax = plt.subplots()
-    ax.plot(np.array(t) - t[0], yaw_uw, label='Yaw from IMU (Unwrapped)')
-    ax.plot(np.array(t) - t[0], out_uw, label='Predict from Pol (Unwrapped)')
-    ax.set(xlabel='time', ylabel='yaw',
-           title=f'{bagname[-19:]}')
+    ax.plot(10e-10*(np.array(t) - t[0]), yaw_uw, label='Yaw from IMU (Unwrapped)')
+    ax.plot(10e-10*(np.array(t) - t[0]), out_uw, label='Predict from compass (Unwrapped)')
+    ax.set(xlabel='time (s)', ylabel='yaw (degree)',
+           title=f'Celestial Compass VS IMU')  # f'{bagname[-19:]}'
     ax.grid()
-    ax.legend()
+    ax.legend(loc='lower right')
+
+    ax.text(0.01, 0.99, f'RMSE={rmse:.2f}',
+            transform=ax.transAxes, fontsize=14,
+            verticalalignment='top',
+            horizontalalignment='left')
     plot_directory = BAG+'plots/'
     Path(plot_directory).mkdir(parents=False, exist_ok=True)
     plt.savefig(plot_directory+os.path.basename(bagname)+'-plot1')
@@ -114,5 +114,4 @@ for bagname in bagfiles:
     # plt.tight_layout()
     # plt.savefig(bagname+'plot2')
 
-    rmse = np.sqrt(np.mean(np.square((yaw_uw - out_uw + 180) % 360 - 180)))
     print(f"RMSE: {rmse:.2f}")
