@@ -10,9 +10,9 @@ import glob
 from pathlib import Path
 
 
-BAG = '../my_bags/saved/test_2024_08_18-14_33/'
+BAG = '../my_bags/saved/test_2024_08_20-14_08/'
 
-bagfiles = glob.glob(BAG+"pol_op*")
+bagfiles = sorted(glob.glob(BAG+"pol_op*"))
 print(bagfiles)
 MAX_INT = 11000.0
 # Edinburgh
@@ -33,6 +33,7 @@ angles = {
 
 # Create a typestore and get the string class.
 typestore = get_typestore(Stores.LATEST)
+rmse_lst = []
 
 for bagname in bagfiles:
     yaw = []
@@ -115,3 +116,8 @@ for bagname in bagfiles:
     # plt.savefig(bagname+'plot2')
 
     print(f"RMSE: {rmse:.2f}")
+
+    rmse_lst.append(rmse)
+
+for i in rmse_lst:
+    print(i, end=',')
