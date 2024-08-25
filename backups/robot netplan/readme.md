@@ -2,8 +2,8 @@
     PC: Ubuntu Desktop 22.04
     SBC: Raspberry Pi 4 Model B with Ubuntu Server 22.04
 
-`$ sudo nano /etc/netplan/50-cloud-init.yaml`
-to edit netplan and name it as `50-cloud-init.yaml`
+use `$ sudo nano /etc/netplan/50-cloud-init.yaml`
+to edit the net plan
 
 [1] works well with no password. It doesn't work with a password.
 Needs an ethernet cable connected to the PC to let the PC and SBC both access the Internet.

@@ -1,9 +1,5 @@
 # Celestial_Robot
 
-## TODO:
-- clear, cloud, very cloud, near building, near grass 
-
-
 ## Information
 
     Raspberry Pi Version: Raspberry Pi 4 Model B
