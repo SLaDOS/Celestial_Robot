@@ -29,21 +29,21 @@ class CentralComplex:
         self.tl2_bias = 3.0  # TL2 activation bias
         self.tl2_prefs = np.array([  # The TL2 receptive fields
             [0],
-            [0.78539816],
-            [1.57079633],
-            [2.35619449],
-            [3.14159265],
-            [3.92699082],
-            [4.71238898],
-            [5.49778714],
+            [0.78539816],  # 45 degrees
+            [1.57079633],  # 90 degrees
+            [2.35619449],  # 135 degrees
+            [3.14159265],  # 180 degrees
+            [3.92699082],  # 225 degrees
+            [4.71238898],  # 270 degrees
+            [5.49778714],  # 315 degrees
             [0],
-            [0.78539816],
-            [1.57079633],
-            [2.35619449],
-            [3.14159265],
-            [3.92699082],
-            [4.71238898],
-            [5.49778714],
+            [0.78539816],  # 45 degrees
+            [1.57079633],  # 90 degrees
+            [2.35619449],  # 135 degrees
+            [3.14159265],  # 180 degrees
+            [3.92699082],  # 225 degrees
+            [4.71238898],  # 270 degrees
+            [5.49778714],  # 315 degrees
         ])
 
         self.cl1_slope = 3.0  # CL1 activation slope
@@ -146,21 +146,6 @@ class CentralComplex:
         v = 1 / (1 + np.exp(-(v * slope + bias)))
         return v
 
-    # @staticmethod
-    # def dot(a, b):
-    #     """
-    #     Dot product which allows Eigen Matrices to be used as input.
-    #
-    #     :param a: Matrix a
-    #     :param b: Matrix b
-    #     :return: a dot b
-    #     """
-    #     if a.shape[0] == 1:
-    #         a = a.T
-    #     if b.shape[1] == 1:
-    #         b = b.T
-    #     return np.dot(a.T, b).item()
-
     def tl2_output(self, theta, output):
         """
      Given angular input, compute the TL2 population response.
@@ -177,12 +162,11 @@ class CentralComplex:
         output = self.sigmoid(output, self.tl2_slope, self.tl2_bias, self.noise)
         return output
 
-    def cl1_output(self, tl2, cl1):
+    def cl1_output(self, tl2):
         """
         Compute CL1 response given a current TL2 response.
 
         :param tl2: The current TL2 activity matrix.
-        :param cl1: The CL1 activity output.
         :return: cl1
         """
         cl1 = -tl2
@@ -274,7 +258,7 @@ class CentralComplex:
         :return: The return value of CentralComplex::motor_output.
         """
         self.TL2 = self.tl2_output(theta, self.TL2)
-        self.CL1 = self.cl1_output(self.TL2, self.CL1)
+        self.CL1 = self.cl1_output(self.TL2)
         self.TB1 = self.tb1_output(self.CL1, self.TB1)
         self.MEM = self.cpu4_update(speed, self.TB1, self.MEM)
         self.CPU4 = self.MEM
@@ -308,4 +292,4 @@ class CentralComplex:
 
 
 if __name__ == '__main__':
-    pass
+    print(np.round(CentralComplex().W_CL1_TB1,decimals=4))

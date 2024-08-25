@@ -35,17 +35,19 @@ from celeste_navigation import cx_model
 from sensor_msgs.msg import JointState
 
 N_POL_OPS = 8
-
+USE_IMU = False
 
 class PiNode(Node):
     cx_threshold = 10  # the threshold robot decide to turn
     timer_sec = 0.05  # the rate cx_motor is computed
     keep_turn_sec = 0.1  # every time turn for 0.1 seconds
     keep_move_sec = 1.5  # every move forward for at least 1.5 seconds
-    cx_motor_amplifier = 10e6  #
+    cx_motor_amplifier = 10e6
 
     def __init__(self, args):
         super().__init__('pi_node')
+        global USE_IMU
+        self.use_imu = USE_IMU
         self.cx = cx_model.CentralComplex()
         self.vel_from_odom = 0.0
         self.yaw_from_odom = 0.0
@@ -76,8 +78,10 @@ class PiNode(Node):
         """
         Called at a fix rate
         """
-        # cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_pol, self.vel_from_joint)
-        cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)  # todo: use odom to test
+        if not self.use_imu:
+            cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_pol, self.vel_from_joint)
+        else:
+            cx_motor = self.cx.unimodal_monolithic_CX(self.yaw_from_odom, self.vel_from_joint)  # todo: use odom to test
         cx_status = self.cx.get_status()
         self.cx_status_publish(cx_status)
         self.commend_velocity_sharply(cx_motor)
@@ -123,7 +127,8 @@ class PiNode(Node):
 
         request = Velocity.Request(linear=0.0, angular=0.0)
         cx_motor = cx_motor * PiNode.cx_motor_amplifier
-        self.get_logger().info(f'CX_MOTOR:{cx_motor}')
+        yaw_src = 'imu' if self.use_imu else 'pol'
+        self.get_logger().info(f'CX_MOTOR:{cx_motor} using {yaw_src}')
         if self.keep_move_round > 0 or self.keep_turn_round > 0:
             if self.keep_move_round > 0:
                 self.keep_move_round -= 1
