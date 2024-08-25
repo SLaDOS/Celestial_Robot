@@ -20,19 +20,20 @@ y = np.array(df.y)
 
 x_center_guess = np.mean(x)
 y_center_guess = np.mean(y)
-r_guess = np.std(x)
-initial_guess = [x_center_guess, y_center_guess, r_guess]
 
-result = least_squares(residuals, initial_guess, args=(x, y))
+# r_guess = np.std(x)
+# initial_guess = [x_center_guess, y_center_guess, r_guess]
+# result = least_squares(residuals, initial_guess, args=(x, y))
+# x_center, y_center, r = result.x
 
-x_center, y_center, r = result.x
-print(f"Circle Center: ({x_center}, {y_center})")
-print(f"Radius: {r}")
-print(f'Distance: {np.sqrt(x_center**2 + y_center**2)}')
+# print(f"Circle Center: ({x_center}, {y_center})")
+# print(f"Radius: {r}")
+# print(f'Distance: {np.sqrt(x_center**2 + y_center**2)}')
+
 print(df)
 # df.index = np.arange(1, len(df)+1)
 df.index = ['U-turn '+str(i) for i in range(1,len(df)+1)]
-df.loc['fitted center'] = [x_center,y_center]
+df.loc['fitted center'] = [x_center_guess,y_center_guess]
 df['distance'] = np.sqrt(df['x']**2 + df['y']**2)
 print(df.T)
 df = df.T
