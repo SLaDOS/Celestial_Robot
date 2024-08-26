@@ -24,6 +24,7 @@ setup(
             'cmd_vel = celeste_navigation.cmd_vel_node:main',
             'pol_cue_detector = celeste_navigation.pol_cue_detector_node:main',
             'pi = celeste_navigation.pi_node:main',
+            'pi_imu = celeste_navigation.pi_node_imu:main',
             'teleop = celeste_navigation.teleop_keyboard:main',
             'simple_pub = celeste_navigation.simple_pub:main',
             'simple_sub = celeste_navigation.simple_sub:main',
